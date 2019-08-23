@@ -1,9 +1,10 @@
 import React from "react";
 
 import {storiesOf} from "@storybook/react";
+import {action} from '@storybook/addon-actions';
 
-import App from "../src/App";
+import {Phone} from "../src/components/phone/phone";
 
-storiesOf("测试", module)
-    .add("React组件", () => <App/>);
+storiesOf("手机", module)
+    .add("手机", () => <Phone button={{text: "打印", onClick: action("打印成功")}}>屏幕</Phone>);
 
