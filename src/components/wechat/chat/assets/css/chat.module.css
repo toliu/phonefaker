@@ -1,0 +1,44 @@
+.header {
+    display: block;
+    background-color: #d6d6d6;
+    padding-top: 8%;
+    padding-right: 2%;
+    height: 6%;
+    margin: 0 auto;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.back-icon {
+    background: url("../img/back.png") center center no-repeat;
+    background-size: 80% 70%;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    width: 10%;
+    height: 100%;
+}
+
+.chat-name {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+    height: 80%;
+}
+
+.profile {
+    display: inline-block;
+    width: 10%;
+    text-align: right;
+    height: 100%;
+    background: url("../img/dot.png") center right no-repeat;
+    background-size: 60% 60%;
+}
+
+.body {
+    min-height: 90%;
+}
