@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import {Header} from "./header";
+
 import topPicture from "./assets/img/phone-top.png";
 
 import styles from "./assets/css/phone.module.css";
@@ -20,6 +22,7 @@ export class Phone extends React.Component<PhoneProps, {}> {
                 <img src={topPicture} alt={"Phone Top"} className={styles["phone-top"]}/>
                 <div className={styles["main-phone"]}>
                     <div className={styles.screen}>
+                        <Header/>
                         {this.props.children}
                     </div>
                 </div>
