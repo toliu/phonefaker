@@ -1,17 +1,20 @@
-.mine {
+.mine, .other {
     position: relative;
     margin-bottom: 10px;
     width: 100%;
 }
 
-.mine .message {
+.message {
     display: inline-block;
-    float: right;
-    margin-right: 8px;
     line-height: 20px;
     font-size: 14px;
     max-width: 70%;
     border-radius: 5px;
+}
+
+.mine .message {
+    float: right;
+    margin-right: 8px;
     background-color: #68eb4a;
     padding: 3px 8px 3px 3px;
 }
@@ -34,12 +37,6 @@
     border-radius: 3px;
 }
 
-.other {
-    position: relative;
-    margin-bottom: 10px;
-    width: 100%;
-}
-
 .other > img {
     height: 25px;
     width: 25px;
@@ -49,12 +46,7 @@
 
 .other .message {
     float: left;
-    display: inline-block;
     margin-left: 8px;
-    line-height: 20px;
-    font-size: 14px;
-    max-width: 70%;
-    border-radius: 5px;
     background-color: white;
     padding: 3px 3px 3px 8px;
 }
