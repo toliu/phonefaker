@@ -16,10 +16,12 @@ export class Mine extends React.Component<MineProps, {}> {
             avatarURL = defaultAvatarPicture;
         }
         return (
-            <div className={styles.mine}>
+            <div className={styles.mine} style={{clear: "both"}}>
                 <img alt={"mine avatar"} src={avatarURL}/>
                 <div className={styles.message}>
                     {this.props.children}
+                </div>
+                <div style={{clear: "both"}}>
                 </div>
             </div>
         );
@@ -43,6 +45,8 @@ export class Other extends React.Component<OtherProps, {}> {
                 <img alt={"mine avatar"} src={avatarURL}/>
                 <div className={styles.message}>
                     {this.props.children}
+                </div>
+                <div style={{clear: "both"}}>
                 </div>
             </div>
         );

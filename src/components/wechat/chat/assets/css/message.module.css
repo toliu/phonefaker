@@ -1,6 +1,5 @@
 .mine {
     position: relative;
-    float: right;
     margin-bottom: 10px;
     width: 100%;
 }
@@ -39,7 +38,6 @@
     position: relative;
     margin-bottom: 10px;
     width: 100%;
-    float: left;
 }
 
 .other > img {
@@ -78,7 +76,6 @@
 }
 
 .date {
-    float: left;
     margin-bottom: 10px;
     padding: 0 5%;
     height: 12px;
