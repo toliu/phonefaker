@@ -1,0 +1,73 @@
+.mine {
+    position: relative;
+    float: right;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.mine .message {
+    display: inline-block;
+    float: right;
+    margin-right: 8px;
+    line-height: 20px;
+    font-size: 14px;
+    max-width: 70%;
+    border-radius: 5px;
+    background-color: #68eb4a;
+    padding: 3px 8px 3px 3px;
+}
+
+.mine .message:after {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    top: 8px;
+    right: 30px;
+}
+
+.mine > img {
+    float: right;
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+}
+
+.other {
+    position: relative;
+    margin-bottom: 10px;
+    width: 100%;
+    float: left;
+}
+
+.other > img {
+    height: 25px;
+    width: 25px;
+    border-radius: 3px;
+    float: left;
+}
+
+.other .message {
+    float: left;
+    display: inline-block;
+    margin-left: 8px;
+    line-height: 20px;
+    font-size: 14px;
+    max-width: 70%;
+    border-radius: 5px;
+    background-color: white;
+    padding: 3px 3px 3px 8px;
+}
+
+.other .message:before {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    top: 8px;
+    left: 30px;
+}
