@@ -31,12 +31,17 @@ interface ChatProps {
 }
 
 export class Chat extends React.Component<ChatProps, {}> {
+    private chatBody: any;
+
+    componentDidMount() {
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    }
+
     public render(): React.ReactElement {
         let chatName = this.props.user;
         if (!chatName) {
             chatName = "时光"
         }
-
         return (
             <Phone>
                 <div className={styles.header}>
@@ -44,7 +49,7 @@ export class Chat extends React.Component<ChatProps, {}> {
                     <span className={styles["chat-name"]}>{chatName}</span>
                     <span className={styles.profile}/>
                 </div>
-                <div className={styles.body}>
+                <div className={styles.body} ref={(chatBody) => this.chatBody = chatBody}>
                     {this.props.messages.map((msg: message) => {
                         if (!msg.mine) {
                             msg.mine = false;

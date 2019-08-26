@@ -24,13 +24,8 @@
     width: 275px;
     height: 489px;
     box-shadow: 0 0 1px 1px gray;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     word-break: break-word;
-}
-
-.screen::-webkit-scrollbar {
-    display: none;
 }
 
 .phone-bottom {
