@@ -15,13 +15,13 @@ export class Image extends React.Component<ImageProps, {}> {
         if (this.props.mine) {
             return (
                 <Mine avatarURL={this.props.avatarURL}>
-                    <img src={this.props.imagePath} alt={"image path"} className={styles.image}/>
+                    <img src={this.props.imagePath} alt={"path"} className={styles.image}/>
                 </Mine>
             );
         }
         return (
             <Other avatarURL={this.props.avatarURL}>
-                <img src={this.props.imagePath} alt={"image path"} className={styles.image}/>
+                <img src={this.props.imagePath} alt={"path"} className={styles.image}/>
             </Other>
         );
     }
