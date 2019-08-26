@@ -6,6 +6,7 @@ import {Image} from "./messages/image";
 import {Text} from "./messages/text";
 
 import styles from "./assets/css/chat.module.css"
+import {Voice} from "./messages/voice";
 
 export interface message {
     // common
@@ -23,6 +24,10 @@ export interface message {
     // date message
     isDate?: boolean;
     date?: Date;
+
+    //voice message
+    isVoice?: boolean;
+    voiceLength?: number;
 }
 
 interface ChatProps {
@@ -66,6 +71,8 @@ export class Chat extends React.Component<ChatProps, {}> {
                             return <Image mine={msg.mine} imagePath={msg.imagePath} avatarURL={msg.avatarURL}/>
                         } else if (msg.isDate) {
                             return <DateTime date={msg.date}/>
+                        } else if (msg.isVoice) {
+                            return <Voice vLength={msg.voiceLength} mine={msg.mine} avatarURL={msg.avatarURL}/>
                         }
                         return <Text mine={true} content={"Nothing"}/>
                     })}

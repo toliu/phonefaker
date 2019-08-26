@@ -1,0 +1,22 @@
+.voice-send, .voice-receive {
+    display: block;
+    max-width: 160px;
+    font-size: 12px;
+}
+
+.voice-send img, .voice-receive img {
+    display: inline;
+    height: 15px;
+    width: 15px;
+    position: relative;
+    bottom: -3px;
+}
+
+.voice-send span, .voice-receive span {
+    display: inline-block;
+    position: relative;
+}
+
+.voice-send img {
+    transform: rotateY(180deg);
+}
