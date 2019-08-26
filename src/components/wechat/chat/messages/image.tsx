@@ -14,14 +14,14 @@ export class Image extends React.Component<ImageProps, {}> {
     public render(): React.ReactElement {
         if (this.props.mine) {
             return (
-                <Mine avatarURL={this.props.avatarURL}>
-                    <img src={this.props.imagePath} alt={"path"} className={styles.image}/>
+                <Mine avatarURL={this.props.avatarURL} hiddenBackground={true}>
+                    <img src={this.props.imagePath} alt={"path"} className={styles["image-right"]}/>
                 </Mine>
             );
         }
         return (
-            <Other avatarURL={this.props.avatarURL}>
-                <img src={this.props.imagePath} alt={"path"} className={styles.image}/>
+            <Other avatarURL={this.props.avatarURL} hiddenBackground={true}>
+                <img src={this.props.imagePath} alt={"path"} className={styles["image-left"]}/>
             </Other>
         );
     }

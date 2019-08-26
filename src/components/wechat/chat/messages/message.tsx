@@ -3,11 +3,12 @@ import * as React from "react";
 import defaultAvatarPicture from "../assets/img/default_avatar.png";
 import styles from "../assets/css/message.module.css";
 
-interface MineProps {
+interface Props {
     avatarURL?: string;
+    hiddenBackground?: boolean;
 }
 
-export class Mine extends React.Component<MineProps, {}> {
+export class Mine extends React.Component<Props, {}> {
     public render(): React.ReactElement {
         let avatarURL: string;
         if (this.props.avatarURL) {
@@ -15,10 +16,21 @@ export class Mine extends React.Component<MineProps, {}> {
         } else {
             avatarURL = defaultAvatarPicture;
         }
+        let className: string = styles.message;
+        let style = {};
+        if (!this.props.hiddenBackground) {
+            className = className + " " + styles["bubble-right"];
+        } else {
+            style = {
+                backgroundColor: "rgba(0, 0, 0, 0)",
+                padding: "0",
+            }
+        }
+
         return (
             <div className={styles.mine} style={{clear: "both"}}>
                 <img alt={"mine avatar"} src={avatarURL}/>
-                <div className={styles.message}>
+                <div className={className} style={style}>
                     {this.props.children}
                 </div>
                 <div style={{clear: "both"}}>
@@ -28,11 +40,7 @@ export class Mine extends React.Component<MineProps, {}> {
     }
 }
 
-interface OtherProps {
-    avatarURL?: string;
-}
-
-export class Other extends React.Component<OtherProps, {}> {
+export class Other extends React.Component<Props, {}> {
     public render(): React.ReactElement {
         let avatarURL: string;
         if (this.props.avatarURL) {
@@ -40,10 +48,21 @@ export class Other extends React.Component<OtherProps, {}> {
         } else {
             avatarURL = defaultAvatarPicture;
         }
+
+        let className: string = styles.message;
+        let style = {};
+        if (!this.props.hiddenBackground) {
+            className = className + " " + styles["bubble-left"];
+        } else {
+            style = {
+                backgroundColor: "rgba(0, 0, 0, 0)",
+                padding: "0",
+            }
+        }
         return (
             <div className={styles.other}>
                 <img alt={"mine avatar"} src={avatarURL}/>
-                <div className={styles.message}>
+                <div className={className} style={style}>
                     {this.props.children}
                 </div>
                 <div style={{clear: "both"}}>

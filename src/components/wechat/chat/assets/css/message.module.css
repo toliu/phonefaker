@@ -19,7 +19,7 @@
     padding: 3px 8px 3px 3px;
 }
 
-.mine .message:after {
+.bubble-right:after {
     content: "";
     position: absolute;
     background-color: inherit;
@@ -51,7 +51,7 @@
     padding: 3px 3px 3px 8px;
 }
 
-.other .message:before {
+.bubble-left:before {
     content: "";
     position: absolute;
     background-color: inherit;
@@ -62,9 +62,18 @@
     left: 30px;
 }
 
-.image {
-    max-width: 100%;
+.image-left, .image-right {
+    display: block;
+    max-width: 50%;
     border-radius: 3px;
+}
+
+.image-left {
+    float: left;
+}
+
+.image-right{
+    float: right;
 }
 
 .date {
