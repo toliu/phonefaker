@@ -1,0 +1,13 @@
+.image-left, .image-right {
+    display: block;
+    max-width: 50%;
+    border-radius: 3px;
+}
+
+.image-left {
+    float: left;
+}
+
+.image-right{
+    float: right;
+}

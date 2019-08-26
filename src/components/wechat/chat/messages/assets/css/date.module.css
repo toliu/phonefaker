@@ -1,0 +1,18 @@
+.date {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 0 5%;
+    height: 12px;
+}
+
+.date span {
+    position: absolute;
+    font-size: 12px;
+    text-align: center;
+}
+
+.date span p {
+    display: inline;
+    background-color: rgba(245, 245, 245, 0.5);
+    border-radius: 2px;
+}

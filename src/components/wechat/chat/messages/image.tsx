@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {Mine, Other} from "./message";
 
-import styles from "../assets/css/message.module.css";
+import styles from "./assets/css/image.module.css";
 
 interface ImageProps {
     mine: boolean;

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import styles from "../assets/css/message.module.css";
+import styles from "./assets/css/date.module.css";
 
 interface DateProps {
     date?: Date;
