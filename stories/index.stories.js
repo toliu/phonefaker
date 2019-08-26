@@ -3,6 +3,7 @@ import React from "react";
 import {storiesOf} from "@storybook/react";
 
 import {Chat} from "../src/components/wechat/chat/chat";
+import {ChatController} from "../src/components/wechat/controllers/chat";
 
 storiesOf("微信", module)
     .add("对话", () => {
@@ -65,5 +66,6 @@ storiesOf("微信", module)
             },
         ];
         return <Chat user={"张学友❥"} messages={messages}/>
-    });
+    })
+    .add("控制聊天", () => <ChatController/>);
 

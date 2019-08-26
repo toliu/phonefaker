@@ -7,7 +7,7 @@ import {Text} from "./messages/text";
 
 import styles from "./assets/css/chat.module.css"
 
-interface message {
+export interface message {
     // common
     mine?: boolean;
     avatarURL?: string;
