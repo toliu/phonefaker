@@ -40,7 +40,7 @@
 
 .body {
     border-top: 1px solid #bfbfbf;
-    height: 89%;
+    height: 81%;
     background-color: #efefef;
     padding: 2px 4px 0 4px;
     overflow-y: scroll;
@@ -48,4 +48,42 @@
 
 .body::-webkit-scrollbar {
     display: none;
+}
+
+.bottom {
+    height: 8%;
+    background: url("../img/we-bottom.png") no-repeat;
+    background-size: 100% 100%;
+    border-top: #dfdfdf 1px solid;
+}
+
+.bottom div {
+    display: inline-block;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.bottom div:hover {
+    background-color: #7c7a76;
+    opacity: 0.5;
+}
+
+.bottom .voice {
+    width: 15%;
+}
+
+.bottom .input {
+    height: 80%;
+    width: 58%;
+    margin: 1% 2%;
+    border: white 1px solid;
+    box-shadow: 0 0 1px 1px white;
+}
+
+.bottom .emoji {
+    width: 8%;
+}
+
+.bottom .addition {
+    width: 14%;
 }

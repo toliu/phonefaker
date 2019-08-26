@@ -70,6 +70,19 @@ export class Chat extends React.Component<ChatProps, {}> {
                         return <Text mine={true} content={"Nothing"}/>
                     })}
                 </div>
+                <div className={styles.bottom}>
+                    <div className={styles.voice}>
+                    </div>
+                    <div className={styles.input}>
+
+                    </div>
+                    <div className={styles.emoji}>
+
+                    </div>
+                    <div className={styles.addition}>
+
+                    </div>
+                </div>
             </Phone>
         );
     }
