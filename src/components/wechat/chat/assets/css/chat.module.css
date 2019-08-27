@@ -128,3 +128,30 @@
     border-radius: 2px;
     border-left: 1px solid #7c7a76;
 }
+
+.voice-input {
+    font-size: 12px;
+    padding-top: 4%;
+    padding-left: 5%;
+}
+
+.voice-input input {
+    display: inline-block;
+    width: 50%;
+    margin-left: 5px;
+    outline-style: none;
+    border-radius: 5px;
+}
+
+.submit {
+    background-color: #68eb4a;
+    font-size: 14px;
+    margin-left: 10px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.submit:active{
+    background-color: #7c7a76;
+}

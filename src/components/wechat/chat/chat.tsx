@@ -45,24 +45,44 @@ interface ChatProps {
 }
 
 interface ChatStats {
+    // todo: 不应该保存message stat,应该由上层组件传入sender负责处理新消息
+    messages: message[];
     showBottomInputPanel: boolean;
     bottomPanelType?: bottomInputType;
 }
 
 export class Chat extends React.Component<ChatProps, ChatStats> {
+    private readonly myAvatarURL?: string;
+    private readonly otherAvatarURL?: string;
     private chatBody: any;
+    private newMessage?: message;
 
     constructor(props: ChatProps) {
         super(props);
 
         this.toggleBottomInputPanel = this.toggleBottomInputPanel.bind(this);
+        this.sendNewMessage = this.sendNewMessage.bind(this);
+        this.sendVoiceMessage = this.sendVoiceMessage.bind(this);
+
+        for (const msg of this.props.messages) {
+            if (msg.mine) {
+                this.myAvatarURL = msg.avatarURL;
+            } else {
+                this.otherAvatarURL = msg.avatarURL;
+            }
+        }
 
         this.state = {
+            messages: this.props.messages,
             showBottomInputPanel: false,
         };
     }
 
     componentDidMount() {
+        this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    }
+
+    componentDidUpdate() {
         this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
 
@@ -114,7 +134,14 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
 
                     <div className={styles["bottom-input"]}>
                         <div className={styles.bar}>
-                            {this.state.bottomPanelType}
+                            {this.state.bottomPanelType === bottomInputType.Voice ?
+                                <div className={styles["voice-input"]}>
+                                    <span>长度: </span>
+                                    <input type={"number"} placeholder={"1~60"} onChange={this.sendVoiceMessage}/>
+                                    <span className={styles.submit}
+                                          onClick={() => this.sendVoiceMessage("send")}>发送</span>
+                                </div>
+                                : ""}
                         </div>
                         <div className={styles.back} onClick={this.toggleBottomInputPanel()}>
                             <img src={bottomInputBackPicture} alt={"back"}/>
@@ -123,6 +150,27 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
                 </div>
             </Phone>
         );
+    }
+
+    private sendNewMessage() {
+        if (this.newMessage) {
+            let messages = this.state.messages;
+            messages.push(this.newMessage);
+            this.setState({messages: messages});
+        }
+    }
+
+    private sendVoiceMessage(event: any) {
+        if (event === "send") {
+            this.sendNewMessage()
+        } else {
+            this.newMessage = {
+                mine: true,
+                avatarURL: this.myAvatarURL,
+                isVoice: true,
+                voiceLength: event.target.value,
+            }
+        }
     }
 
     private toggleBottomInputPanel(panelType?: bottomInputType): () => void {

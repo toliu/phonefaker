@@ -15,6 +15,7 @@
 .voice-send span, .voice-receive span {
     display: inline-block;
     position: relative;
+    min-width: 15px;
 }
 
 .voice-send img {
