@@ -4,9 +4,18 @@ import {Phone} from "../../phone/phone";
 import {DateTime} from "./messages/date";
 import {Image} from "./messages/image";
 import {Text} from "./messages/text";
+import {Voice} from "./messages/voice";
+
 
 import styles from "./assets/css/chat.module.css"
-import {Voice} from "./messages/voice";
+
+import bottomInputBackPicture from "./assets/img/bottom_input_back.png";
+
+enum bottomInputType {
+    Voice,
+    Emoji,
+    Addition,
+}
 
 export interface message {
     // common
@@ -35,8 +44,23 @@ interface ChatProps {
     messages: message[];
 }
 
-export class Chat extends React.Component<ChatProps, {}> {
+interface ChatStats {
+    showBottomInputPanel: boolean;
+    bottomPanelType?: bottomInputType;
+}
+
+export class Chat extends React.Component<ChatProps, ChatStats> {
     private chatBody: any;
+
+    constructor(props: ChatProps) {
+        super(props);
+
+        this.toggleBottomInputPanel = this.toggleBottomInputPanel.bind(this);
+
+        this.state = {
+            showBottomInputPanel: false,
+        };
+    }
 
     componentDidMount() {
         this.chatBody.scrollTop = this.chatBody.scrollHeight;
@@ -77,20 +101,36 @@ export class Chat extends React.Component<ChatProps, {}> {
                         return <Text mine={true} content={"Nothing"}/>
                     })}
                 </div>
-                <div className={styles.bottom}>
-                    <div className={styles.voice}>
-                    </div>
-                    <div className={styles.input}>
+                <div className={styles.bottom + (this.state.showBottomInputPanel ? " " + styles["bottom-rotate"] : "")}>
+                    <div className={styles["bottom-bar"]}>
+                        <div className={styles.voice} onClick={this.toggleBottomInputPanel(bottomInputType.Voice)}/>
+                        <div className={styles.input}>
 
+                        </div>
+                        <div className={styles.emoji} onClick={this.toggleBottomInputPanel(bottomInputType.Emoji)}/>
+                        <div className={styles.addition}
+                             onClick={this.toggleBottomInputPanel(bottomInputType.Addition)}/>
                     </div>
-                    <div className={styles.emoji}>
 
-                    </div>
-                    <div className={styles.addition}>
-
+                    <div className={styles["bottom-input"]}>
+                        <div className={styles.bar}>
+                            {this.state.bottomPanelType}
+                        </div>
+                        <div className={styles.back} onClick={this.toggleBottomInputPanel()}>
+                            <img src={bottomInputBackPicture} alt={"back"}/>
+                        </div>
                     </div>
                 </div>
             </Phone>
         );
+    }
+
+    private toggleBottomInputPanel(panelType?: bottomInputType): () => void {
+        return () => {
+            this.setState({
+                showBottomInputPanel: !this.state.showBottomInputPanel,
+                bottomPanelType: panelType,
+            });
+        }
     }
 }
