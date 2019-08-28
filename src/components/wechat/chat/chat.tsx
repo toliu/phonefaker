@@ -10,6 +10,7 @@ import {Voice} from "./messages/voice";
 import styles from "./assets/css/chat.module.css"
 
 import bottomInputBackPicture from "./assets/img/bottom_input_back.png";
+import bottomImgUploadPicture from "./assets/img/img_upload.png";
 
 enum bottomInputType {
     Voice,
@@ -63,6 +64,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         this.getVoiceInputElement = this.getVoiceInputElement.bind(this);
         this.deleteMessage = this.deleteMessage.bind(this);
         this.getInputElement = this.getInputElement.bind(this);
+        this.getAdditionElement = this.getAdditionElement.bind(this);
 
         this.state = {
             showBottomInputPanel: false,
@@ -125,6 +127,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
                         <div className={styles.bar}>
                             {this.state.bottomPanelType === bottomInputType.Voice ? this.getVoiceInputElement() : ""}
                             {this.state.bottomPanelType === bottomInputType.Input ? this.getInputElement() : ""}
+                            {this.state.bottomPanelType === bottomInputType.Addition ? this.getAdditionElement() : ""}
                         </div>
                         <div className={styles.back} onClick={this.toggleBottomInputPanel()}>
                             <img src={bottomInputBackPicture} alt={"back"}/>
@@ -137,10 +140,10 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
 
     private deleteMessage(index: number): () => void {
         return () => {
-            let msg = this.props.messages;
-            msg.splice(index, 1);
+            const copy = this.props.messages.slice(0);
+            copy.splice(index, 1);
             if (this.props.newMsgRecipient) {
-                this.props.newMsgRecipient(msg);
+                this.props.newMsgRecipient(copy);
             }
         }
     }
@@ -152,6 +155,39 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
             copy.push(msg);
             this.props.newMsgRecipient(copy)
         }
+    }
+
+    private getAdditionElement(): React.ReactElement {
+        const uploadImage = (e: any) => {
+            const file = e.target.files[0];
+            const imgRef: string = window.URL.createObjectURL(file);
+            const msg: message = {
+                mine: true, avatarURL: this.props.myAvatarURL,
+                isImage: true, imagePath: imgRef,
+            };
+            this.sendMessage(msg)
+        };
+
+        return (
+            <div className={styles["addition-input"]}>
+                <div className={styles.icon}>
+                    <label htmlFor={"image-input"}>
+                        <img src={bottomImgUploadPicture} alt={"upload"}/>
+                    </label>
+                    <input id={"image-input"} type={"file"} style={{display: "none"}} accept={"image/*"}
+                           onChange={uploadImage}/>
+                </div>
+                <div className={styles.icon}>
+                    icon2
+                </div>
+                <div className={styles.icon}>
+                    icon3
+                </div>
+                <div className={styles.icon}>
+                    icon4
+                </div>
+            </div>
+        );
     }
 
     private getInputElement(): React.ReactElement {

@@ -158,3 +158,29 @@
     margin: 2%;
     width: 90%;
 }
+
+.addition-input {
+    width: 100%;
+    overflow: scroll;
+    word-break: break-word;
+}
+
+.addition-input .icon {
+    display: inline-block;
+    height: 80%;
+    width: 18%;
+    margin: 2%;
+    padding: 1%;
+    text-align: center;
+}
+
+.addition-input .icon:hover {
+    background-color: #cccccc;
+    border-radius: 10px;
+}
+
+.addition-input .icon img {
+    width: 100%;
+    height: 100%;
+}
+
