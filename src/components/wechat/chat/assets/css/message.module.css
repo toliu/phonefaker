@@ -11,6 +11,7 @@
     max-width: 70%;
     border-radius: 5px;
     cursor: pointer;
+    text-align: left;
 }
 
 .message:hover {

@@ -268,7 +268,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         const sendVoiceMsg = (event: any) => {
             if (event === "send" && newMsg && this.props.newMsgRecipient) {
                 this.sendMessage(newMsg)
-            } else {
+            } else if (event.target) {
                 newMsg = {
                     mine: true,
                     avatarURL: this.props.myAvatarURL,

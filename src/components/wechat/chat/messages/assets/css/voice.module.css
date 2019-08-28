@@ -21,3 +21,11 @@
 .voice-send img {
     transform: rotateY(180deg);
 }
+
+.voice-send span {
+    text-align: right;
+}
+
+.voice-receive span {
+    text-align: left;
+}
