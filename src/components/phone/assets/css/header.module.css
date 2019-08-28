@@ -19,6 +19,7 @@
     height: auto;
     max-height: 100%;
     top: -3px;
+    cursor: pointer;
 }
 
 .operator:hover {
@@ -31,10 +32,11 @@
     width: 10%;
     height: 100%;
     top: -3px;
+    cursor: pointer;
 }
 
 .signal-type:hover {
-    background-color: #bf898d;
+    background-color: #bfbfbf;
 }
 
 .signal-type > img:first-of-type {
@@ -64,10 +66,11 @@
     height: 100%;
     max-height: 100%;
     text-align: right;
+    cursor: pointer;
 }
 
 .battery:hover {
-    background-color: #bf898d;
+    background-color: #bfbfbf;
 }
 
 .battery .var {

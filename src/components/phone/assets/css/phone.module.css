@@ -49,6 +49,7 @@
     overflow: hidden;
     box-shadow: 0 0 1px 1px #7c7a76;
     background-color: white;
+    cursor: pointer;
 }
 
 .button:active {

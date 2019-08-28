@@ -22,7 +22,7 @@ export class Header extends React.Component<{}, headerState> {
         this.switchSignalType.bind(this);
 
         this.operators = ["中国移动", "中国联通", "中国电信"];
-        this.signals = ["wifi", "3G", "4G", "5G"];
+        this.signals = ["wifi", "3G", "4G", "5G", "6G"];
         this.state = {
             operator: this.operators[0],
             signal: this.signals[0],
@@ -43,8 +43,8 @@ export class Header extends React.Component<{}, headerState> {
         return (
             <div className={styles.header}>
                 <img className={styles.signal} src={signalPicture} alt={"Signal"}/>
-                <span className={styles.operator} onClick={() => this.switchOperator()}>{this.state.operator}</span>
-                <span className={styles["signal-type"]} onClick={() => this.switchSignalType()}>
+                <span className={styles.operator} title={"点击切换运营商"} onClick={() => this.switchOperator()}>{this.state.operator}</span>
+                <span className={styles["signal-type"]} title={"点击切换信号类型"} onClick={() => this.switchSignalType()}>
                     <img
                         src={wifiPicture} alt={"Wifi"}
                         style={{
@@ -71,6 +71,7 @@ export class Header extends React.Component<{}, headerState> {
                           e.preventDefault();
                           this.switchBattery(false)
                       }}
+                      title={"左键增加电量，右键降低电量"}
                 >
                     <p className={styles.var}>{this.state.battery}%</p>
                     <span className={styles.icon}>
