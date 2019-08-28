@@ -1,4 +1,5 @@
 import * as React from "react";
+import html2canvas from "html2canvas";
 
 import {Phone} from "../../phone/phone";
 import {DateTime} from "./messages/date";
@@ -66,6 +67,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         this.deleteMessage = this.deleteMessage.bind(this);
         this.getInputElement = this.getInputElement.bind(this);
         this.getAdditionElement = this.getAdditionElement.bind(this);
+        this.chatSnapshot = this.chatSnapshot.bind(this);
 
         this.state = {
             showBottomInputPanel: false,
@@ -82,7 +84,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
             chatName = "时光"
         }
         return (
-            <Phone>
+            <Phone button={{text: "截图", onClick: this.chatSnapshot}}>
                 <div className={styles.header}>
                     <span className={styles["back-icon"]}/>
                     <span className={styles["chat-name"]}>{chatName}</span>
@@ -137,6 +139,35 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
                 </div>
             </Phone>
         );
+    }
+
+    private chatSnapshot() {
+
+        const oriStyle = Object.assign({}, this.chatBody.style);
+
+        this.chatBody.style.overflow = "visible";
+        this.chatBody.style.position = "fixed";
+        this.chatBody.style.top = "0";
+        this.chatBody.style.left = "0";
+        this.chatBody.style.zIndex = "999";
+        this.chatBody.style.width = "267px";
+
+        html2canvas(this.chatBody, {
+            scale: 2,
+            height: this.chatBody.scrollHeight,
+            allowTaint: true,
+        }).then((canvas) => {
+            const now = new Date();
+            const dlLink = document.createElement('a');
+            dlLink.download = now.getFullYear() + "" + now.getMonth() + now.getDate() + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
+            dlLink.href = canvas.toDataURL("image/png", 1).replace("image/png", "image/octet-stream");
+            dlLink.dataset.downloadurl = ["image/png", dlLink.download, dlLink.href].join(':');
+            document.body.appendChild(dlLink);
+            dlLink.click();
+            document.body.removeChild(dlLink);
+            this.chatBody.scrollTop = this.chatBody.scrollHeight;
+            this.chatBody.style = oriStyle;
+        })
     }
 
     private deleteMessage(index: number): () => void {
