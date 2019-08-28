@@ -1,40 +1,47 @@
 .controller {
     position: relative;
-    height: 800px;
     overflow: hidden;
 }
 
-.input, .transport, .output {
-    position: relative;
+.left, .transport, .right {
     display: inline-block;
-    min-height: 100%;
-    vertical-align: top;
+    text-align: center;
 }
 
-.controller .input {
-    width: 41%;
-    max-height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    padding: 2%;
+.left, .right {
+    width: 40%;
 }
 
-.input::-webkit-scrollbar {
-    display: none;
+.phone {
+    display: inline-block;
+    width: 50%;
 }
 
 .controller .transport {
-    width: 10%;
-    text-align: center;
-    overflow: hidden;
-    top: 30%;
+    width: 20%;
 }
 
 .transport > img {
-    width: 30%;
+    width: 20%;
 }
 
-.controller .output {
-    width: 32%;
-    padding-left: 12%;
+.form {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+}
+
+.form .avatar {
+    margin-top: 100px;
+    display: block;
+}
+
+.avatar img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #e2a7ac;
+    box-shadow: 0 0 2px 2px #e2a7ac;
+    position: relative;
 }
