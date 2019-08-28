@@ -85,18 +85,14 @@
 
 .bottom-bar .input {
     height: 80%;
-    width: 58%;
+    width: 68%;
     margin: 1% 2%;
     border: white 1px solid;
     box-shadow: 0 0 1px 1px white;
 }
 
-.bottom-bar .emoji {
-    width: 8%;
-}
-
 .bottom-bar .addition {
-    width: 14%;
+    width: 10%;
 }
 
 .bottom-input {

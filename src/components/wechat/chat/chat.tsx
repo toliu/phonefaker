@@ -13,7 +13,7 @@ import bottomInputBackPicture from "./assets/img/bottom_input_back.png";
 
 enum bottomInputType {
     Voice,
-    Emoji,
+    Input,
     Addition,
 }
 
@@ -54,14 +54,14 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
     private readonly myAvatarURL?: string;
     private readonly otherAvatarURL?: string;
     private chatBody: any;
-    private newMessage?: message;
 
     constructor(props: ChatProps) {
         super(props);
 
         this.toggleBottomInputPanel = this.toggleBottomInputPanel.bind(this);
-        this.sendVoiceMessage = this.sendVoiceMessage.bind(this);
+        this.getVoiceInputElement = this.getVoiceInputElement.bind(this);
         this.deleteMessage = this.deleteMessage.bind(this);
+        this.getInputElement = this.getInputElement.bind(this);
 
         for (const msg of this.props.messages) {
             if (msg.mine) {
@@ -121,24 +121,14 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
                 <div className={styles.bottom + (this.state.showBottomInputPanel ? " " + styles["bottom-rotate"] : "")}>
                     <div className={styles["bottom-bar"]}>
                         <div className={styles.voice} onClick={this.toggleBottomInputPanel(bottomInputType.Voice)}/>
-                        <div className={styles.input}>
-
-                        </div>
-                        <div className={styles.emoji} onClick={this.toggleBottomInputPanel(bottomInputType.Emoji)}/>
+                        <div className={styles.input} onClick={this.toggleBottomInputPanel(bottomInputType.Input)}/>
                         <div className={styles.addition}
                              onClick={this.toggleBottomInputPanel(bottomInputType.Addition)}/>
                     </div>
 
                     <div className={styles["bottom-input"]}>
                         <div className={styles.bar}>
-                            {this.state.bottomPanelType === bottomInputType.Voice ?
-                                <div className={styles["voice-input"]}>
-                                    <span>长度: </span>
-                                    <input type={"number"} placeholder={"1~60"} onChange={this.sendVoiceMessage}/>
-                                    <span className={styles.submit}
-                                          onClick={() => this.sendVoiceMessage("send")}>发送</span>
-                                </div>
-                                : ""}
+                            {this.state.bottomPanelType === bottomInputType.Voice ? this.getVoiceInputElement() : ""}
                         </div>
                         <div className={styles.back} onClick={this.toggleBottomInputPanel()}>
                             <img src={bottomInputBackPicture} alt={"back"}/>
@@ -159,19 +149,38 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         }
     }
 
-    private sendVoiceMessage(event: any) {
-        if (event === "send" && this.newMessage && this.props.newMsgRecipient) {
-            const msgs = this.props.messages;
-            msgs.push(this.newMessage);
-            this.props.newMsgRecipient(msgs)
-        } else {
-            this.newMessage = {
-                mine: true,
-                avatarURL: this.myAvatarURL,
-                isVoice: true,
-                voiceLength: event.target.value,
+    private getInputElement(): React.ReactElement {
+        return (
+            <div>
+                input
+            </div>
+        );
+    }
+
+    private getVoiceInputElement(): React.ReactElement {
+        let newMsg: message;
+        const sendVoiceMsg = (event: any) => {
+            if (event === "send" && newMsg && this.props.newMsgRecipient) {
+                const msgs = this.props.messages;
+                msgs.push(newMsg);
+                this.props.newMsgRecipient(msgs)
+            } else {
+                newMsg = {
+                    mine: true,
+                    avatarURL: this.myAvatarURL,
+                    isVoice: true,
+                    voiceLength: event.target.value,
+                }
             }
-        }
+        };
+        return (
+            <div className={styles["voice-input"]}>
+                <span>长度: </span>
+                <input type={"number"} placeholder={"1~60"} onChange={sendVoiceMsg}/>
+                <span className={styles.submit}
+                      onClick={() => sendVoiceMsg("send")}>发送</span>
+            </div>
+        );
     }
 
     private toggleBottomInputPanel(panelType?: bottomInputType): () => void {
