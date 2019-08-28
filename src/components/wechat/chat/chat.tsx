@@ -58,6 +58,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
     constructor(props: ChatProps) {
         super(props);
 
+        this.sendMessage = this.sendMessage.bind(this);
         this.toggleBottomInputPanel = this.toggleBottomInputPanel.bind(this);
         this.getVoiceInputElement = this.getVoiceInputElement.bind(this);
         this.deleteMessage = this.deleteMessage.bind(this);
@@ -129,6 +130,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
                     <div className={styles["bottom-input"]}>
                         <div className={styles.bar}>
                             {this.state.bottomPanelType === bottomInputType.Voice ? this.getVoiceInputElement() : ""}
+                            {this.state.bottomPanelType === bottomInputType.Input ? this.getInputElement() : ""}
                         </div>
                         <div className={styles.back} onClick={this.toggleBottomInputPanel()}>
                             <img src={bottomInputBackPicture} alt={"back"}/>
@@ -149,10 +151,36 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         }
     }
 
+    private sendMessage(msg: message) {
+        if (this.props.newMsgRecipient) {
+            const msgs = this.props.messages;
+            msgs.push(msg);
+            this.props.newMsgRecipient(msgs)
+        }
+    }
+
     private getInputElement(): React.ReactElement {
+        let newMsg: message;
+        let inputWindow: any;
+        const sendTextMsg = (event: any) => {
+            if (event === "send" && newMsg && this.props.newMsgRecipient) {
+                inputWindow.value = "";
+                this.sendMessage(newMsg);
+            } else {
+                newMsg = {
+                    mine: true,
+                    avatarURL: this.myAvatarURL,
+                    isText: true,
+                    content: event.target.value,
+                }
+            }
+        };
+
         return (
-            <div>
-                input
+            <div className={styles["text-input"]}>
+                <span>输入: </span>
+                <input type={"text"} placeholder={"输入文本"} onChange={sendTextMsg} ref={(r) => inputWindow = r}/>
+                <span className={styles.submit} onClick={() => sendTextMsg("send")}>发送</span>
             </div>
         );
     }
@@ -161,9 +189,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         let newMsg: message;
         const sendVoiceMsg = (event: any) => {
             if (event === "send" && newMsg && this.props.newMsgRecipient) {
-                const msgs = this.props.messages;
-                msgs.push(newMsg);
-                this.props.newMsgRecipient(msgs)
+                this.sendMessage(newMsg)
             } else {
                 newMsg = {
                     mine: true,

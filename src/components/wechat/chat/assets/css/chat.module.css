@@ -131,7 +131,7 @@
     padding-left: 5%;
 }
 
-.voice-input input {
+.bar input {
     display: inline-block;
     width: 50%;
     margin-left: 5px;
@@ -148,6 +148,13 @@
     cursor: pointer;
 }
 
-.submit:active{
+.submit:active {
     background-color: #7c7a76;
+}
+
+.text-input {
+    position: relative;
+    padding-top: 2%;
+    margin: 2%;
+    width: 90%;
 }
