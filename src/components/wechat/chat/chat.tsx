@@ -147,9 +147,10 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
 
     private sendMessage(msg: message) {
         if (this.props.newMsgRecipient) {
-            const msgs = this.props.messages;
-            msgs.push(msg);
-            this.props.newMsgRecipient(msgs)
+            const messages = this.props.messages;
+            const copy = messages.slice(0);
+            copy.push(msg);
+            this.props.newMsgRecipient(copy)
         }
     }
 
