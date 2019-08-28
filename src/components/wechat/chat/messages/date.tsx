@@ -4,6 +4,7 @@ import styles from "./assets/css/date.module.css";
 
 interface DateProps {
     date?: Date;
+    onDelete?: () => void;
 }
 
 export class DateTime extends React.Component<DateProps, {}> {
@@ -27,7 +28,7 @@ export class DateTime extends React.Component<DateProps, {}> {
 
         return (
             <div className={styles.date}>
-                <span style={{width: "90%"}}><p>{timeString}</p></span>
+                <span style={{width: "90%"}} title={"点击删除"}><p onClick={this.props.onDelete}>{timeString}</p></span>
             </div>
         );
     }

@@ -6,6 +6,7 @@ import styles from "../assets/css/message.module.css";
 interface Props {
     avatarURL?: string;
     hiddenBackground?: boolean;
+    onDelete?: () => void;
 }
 
 export class Mine extends React.Component<Props, {}> {
@@ -30,7 +31,7 @@ export class Mine extends React.Component<Props, {}> {
         return (
             <div className={styles.mine} style={{clear: "both"}}>
                 <img alt={"mine avatar"} src={avatarURL}/>
-                <div className={className} style={style}>
+                <div className={className} style={style} title={"点击删除"} onClick={this.props.onDelete}>
                     {this.props.children}
                 </div>
                 <div style={{clear: "both"}}>
@@ -62,7 +63,7 @@ export class Other extends React.Component<Props, {}> {
         return (
             <div className={styles.other}>
                 <img alt={"mine avatar"} src={avatarURL}/>
-                <div className={className} style={style}>
+                <div className={className} style={style} title={"点击删除"} onClick={this.props.onDelete}>
                     {this.props.children}
                 </div>
                 <div style={{clear: "both"}}>

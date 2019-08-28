@@ -9,6 +9,7 @@ interface VoiceProps {
     mine?: boolean;
     avatarURL?: string;
     vLength?: number;
+    onDelete?: () => void;
 }
 
 export class Voice extends React.Component<VoiceProps, {}> {
@@ -24,7 +25,7 @@ export class Voice extends React.Component<VoiceProps, {}> {
 
         if (this.props.mine) {
             return (
-                <Mine avatarURL={this.props.avatarURL}>
+                <Mine avatarURL={this.props.avatarURL} onDelete={this.props.onDelete}>
                     <div className={styles["voice-send"]}>
                         <span style={{width: width}}>{vLength}''</span>
                         <img src={voicePicture} alt={"voice"}/>
@@ -34,7 +35,7 @@ export class Voice extends React.Component<VoiceProps, {}> {
         }
 
         return (
-            <Other avatarURL={this.props.avatarURL}>
+            <Other avatarURL={this.props.avatarURL} onDelete={this.props.onDelete}>
                 <div className={styles["voice-receive"]}>
                     <img src={voicePicture} alt={"voice"}/>
                     <span style={{width: width}}>{vLength}''</span>

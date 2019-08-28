@@ -10,6 +10,11 @@
     font-size: 14px;
     max-width: 70%;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.message:hover {
+    background-color: red;
 }
 
 .mine .message {
