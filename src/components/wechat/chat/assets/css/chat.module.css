@@ -169,14 +169,14 @@
     display: inline-block;
     height: 80%;
     width: 18%;
-    margin: 2%;
     padding: 1%;
     text-align: center;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
 }
 
 .addition-input .icon:hover {
     background-color: #cccccc;
-    border-radius: 10px;
 }
 
 .addition-input .icon img {

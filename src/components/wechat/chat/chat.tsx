@@ -11,6 +11,7 @@ import styles from "./assets/css/chat.module.css"
 
 import bottomInputBackPicture from "./assets/img/bottom_input_back.png";
 import bottomImgUploadPicture from "./assets/img/img_upload.png";
+import bottomTimeAppendPicture from "./assets/img/time_append.png";
 
 enum bottomInputType {
     Voice,
@@ -168,23 +169,38 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
             this.sendMessage(msg)
         };
 
+        const appendTime = (e: any) => {
+            const now: Date = new Date();
+            const _default = [
+                now.getFullYear(), now.getMonth(), now.getDate()].join("-") + " " + [
+                now.getHours(), now.getMinutes(), now.getSeconds()].join(":");
+            let nd: string | null = prompt("输入时间:", _default);
+            if (!nd) {
+                nd = _default;
+            }
+            const d: number = Date.parse(nd);
+            if (isNaN(d)) {
+                alert("时间格式" + nd + "错误: 年-月-日 时:分:秒")
+            } else {
+                const msg: message = {
+                    isDate: true,
+                    date: new Date(d),
+                };
+                this.sendMessage(msg);
+            }
+        };
+
         return (
             <div className={styles["addition-input"]}>
-                <div className={styles.icon}>
+                <div className={styles.icon} title={"发送图片"}>
                     <label htmlFor={"image-input"}>
                         <img src={bottomImgUploadPicture} alt={"upload"}/>
                     </label>
                     <input id={"image-input"} type={"file"} style={{display: "none"}} accept={"image/*"}
                            onChange={uploadImage}/>
                 </div>
-                <div className={styles.icon}>
-                    icon2
-                </div>
-                <div className={styles.icon}>
-                    icon3
-                </div>
-                <div className={styles.icon}>
-                    icon4
+                <div className={styles.icon} onClick={appendTime} title={"添加时间信息"}>
+                    <img src={bottomTimeAppendPicture} alt={"time"}/>
                 </div>
             </div>
         );
