@@ -41,12 +41,11 @@ export interface message {
 
 interface ChatProps {
     user?: string;
+    newMsgRecipient?: (msg: message[]) => void;
     messages: message[];
 }
 
 interface ChatStats {
-    // todo: 不应该保存message stat,应该由上层组件传入sender负责处理新消息
-    messages: message[];
     showBottomInputPanel: boolean;
     bottomPanelType?: bottomInputType;
 }
@@ -61,7 +60,6 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         super(props);
 
         this.toggleBottomInputPanel = this.toggleBottomInputPanel.bind(this);
-        this.sendNewMessage = this.sendNewMessage.bind(this);
         this.sendVoiceMessage = this.sendVoiceMessage.bind(this);
 
         for (const msg of this.props.messages) {
@@ -73,16 +71,11 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         }
 
         this.state = {
-            messages: this.props.messages,
             showBottomInputPanel: false,
         };
     }
 
     componentDidMount() {
-        this.chatBody.scrollTop = this.chatBody.scrollHeight;
-    }
-
-    componentDidUpdate() {
         this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
 
@@ -152,17 +145,11 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         );
     }
 
-    private sendNewMessage() {
-        if (this.newMessage) {
-            let messages = this.state.messages;
-            messages.push(this.newMessage);
-            this.setState({messages: messages});
-        }
-    }
-
     private sendVoiceMessage(event: any) {
-        if (event === "send") {
-            this.sendNewMessage()
+        if (event === "send" && this.newMessage && this.props.newMsgRecipient) {
+            const msgs = this.props.messages;
+            msgs.push(this.newMessage);
+            this.props.newMsgRecipient(msgs)
         } else {
             this.newMessage = {
                 mine: true,
