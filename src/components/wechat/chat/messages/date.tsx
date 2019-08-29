@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import styles from "./assets/css/date.module.css";
+import styles from "./assets/css/system.module.css";
 
 interface DateProps {
     date?: Date;
@@ -27,7 +27,7 @@ export class DateTime extends React.Component<DateProps, {}> {
         }
 
         return (
-            <div className={styles.date}>
+            <div className={styles.system}>
                 <span style={{width: "90%"}} title={"点击删除"}><p onClick={this.props.onDelete}>{timeString}</p></span>
             </div>
         );

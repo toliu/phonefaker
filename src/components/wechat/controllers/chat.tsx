@@ -1,7 +1,8 @@
 import * as React from "react";
+
 import {Chat, message} from "../chat/chat";
 
-import toRightPicture from "./assets/img/to-right.png";
+import milePicture from "./assets/img/mail.png";
 import styles from "./assets/css/controllers.module.css";
 
 import avatarLiu from "../chat/assets/img/liu_avatar.jpg";
@@ -16,6 +17,7 @@ interface PhoneState {
 interface ChatControllerStates {
     left: PhoneState;
     right: PhoneState;
+    send: boolean;
 }
 
 export class ChatController extends React.Component<{}, ChatControllerStates> {
@@ -36,6 +38,7 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                 avatarUrl: avatarZhang,
                 user: "刘德华",
             },
+            send: true,
         }
     }
 
@@ -68,7 +71,12 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                 </div>
 
                 <div className={styles.transport}>
-                    <img src={toRightPicture} alt={"transport"}/>
+                    <div className={styles.container}>
+                        <img
+                            src={milePicture}
+                            className={styles["message-icon"] + " " + (this.state.send ? styles["message-send"] : styles["message-receive"])}
+                            alt={"transport"}/>
+                    </div>
                 </div>
                 <div className={styles.right}>
                     <div className={styles.phone}>
@@ -139,7 +147,8 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                         messages: otherMsg,
                         avatarUrl: this.state.right.avatarUrl,
                         user: this.state.right.user,
-                    }
+                    },
+                    send: true,
                 })
             } else {
                 this.setState({
@@ -153,6 +162,7 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                         avatarUrl: this.state.right.avatarUrl,
                         user: this.state.right.user,
                     },
+                    send: false,
                 })
             }
         }

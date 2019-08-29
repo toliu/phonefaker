@@ -5,7 +5,8 @@
 
 .left, .transport, .right {
     display: inline-block;
-    text-align: center;
+    vertical-align: middle;
+    height: 650px;
 }
 
 .left, .right {
@@ -18,11 +19,78 @@
 }
 
 .controller .transport {
+    position: relative;
     width: 20%;
+    min-height: 100%;
+    vertical-align: middle;
 }
 
-.transport > img {
-    width: 20%;
+.transport .container {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    margin-top: 50%;
+}
+
+.message-icon {
+    width: 10%;
+    position: absolute;
+    opacity: 0;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(.15, .71, .21, .78);
+    animation-iteration-count: infinite;
+}
+
+.message-send {
+    -webkit-animation-name: send;
+    -moz-animation-name: send;
+    -o-animation-name: send;
+    animation-name: send;
+}
+
+@keyframes send {
+    from {
+        left: 0;
+        bottom: 0;
+    }
+    50% {
+        left: 50%;
+        width: 20%;
+        bottom: 80%;
+        transform: rotateZ(180deg);
+    }
+    to {
+        left: 100%;
+        opacity: 1;
+        bottom: 0;
+        transform: rotateZ(360deg);
+    }
+}
+
+.message-receive {
+    -webkit-animation-name: receive;
+    -moz-animation-name: receive;
+    -o-animation-name: receive;
+    animation-name: receive;
+}
+
+@keyframes receive {
+    from {
+        right: 0;
+        bottom: 0;
+    }
+    50% {
+        right: 50%;
+        width: 20%;
+        bottom: 80%;
+        transform: rotateZ(180deg);
+    }
+    to {
+        right: 100%;
+        opacity: 1;
+        bottom: 0;
+        transform: rotateZ(360deg);
+    }
 }
 
 .form {
