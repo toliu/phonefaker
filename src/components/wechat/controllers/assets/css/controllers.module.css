@@ -11,6 +11,7 @@
 
 .left, .right {
     width: 40%;
+    z-index: 1;
 }
 
 .phone {
@@ -36,9 +37,10 @@
     width: 10%;
     position: absolute;
     opacity: 0;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-timing-function: cubic-bezier(.15, .71, .21, .78);
     animation-iteration-count: infinite;
+    z-index: -1;
 }
 
 .message-send {
@@ -86,7 +88,7 @@
         transform: rotateZ(180deg);
     }
     to {
-        right: 100%;
+        right: 110%;
         opacity: 1;
         bottom: 0;
         transform: rotateZ(360deg);
@@ -97,10 +99,11 @@
     display: inline-block;
     width: 50%;
     vertical-align: top;
+    text-align: center;
 }
 
 .form .avatar {
-    margin-top: 100px;
+    margin-top: 30%;
     display: block;
 }
 
@@ -109,7 +112,32 @@
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    border: 2px solid #e2a7ac;
-    box-shadow: 0 0 2px 2px #e2a7ac;
+    border: 2px solid #f5f5f5;
+    box-shadow: 0 0 2px 2px #f5f5f5;
     position: relative;
+}
+
+.avatar img:active {
+    box-shadow: 0 0 2px 2px #7c7a76;
+}
+
+.avatar p {
+    font-size: 1em;
+    color: cornflowerblue;
+}
+
+.form .user {
+    margin-top: 30%;
+}
+
+.form .user input {
+    outline-style: none;
+    border-radius: 5px;
+    width: 20%;
+    margin-left: 5%;
+}
+
+.form .user input:last-child {
+    background-color: #68eb4a;
+    box-shadow: 0 0 2px 2px #68eb4a;
 }

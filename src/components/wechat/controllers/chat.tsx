@@ -21,21 +21,25 @@ interface ChatControllerStates {
 }
 
 export class ChatController extends React.Component<{}, ChatControllerStates> {
+    private nameInputRefs: any[];
+
     constructor(props: any) {
         super(props);
 
         this.newMessagesProcess = this.newMessagesProcess.bind(this);
         this.uploadNewAvatar = this.uploadNewAvatar.bind(this);
+        this.modifyUserName = this.modifyUserName.bind(this);
+        this.nameInputRefs = [];
 
         this.state = {
             left: {
                 messages: [],
-                avatarUrl: avatarLiu,
+                avatarUrl: avatarZhang,
                 user: "张学友",
             },
             right: {
                 messages: [],
-                avatarUrl: avatarZhang,
+                avatarUrl: avatarLiu,
                 user: "刘德华",
             },
             send: true,
@@ -43,9 +47,28 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
     }
 
     public render(): React.ReactElement {
+
+        const modifyUserLeft = this.modifyUserName("left");
+        const modifyUserRight = this.modifyUserName("eight");
         return (
             <div className={styles.controller}>
                 <div className={styles.left}>
+                    <div className={styles.form}>
+                        <div className={styles.avatar}>
+                            <label htmlFor={"avatar-upload"}>
+                                <img alt={"avatar"} src={this.state.left.avatarUrl}/>
+                            </label>
+                            <input id={"avatar-upload"} type={"file"} style={{display: "none"}} accept={"image/*"}
+                                   onChange={this.uploadNewAvatar("left")}/>
+                            <p>点击头像修改</p>
+                        </div>
+                        <div className={styles.user} onKeyUp={modifyUserLeft}>
+                            <span>修改用户名：</span>
+                            <input type={"text"} placeholder={this.state.left.user} onChange={modifyUserLeft}
+                                   ref={(e) => this.nameInputRefs.push(e)}/>
+                            <input type={"button"} value={"修改"} onClick={() => modifyUserLeft("send")}/>
+                        </div>
+                    </div>
                     <div className={styles.phone}>
                         <Chat
                             messages={this.state.left.messages}
@@ -55,18 +78,7 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                             newMsgRecipient={this.newMessagesProcess("left")}
                         />
                     </div>
-                    <div className={styles.form}>
-                        <div className={styles.avatar}>
 
-                            <label htmlFor={"avatar-upload"}>
-                                <img alt={"avatar"} src={this.state.left.avatarUrl}/>
-                            </label>
-                            <input id={"avatar-upload"} type={"file"} style={{display: "none"}} accept={"image/*"}
-                                   onChange={this.uploadNewAvatar("left")}/>
-
-                            <div><strong>点击头像修改</strong></div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -78,6 +90,7 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                             alt={"transport"}/>
                     </div>
                 </div>
+
                 <div className={styles.right}>
                     <div className={styles.phone}>
                         <Chat
@@ -96,12 +109,55 @@ export class ChatController extends React.Component<{}, ChatControllerStates> {
                             </label>
                             <input id={"r-avatar-upload"} type={"file"} style={{display: "none"}} accept={"image/*"}
                                    onChange={this.uploadNewAvatar("right")}/>
-                            <div><strong>点击头像修改</strong></div>
+                            <p>点击头像修改</p>
                         </div>
+
+                        <div className={styles.user} onKeyUp={modifyUserRight}>
+                            <span>修改用户名：</span>
+                            <input type={"text"} placeholder={this.state.right.user}
+                                   onChange={modifyUserRight} ref={(e) => this.nameInputRefs.push(e)}/>
+                            <input type={"button"} value={"修改"} onClick={() => modifyUserRight("send")}/>
+                        </div>
+
                     </div>
                 </div>
             </div>
         );
+    }
+
+    private modifyUserName(direction: string): (event: any) => void {
+        const modify = (name: string) => {
+            if (direction === "left") {
+                this.nameInputRefs[0].value = "";
+                this.setState({
+                    left: {
+                        user: name,
+                        messages: this.state.left.messages,
+                        avatarUrl: this.state.left.avatarUrl,
+                    }
+                });
+            } else {
+                this.nameInputRefs[1].value = "";
+                this.setState({
+                    right: {
+                        user: name,
+                        messages: this.state.right.messages,
+                        avatarUrl: this.state.right.avatarUrl,
+                    }
+                });
+            }
+        };
+
+        let user: string;
+        return (event: any) => {
+            if (event === "send" || event.keyCode === 13) {
+                if (user) {
+                    modify(user);
+                }
+            } else {
+                user = event.target.value
+            }
+        }
     }
 
     private uploadNewAvatar(direction: string): (e: any) => void {
