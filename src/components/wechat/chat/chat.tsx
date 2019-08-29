@@ -74,7 +74,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         };
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
 
@@ -241,7 +241,7 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         let newMsg: message;
         let inputWindow: any;
         const sendTextMsg = (event: any) => {
-            if (event === "send" && newMsg && this.props.newMsgRecipient) {
+            if ((event.keyCode === 13 || event === "send") && newMsg && this.props.newMsgRecipient) {
                 inputWindow.value = "";
                 this.sendMessage(newMsg);
             } else {
@@ -255,9 +255,13 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
         };
 
         return (
-            <div className={styles["text-input"]}>
+            <div className={styles["text-input"]} onKeyUp={sendTextMsg}>
                 <span>输入: </span>
-                <input type={"text"} placeholder={"输入文本"} onChange={sendTextMsg} ref={(r) => inputWindow = r}/>
+                <input
+                    type={"text"}
+                    placeholder={"消息..."}
+                    onChange={sendTextMsg}
+                    ref={(r) => inputWindow = r}/>
                 <span className={styles.submit} onClick={() => sendTextMsg("send")}>发送</span>
             </div>
         );
@@ -265,8 +269,10 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
 
     private getVoiceInputElement(): React.ReactElement {
         let newMsg: message;
+        let inputElement: any;
         const sendVoiceMsg = (event: any) => {
-            if (event === "send" && newMsg && this.props.newMsgRecipient) {
+            if ((event.keyCode === 13 || event === "send") && newMsg && this.props.newMsgRecipient) {
+                inputElement.value = "";
                 this.sendMessage(newMsg)
             } else if (event.target) {
                 newMsg = {
@@ -278,9 +284,9 @@ export class Chat extends React.Component<ChatProps, ChatStats> {
             }
         };
         return (
-            <div className={styles["voice-input"]}>
+            <div className={styles["voice-input"]} onKeyUp={sendVoiceMsg}>
                 <span>长度: </span>
-                <input type={"number"} placeholder={"1~60"} onChange={sendVoiceMsg}/>
+                <input ref={(e) => inputElement = e} type={"number"} placeholder={"1~60"} onChange={sendVoiceMsg}/>
                 <span className={styles.submit}
                       onClick={() => sendVoiceMsg("send")}>发送</span>
             </div>
