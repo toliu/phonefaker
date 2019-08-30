@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {MineText} from "./messages/text";
+import {MineText, OtherText} from "./messages/text";
 import {FixedPhone} from "../../phone/fixedphone";
 
 import styles from "./assets/css/fixedchat.module.css";
@@ -61,8 +61,11 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     </div>
                 </div>
                 <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
-                    <MineText avatarURL={defaultAvatar} content={"nihaonihaonihaonihaonihaonihaonihaonihaonihaonihaonihaonihaonihao"}/>
+                    <MineText avatarURL={defaultAvatar} content={"本文介绍CSS动画的两大组成部分：transition和animation。我不打算给出每一条属性的详尽介绍，那样可以写一本书。这篇文章只是一个简介，帮助初学者了解全貌，同时又是一个快速指南，当你想不起某一个用法的时候，能够快速地找到提示"}/>
                     <MineText avatarURL={defaultAvatar} content={"you are"}/>
+
+                    <OtherText avatarURL={defaultAvatar} content={"本文介绍CSS动画的两大组成部分：transition和animation。我不打算给出每一条属性的详尽介绍，那样可以写一本书。这篇文章只是一个简介，帮助初学者了解全貌，同时又是一个快速指南，当你想不起某一个用法的时候，能够快速地找到提示"}/>
+                    <OtherText avatarURL={defaultAvatar} content={"you are"}/>
                 </div>
             </FixedPhone>
         );

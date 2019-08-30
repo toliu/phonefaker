@@ -117,9 +117,9 @@
 .body, .body-no-input {
     word-break: break-word;
     overflow: scroll;
-    height: 400px;
+    height: 402px;
     transition: 1s height;
-    background-color: #f2f2f2;
+    background-color: #e5e5e5;
 }
 
 .body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {
@@ -127,5 +127,5 @@
 }
 
 .body {
-    height: 285px;
+    height: 286px;
 }

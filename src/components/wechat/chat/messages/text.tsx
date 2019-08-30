@@ -24,3 +24,18 @@ export class MineText extends React.Component<TextProps, {}> {
         );
     }
 }
+
+export class OtherText extends React.Component<TextProps, {}> {
+    public render(): React.ReactElement {
+        return (
+            <Message>
+                <div className={styles.other}>
+                    <img className={styles.avatar} src={this.props.avatarURL} alt={"头像"}/>
+                    <div className={styles.content}>
+                        {this.props.content}
+                    </div>
+                </div>
+            </Message>
+        );
+    }
+}
