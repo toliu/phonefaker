@@ -7,7 +7,7 @@ export const HEADERPADDINGPX: number = 18;
 
 interface FixedPhoneProps {
     controllerPanel?: React.ReactElement;
-    controllerInput?: React.ReactElement;
+    controllerInput?: React.ReactElement | void;
     button?: {
         text: string;
         onClick?: () => void;
@@ -126,7 +126,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                         </div>
                         <div className={styles.input}
                              style={{display: this.props.controllerPanel && this.props.controllerInput ? "block" : "none"}}>
-                            {this.props.controllerInput}
+                            {this.props.controllerInput ? this.props.controllerInput : ""}
                         </div>
                     </div>
                 </div>
