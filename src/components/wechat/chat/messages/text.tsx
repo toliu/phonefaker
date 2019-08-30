@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {Mine, Other} from "./message";
+import {Message} from "./msg";
 
 interface TextProps {
     mine: boolean;
@@ -9,11 +9,12 @@ interface TextProps {
     onDelete?: () => void;
 }
 
-export class Text extends React.Component<TextProps, {}> {
+export class MineText extends React.Component<TextProps, {}> {
     public render(): React.ReactElement {
-        if (this.props.mine) {
-            return <Mine avatarURL={this.props.avatarURL} onDelete={this.props.onDelete}>{this.props.content}</Mine>
-        }
-        return <Other avatarURL={this.props.avatarURL} onDelete={this.props.onDelete}> {this.props.content} </Other>;
+        return (
+            <Message>
+                <img/>
+            </Message>
+        );
     }
 }
