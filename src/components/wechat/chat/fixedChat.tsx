@@ -1,8 +1,11 @@
 import * as React from "react";
 
+import {MineText} from "./messages/text";
 import {FixedPhone} from "../../phone/fixedphone";
 
 import styles from "./assets/css/fixedchat.module.css";
+
+import defaultAvatar from "./assets/img/default_avatar.png";
 
 enum inputType {
     voice = "voice",
@@ -58,6 +61,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     </div>
                 </div>
                 <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
+                    <MineText avatarURL={defaultAvatar} content={"nihaonihaonihaonihaonihaonihaonihaonihaonihaonihaonihaonihaonihao"}/>
+                    <MineText avatarURL={defaultAvatar} content={"you are"}/>
                 </div>
             </FixedPhone>
         );
