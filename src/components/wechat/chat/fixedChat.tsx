@@ -15,26 +15,34 @@ enum inputType {
 
 interface ChatProps {
     name?: string;
+    messages?: any[];
 }
 
 interface ChatStats {
     bottomInput?: inputType;
+    messages: any[];
 }
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private readonly defaultChatName: string;
     private bodyRef: any;
+    private textInputRef: any;
+
+    private currentInputText: string;
 
     constructor(props: ChatProps) {
         super(props);
 
         this.getControllerPanel = this.getControllerPanel.bind(this);
         this.getControllerInput = this.getControllerInput.bind(this);
+        this.inputText = this.inputText.bind(this);
 
         this.defaultChatName = "时光";
+        this.currentInputText = "";
 
         this.state = {
             bottomInput: undefined,
+            messages: this.props.messages ? this.props.messages : [],
         }
     }
 
@@ -61,11 +69,14 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     </div>
                 </div>
                 <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
-                    <MineText avatarURL={defaultAvatar} content={"本文介绍CSS动画的两大组成部分：transition和animation。我不打算给出每一条属性的详尽介绍，那样可以写一本书。这篇文章只是一个简介，帮助初学者了解全貌，同时又是一个快速指南，当你想不起某一个用法的时候，能够快速地找到提示"}/>
-                    <MineText avatarURL={defaultAvatar} content={"you are"}/>
-
-                    <OtherText avatarURL={defaultAvatar} content={"本文介绍CSS动画的两大组成部分：transition和animation。我不打算给出每一条属性的详尽介绍，那样可以写一本书。这篇文章只是一个简介，帮助初学者了解全貌，同时又是一个快速指南，当你想不起某一个用法的时候，能够快速地找到提示"}/>
-                    <OtherText avatarURL={defaultAvatar} content={"you are"}/>
+                    {this.state.messages.map((msg, index) => {
+                        return (
+                            <div>
+                                <MineText avatarURL={defaultAvatar} content={msg} key={index}/>
+                                <OtherText avatarURL={defaultAvatar} content={msg} key={index}/>
+                            </div>
+                        );
+                    })}
                 </div>
             </FixedPhone>
         );
@@ -77,9 +88,14 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                 <div className={styles.voice} onClick={() => this.setState({bottomInput: inputType.voice})}>
 
                 </div>
-                <input className={styles.input} type={"text"}>
-
-                </input>
+                <input
+                    className={styles.input}
+                    type={"text"}
+                    ref={(e) => this.textInputRef = e}
+                    autoFocus={true}
+                    onChange={this.inputText}
+                    onKeyUp={this.inputText}
+                />
                 <div className={styles.emoji} onClick={() => this.setState({bottomInput: inputType.emoji})}>
 
                 </div>
@@ -89,6 +105,20 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                 </div>
             </div>
         );
+    }
+
+    private inputText(e: any) {
+        if (e.keyCode === 13) {
+            this.textInputRef.value = "";
+            if (this.currentInputText) {
+                const msgs = this.state.messages;
+                msgs.push(this.currentInputText);
+                this.setState({messages: msgs});
+                this.currentInputText = "";
+            }
+        } else if (e.target) {
+            this.currentInputText = e.target.value;
+        }
     }
 
     private getControllerInput(): React.ReactElement | void {
