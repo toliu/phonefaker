@@ -58,6 +58,7 @@
     height: 493px;
     border-radius: 2px;
     box-shadow: 0 0 1px 1px #7c7a76;
+    overflow: hidden;
 }
 
 .screen .header, .screen .body, .screen .controller {

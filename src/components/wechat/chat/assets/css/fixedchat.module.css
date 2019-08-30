@@ -35,3 +35,81 @@
     background-size: 20px;
     height: 32px;
 }
+
+.panel {
+    display: block;
+    background: url("../img/we-bottom.png") no-repeat;
+    background-size: 277px 37px;
+    width: 277px;
+    height: 37px;
+}
+
+.panel .voice, .panel .input, .panel .emoji, .panel .addition {
+    display: inline-block;
+    height: 37px;
+    border-radius: 5px;
+}
+
+.panel .voice:hover, .panel .emoji:hover, .panel .addition:hover {
+    background-color: rgba(2, 2, 2, 0.3);
+}
+
+.panel .voice {
+    width: 40px;
+    cursor: pointer;
+}
+
+.panel .input {
+    outline: none;
+    position: relative;
+    height: 27px;
+    top: -14px;
+    width: 168px;
+    border-radius: 3px;
+    border: 1px solid #7c7a76;
+}
+
+.panel .emoji {
+    width: 30px;
+    cursor: pointer;
+}
+
+.panel .addition {
+    width: 35px;
+    cursor: pointer;
+}
+
+.input-panel {
+    width: 277px;
+    height: 114px;
+}
+
+.input-panel .child {
+    display: inline-block;
+    height: 114px;
+    width: 238px;
+    border-right: 2px solid #7c7a76;
+    word-break: break-word;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.input-panel .child::-webkit-scrollbar {
+    display: none;
+}
+
+.input-panel .back {
+    display: inline-block;
+    background: url("../img/bottom_input_back.png") no-repeat center;
+    background-size: 30px;
+    width: 35px;
+    height: 30px;
+    margin-top: 40px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.input-panel .back:active {
+    border: 1px solid #7c7a76;
+    border-radius: 5px;
+}
