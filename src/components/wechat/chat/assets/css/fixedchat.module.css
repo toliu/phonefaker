@@ -113,3 +113,19 @@
     border: 1px solid #7c7a76;
     border-radius: 5px;
 }
+
+.body, .body-no-input {
+    word-break: break-word;
+    overflow: scroll;
+    height: 400px;
+    transition: 1s height;
+    background-color: #f2f2f2;
+}
+
+.body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {
+    display: none;
+}
+
+.body {
+    height: 285px;
+}

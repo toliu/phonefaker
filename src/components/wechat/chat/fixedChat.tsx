@@ -20,6 +20,7 @@ interface ChatStats {
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private readonly defaultChatName: string;
+    private bodyRef: any;
 
     constructor(props: ChatProps) {
         super(props);
@@ -34,8 +35,13 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         }
     }
 
+    public componentDidUpdate() {
+        this.bodyRef.scrollTop = this.bodyRef.scrollHeight;
+    }
+
     public render(): React.ReactElement {
         const chatName: string = this.props.name ? this.props.name : this.defaultChatName;
+        const bodyClassName: string = this.state.bottomInput ? styles.body : styles["body-no-input"];
 
         return (
             <FixedPhone
@@ -50,6 +56,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     </div>
                     <div className={styles.profile}>
                     </div>
+                </div>
+                <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
                 </div>
             </FixedPhone>
         );
