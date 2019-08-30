@@ -8,6 +8,10 @@ export const HEADERPADDINGPX: number = 18;
 interface FixedPhoneProps {
     controllerPanel?: React.ReactElement;
     controllerInput?: React.ReactElement;
+    button?: {
+        text: string;
+        onClick?: () => void;
+    }
 }
 
 interface FixedPhoneStats {
@@ -128,8 +132,9 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                 </div>
 
                 <div className={styles.bottom}>
-                    <div className={styles.button} onClick={this.screenSnapshot}>
-                        截屏
+                    <div className={styles.button} onClick={
+                        this.props.button && this.props.button.onClick ? this.props.button.onClick : this.screenSnapshot}>
+                        {this.props.button ? this.props.button.text : "截屏"}
                     </div>
                 </div>
             </div>

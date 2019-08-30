@@ -43,18 +43,12 @@ for the volume type to handle the request.
 `;
 
 storiesOf("手机", module)
-    .add("空手机", () => <FixedPhone>{<div style={{backgroundColor: "green"}}> {phoneContent}</div>}</FixedPhone>)
-    .add("有控制器手机", () => <FixedPhone controllerPanel={<div>panel</div>}/>)
-    .add("有输入手机", () => {
-        return (
-            <FixedPhone
-                controllerPanel={<div>panel</div>}
-                controllerInput={<div>hello</div>}
-            >
-                <div style={{backgroundColor: "green"}}> {phoneContent}</div>
-            </FixedPhone>
-        )
-    });
+    .add("空手机", () => <FixedPhone/>)
+    .add("有控制器手机", () => <FixedPhone controllerPanel={<div>面板</div>}/>)
+    .add("有输入手机", () => <FixedPhone controllerPanel={<div>面板</div>} controllerInput={<div>输入窗口</div>}/>)
+    .add("按钮自定义", () => <FixedPhone button={{
+        text: "自定义", onClick: action("button click")
+    }}/>);
 
 storiesOf("微信", module)
     .add("对话", () => {
