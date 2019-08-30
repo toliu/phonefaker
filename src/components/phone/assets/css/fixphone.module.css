@@ -1,0 +1,153 @@
+.phone, .top, .middle, .bottom {
+    position: relative;
+    width: 311px;
+}
+
+.phone {
+    display: inline-block;
+    height: 644px;
+}
+
+.top {
+    background: url("../img/phone-top.png") no-repeat;
+    height: 77px;
+    bottom: -1px;
+}
+
+.middle {
+    background: url("../img/phone-middle.png") no-repeat;
+    height: 493px;
+    font-family: STHeiti, sans-serif;
+    font-size: 12px;
+}
+
+.bottom {
+    background: url("../img/phone-bottom.png") no-repeat;
+    height: 76px;
+    top: -1px;
+}
+
+.screen {
+    position: relative;
+    margin: 0 17px;
+    height: 493px;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 1px #7c7a76;
+}
+
+.screen .header, .screen .body, .screen .controller {
+    width: 277px;
+}
+
+.screen .header {
+    position: absolute;
+    display: block;
+    height: 18px;
+    overflow: hidden;
+}
+
+.screen .body, .screen .body-no-controller, .screen .body-no-input {
+    word-break: break-word;
+    overflow: hidden;
+    min-height: 338px;
+    transition: 1s ease;
+}
+
+.screen .body {
+    height: 338px;
+}
+
+.screen .body-no-controller {
+    height: 506px;
+}
+
+.screen .body-no-input {
+    height: 453px;
+}
+
+.screen .controller {
+    height: 34px;
+    border-top: 1px solid #bfbfbf;
+}
+
+.screen .input {
+    border-top: 1px solid #bfbfbf;
+    height: 114px;
+}
+
+.header .signal, .header .operator, .header .signal-type, .header .wifi, .header .timer, .header .battery-percent, .battery-icon {
+    display: inline-block;
+    height: 18px;
+    max-height: 18px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.header .signal {
+    margin-left: 2px;
+    width: 16px;
+    background: url("../img/signal-4.svg") no-repeat;
+    background-size: 20px 18px;
+}
+
+.header .operator {
+    text-align: center;
+    width: 50px;
+    cursor: pointer;
+}
+
+.header .operator:hover {
+    background-color: #bfbfbf;
+    color: white;
+}
+
+.header .wifi, .header .signal-type {
+    width: 18px;
+    height: 18px;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.header .wifi:hover, .header .signal-type:hover {
+    background-color: #bfbfbf;
+    color: white;
+}
+
+.header .wifi {
+    background: url("../img/wifi.svg") no-repeat left;
+    background-size: 13px 13px;
+}
+
+.header .timer {
+    text-align: center;
+    width: 110px;
+}
+
+.header .battery-percent {
+    text-align: right;
+    margin-right: 4px;
+    width: 45px;
+    cursor: pointer;
+}
+
+.battery-percent:hover {
+    background-color: #bfbfbf;
+    color: white;
+}
+
+.header .battery-icon {
+    background: url("../img/battery.png") no-repeat center;
+    background-size: 26px 12px;
+    width: 26px;
+    margin-right: 4px;
+}
+
+.battery-icon span {
+    position: relative;
+    display: inline-block;
+    left: 2px;
+    height: 8px;
+    min-width: 1px;
+    border-radius: 2px;
+    transition: 0.5s;
+}

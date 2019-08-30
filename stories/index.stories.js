@@ -8,6 +8,53 @@ import {ChatController} from "../src/components/wechat/controllers/chat";
 
 import avatar1 from "../src/components/wechat/chat/assets/img/liu_avatar.jpg";
 import avatar2 from "../src/components/wechat/chat/assets/img/zhang_avatar.jpg";
+import {FixedPhone} from "../src/components/phone/fixedphone";
+
+const phoneContent = `
+To create an environment with multiple-storage back ends, you must specify a volume type. The API spawns Block Storage volume
+
+back ends as children to cinder-volume, and keys them from a unique queue. The API names the back ends cinder-volume.HOST
+
+BACKEND. For example, cinder-volume.ubuntu.lvmdriver. When you create a volume, the scheduler chooses an appropriate back end
+
+for the volume type to handle the request.
+To create an environment with multiple-storage back ends, you must specify a volume type. The API spawns Block Storage volume
+
+back ends as children to cinder-volume, and keys them from a unique queue. The API names the back ends cinder-volume.HOST
+
+BACKEND. For example, cinder-volume.ubuntu.lvmdriver. When you create a volume, the scheduler chooses an appropriate back end
+
+for the volume type to handle the request.
+To create an environment with multiple-storage back ends, you must specify a volume type. The API spawns Block Storage volume
+
+back ends as children to cinder-volume, and keys them from a unique queue. The API names the back ends cinder-volume.HOST
+
+BACKEND. For example, cinder-volume.ubuntu.lvmdriver. When you create a volume, the scheduler chooses an appropriate back end
+
+for the volume type to handle the request.
+
+BACKEND. For example, cinder-volume.ubuntu.lvmdriver. When you create a volume, the scheduler chooses an appropriate back end
+
+for the volume type to handle the request.
+
+BACKEND. For example, cinder-volume.ubuntu.lvmdriver. When you create a volume, the scheduler chooses an appropriate back end
+
+for the volume type to handle the request.
+`;
+
+storiesOf("手机", module)
+    .add("空手机", () => <FixedPhone>{<div style={{backgroundColor: "green"}}> {phoneContent}</div>}</FixedPhone>)
+    .add("有控制器手机", () => <FixedPhone controllerPanel={<div>panel</div>}/>)
+    .add("有输入手机", () => {
+        return (
+            <FixedPhone
+                controllerPanel={<div>panel</div>}
+                controllerInput={<div>hello</div>}
+            >
+                <div style={{backgroundColor: "green"}}> {phoneContent}</div>
+            </FixedPhone>
+        )
+    });
 
 storiesOf("微信", module)
     .add("对话", () => {
