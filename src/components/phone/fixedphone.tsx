@@ -1,4 +1,5 @@
 import * as React from "react";
+import html2canvas from "html2canvas";
 
 import styles from "./assets/css/fixphone.module.css";
 
@@ -20,6 +21,8 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
     private readonly operators: string[];
     private readonly signalTypes: string[];
 
+    private screenRef: any;
+
     constructor(props: FixedPhoneProps) {
         super(props);
         this.operators = [
@@ -39,6 +42,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         this.switchOperator = this.switchOperator.bind(this);
         this.switchSignalType = this.switchSignalType.bind(this);
         this.switchBattery = this.switchBattery.bind(this);
+        this.screenSnapshot = this.screenSnapshot.bind(this);
 
         this.state = {
             operator: this.operators[0],
@@ -77,7 +81,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                 </div>
 
                 <div className={styles.middle}>
-                    <div className={styles.screen}>
+                    <div className={styles.screen} ref={(e) => this.screenRef = e}>
                         <div className={styles.header}>
                             <div className={styles.signal}>
                             </div>
@@ -124,6 +128,9 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                 </div>
 
                 <div className={styles.bottom}>
+                    <div className={styles.button} onClick={this.screenSnapshot}>
+                        截屏
+                    </div>
                 </div>
             </div>
         );
@@ -173,6 +180,26 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         } else {
             return [h, ":" + m].join(":")
         }
+    }
+
+    private screenSnapshot() {
+        html2canvas(this.screenRef, {
+            scale: 2,
+            height: 493,
+            width: 277,
+            allowTaint: true,
+        }).then(
+            (canvas) => {
+                const now = new Date();
+                const dlLink = document.createElement('a');
+                dlLink.download = now.getFullYear() + "" + now.getMonth() + now.getDate() + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
+                dlLink.href = canvas.toDataURL("image/png", 1).replace("image/png", "image/octet-stream");
+                dlLink.dataset.downloadurl = ["image/png", dlLink.download, dlLink.href].join(':');
+                document.body.appendChild(dlLink);
+                dlLink.click();
+                document.body.removeChild(dlLink);
+            }
+        )
     }
 
 }

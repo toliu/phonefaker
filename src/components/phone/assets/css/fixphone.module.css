@@ -27,6 +27,31 @@
     top: -1px;
 }
 
+.bottom .button {
+    position: absolute;
+    left: 130px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    text-align: center;
+    overflow: hidden;
+    background-color: white;
+    cursor: pointer;
+    line-height: 50px;
+    box-shadow: 0 0 1px 1px #7c7a76;
+    font-size: 16px;
+    font-weight: bold;
+    color: #7069bf;
+}
+
+.bottom .button:active {
+    left: 129px;
+    top: 9px;
+    background-color: #bfbfbf;
+    border: 1px solid #7c7a76;
+}
+
 .screen {
     position: relative;
     margin: 0 17px;
