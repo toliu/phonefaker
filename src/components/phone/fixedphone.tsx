@@ -183,7 +183,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         if (m >= 10) {
             return [h, m].join(":")
         } else {
-            return [h, ":" + m].join(":")
+            return [h, "0" + m].join(":")
         }
     }
 
