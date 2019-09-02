@@ -9,6 +9,7 @@ import styles from "./assets/css/voice.module.css";
 interface VoiceProps {
     avatarURL: string;
     length: number;
+    onDelete: () => void;
 }
 
 export class MineVoice extends React.Component<VoiceProps, {}> {
@@ -21,7 +22,7 @@ export class MineVoice extends React.Component<VoiceProps, {}> {
         }
         const width: number = 120 * length / 60;
         return (
-            <Message>
+            <Message onDelete={this.props.onDelete}>
                 <div className={styles.mine}>
                     <img className={styles.avatar} src={this.props.avatarURL} alt={"头像"}/>
                     <div className={styles.content} style={{width: width}}>
@@ -46,7 +47,7 @@ export class OtherVoice extends React.Component<VoiceProps, {}> {
         const width: number = 120 * length / 60;
 
         return (
-            <Message>
+            <Message onDelete={this.props.onDelete}>
                 <div className={styles.other}>
                     <img className={styles.avatar} src={this.props.avatarURL} alt={"头像"}/>
                     <div className={styles.content} style={{width: width}}>

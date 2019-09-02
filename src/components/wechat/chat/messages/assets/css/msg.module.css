@@ -3,4 +3,9 @@
     display: block;
     width: 277px;
     margin-top: 10px;
+    cursor: pointer;
+}
+
+.message:hover {
+    background-color: #e53b32;
 }

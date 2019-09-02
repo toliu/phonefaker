@@ -54,6 +54,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         this.getControllerInput = this.getControllerInput.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.inputText = this.inputText.bind(this);
+        this.deleteMessage = this.deleteMessage.bind(this);
 
         const defaultUser = {
             name: "时光",
@@ -99,19 +100,28 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                 </div>
                 <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
                     {this.state.messages.map((msg: Message, index: number) => {
+                        const od = this.deleteMessage(index);
                         switch (msg.kind) {
                             case "text":
-                                if (msg.user === this.state.user.name) {
-                                    return <MineText avatarURL={msg.avatar} content={msg.content} key={index}/>
-                                } else {
-                                    return <OtherText avatarURL={msg.avatar} content={msg.content} key={index}/>
-                                }
+                                return msg.user === this.state.user.name ?
+                                    <MineText avatarURL={msg.avatar}
+                                              content={msg.content}
+                                              key={index}
+                                              onDelete={od}/>
+                                    : <OtherText avatarURL={msg.avatar}
+                                                 content={msg.content}
+                                                 key={index}
+                                                 onDelete={od}/>;
                             case "voice":
-                                if (msg.user === this.state.user.name) {
-                                    return <MineVoice avatarURL={msg.avatar} length={msg.voice} key={index}/>
-                                } else {
-                                    return <OtherVoice avatarURL={msg.avatar} length={msg.voice} key={index}/>
-                                }
+                                return msg.user === this.state.user.name ?
+                                    <MineVoice avatarURL={msg.avatar}
+                                               length={msg.voice}
+                                               key={index}
+                                               onDelete={od}/> :
+                                    <OtherVoice avatarURL={msg.avatar}
+                                                length={msg.voice}
+                                                key={index}
+                                                onDelete={od}/>
                         }
                     })}
                 </div>
@@ -142,6 +152,14 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                 </div>
             </div>
         );
+    }
+
+    private deleteMessage(index: number): () => void {
+        return () => {
+            const messages = this.state.messages;
+            messages.splice(index, 1);
+            this.setState({messages: messages})
+        }
     }
 
     private sendMessage(msg: Message) {
