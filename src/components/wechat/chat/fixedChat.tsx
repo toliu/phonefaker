@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import {Message} from "./messages";
 import {MineText, OtherText} from "./messages/text";
 import {FixedPhone} from "../../phone/fixedphone";
 
@@ -14,17 +15,31 @@ enum inputType {
 }
 
 interface ChatProps {
-    name?: string;
-    messages?: any[];
+    user?: {
+        name: string;
+        avatar?: string;
+    };
+    otherUser?: {
+        name: string;
+        avatar?: string;
+    };
+    messages?: Message[];
 }
 
 interface ChatStats {
+    user: {
+        name: string;
+        avatar: string;
+    };
+    otherUser: {
+        name: string;
+        avatar: string;
+    };
     bottomInput?: inputType;
-    messages: any[];
+    messages: Message[];
 }
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
-    private readonly defaultChatName: string;
     private bodyRef: any;
     private textInputRef: any;
 
@@ -37,10 +52,21 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         this.getControllerInput = this.getControllerInput.bind(this);
         this.inputText = this.inputText.bind(this);
 
-        this.defaultChatName = "时光";
+        const defaultUser = {
+            name: "时光",
+            avatar: defaultAvatar,
+        };
         this.currentInputText = "";
 
         this.state = {
+            user: {
+                name: this.props.user ? this.props.user.name : defaultUser.name,
+                avatar: this.props.user && this.props.user.avatar ? this.props.user.avatar : defaultUser.avatar,
+            },
+            otherUser: {
+                name: this.props.otherUser ? this.props.otherUser.name : defaultUser.name,
+                avatar: this.props.otherUser && this.props.otherUser.avatar ? this.props.otherUser.avatar : defaultUser.avatar,
+            },
             bottomInput: undefined,
             messages: this.props.messages ? this.props.messages : [],
         }
@@ -51,7 +77,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
     }
 
     public render(): React.ReactElement {
-        const chatName: string = this.props.name ? this.props.name : this.defaultChatName;
+        const chatName: string = this.state.otherUser.name;
         const bodyClassName: string = this.state.bottomInput ? styles.body : styles["body-no-input"];
 
         return (
@@ -69,13 +95,15 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     </div>
                 </div>
                 <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
-                    {this.state.messages.map((msg, index) => {
-                        return (
-                            <div>
-                                <MineText avatarURL={defaultAvatar} content={msg} key={index}/>
-                                <OtherText avatarURL={defaultAvatar} content={msg} key={index}/>
-                            </div>
-                        );
+                    {this.state.messages.map((msg: Message, index: number) => {
+                        switch (msg.kind) {
+                            case "text":
+                                if (msg.user === this.state.user.name) {
+                                    return <MineText avatarURL={msg.avatar} content={msg.content} key={index}/>
+                                } else {
+                                    return <OtherText avatarURL={msg.avatar} content={msg.content} key={index}/>
+                                }
+                        }
                     })}
                 </div>
             </FixedPhone>
@@ -112,7 +140,10 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
             this.textInputRef.value = "";
             if (this.currentInputText) {
                 const msgs = this.state.messages;
-                msgs.push(this.currentInputText);
+                msgs.push({
+                    kind: "text", user: this.state.user.name,
+                    avatar: this.state.user.avatar, content: this.currentInputText,
+                });
                 this.setState({messages: msgs});
                 this.currentInputText = "";
             }
