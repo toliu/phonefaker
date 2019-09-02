@@ -1,6 +1,7 @@
 .phone, .top, .middle, .bottom {
     position: relative;
     width: 311px;
+    text-align: left;
 }
 
 .phone {
@@ -172,6 +173,7 @@
     position: relative;
     display: inline-block;
     left: 2px;
+    top: -1px;
     height: 8px;
     min-width: 1px;
     border-radius: 2px;
