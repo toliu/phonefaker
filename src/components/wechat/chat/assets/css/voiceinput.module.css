@@ -1,0 +1,48 @@
+.input {
+    display: block;
+    padding-top: 5%;
+    padding-left: 10%;
+}
+
+.input p {
+    display: inline-block;
+    width: 50%;
+    line-height: 14px;
+    font-size: 14px;
+}
+
+.submit {
+    text-align: center;
+    display: inline-block;
+    background: #68eb4a;
+    box-shadow: 0 0 1px 2px #68eb4a;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submit:active {
+    background-color: #7c7a76;
+    box-shadow: 0 0 1px 2px #7c7a76;
+}
+
+.range {
+    -webkit-appearance: none;
+    height: 5px;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: 0 0 1px 2px #7c7a76;
+    cursor: pointer;
+}
+
+.range:focus {
+    outline: none;
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 8px;
+    background: #7c7a76;
+    width: 15px;
+    height: 15px;
+}

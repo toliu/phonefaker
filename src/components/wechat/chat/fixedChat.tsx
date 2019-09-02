@@ -2,11 +2,13 @@ import * as React from "react";
 
 import {Message} from "./messages";
 import {MineText, OtherText} from "./messages/text";
+import {MineVoice, OtherVoice} from "./messages/voice";
 import {FixedPhone} from "../../phone/fixedphone";
 
 import styles from "./assets/css/fixedchat.module.css";
 
 import defaultAvatar from "./assets/img/default_avatar.png";
+import {VoiceInput} from "./voice_input";
 
 enum inputType {
     voice = "voice",
@@ -50,6 +52,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
 
         this.getControllerPanel = this.getControllerPanel.bind(this);
         this.getControllerInput = this.getControllerInput.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
         this.inputText = this.inputText.bind(this);
 
         const defaultUser = {
@@ -103,6 +106,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                 } else {
                                     return <OtherText avatarURL={msg.avatar} content={msg.content} key={index}/>
                                 }
+                            case "voice":
+                                if (msg.user === this.state.user.name) {
+                                    return <MineVoice avatarURL={msg.avatar} length={msg.voice} key={index}/>
+                                } else {
+                                    return <OtherVoice avatarURL={msg.avatar} length={msg.voice} key={index}/>
+                                }
                         }
                     })}
                 </div>
@@ -135,16 +144,23 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         );
     }
 
+    private sendMessage(msg: Message) {
+        const messages = this.state.messages;
+        messages.push(msg);
+        this.setState({
+                messages: messages
+            }
+        )
+    }
+
     private inputText(e: any) {
         if (e.keyCode === 13) {
             this.textInputRef.value = "";
             if (this.currentInputText) {
-                const msgs = this.state.messages;
-                msgs.push({
+                this.sendMessage({
                     kind: "text", user: this.state.user.name,
                     avatar: this.state.user.avatar, content: this.currentInputText,
                 });
-                this.setState({messages: msgs});
                 this.currentInputText = "";
             }
         } else if (e.target) {
@@ -156,11 +172,19 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         const back = () => {
             this.setState({bottomInput: undefined})
         };
+
         switch (this.state.bottomInput) {
             case inputType.voice:
                 return (
                     <InputPanel onBack={back}>
-                        voice
+                        <VoiceInput onSubmit={(v: number) => {
+                            this.sendMessage({
+                                kind: "voice",
+                                user: this.state.user.name,
+                                avatar: this.state.user.avatar,
+                                voice: v,
+                            })
+                        }}/>
                     </InputPanel>
                 );
             case inputType.emoji:
