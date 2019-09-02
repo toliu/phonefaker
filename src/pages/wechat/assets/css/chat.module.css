@@ -1,0 +1,46 @@
+.chat {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.chat > div {
+    display: inline-block;
+    background-color: white;
+    min-height: 644px;
+    vertical-align: top;
+}
+
+.phone {
+    position: relative;
+    display: inline-block;
+}
+
+.form {
+    vertical-align: top;
+    position: relative;
+    display: inline-block;
+    margin: 10% 0;
+}
+
+.user, .receiver {
+    width: 34%;
+    margin: 2%;
+    padding: 0 1%;
+}
+
+.user {
+    box-shadow: 0 0 5px 5px #7c7a76;
+    border-radius: 0 40px 40px 0;
+    text-align: right;
+}
+
+.transport {
+    width: 20%;
+    margin: 4% 0;
+}
+
+.receiver {
+    box-shadow: 0 0 5px 5px #7c7a76;
+    border-radius: 40px 0 0 40px;
+}

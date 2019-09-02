@@ -25,6 +25,7 @@ interface ChatProps {
         name: string;
         avatar?: string;
     };
+    sender?: (m: Message[]) => void;
     messages?: Message[];
 }
 
@@ -158,6 +159,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         return () => {
             const messages = this.state.messages;
             messages.splice(index, 1);
+            if (this.props.sender) {
+                this.props.sender(messages);
+            }
             this.setState({messages: messages})
         }
     }
@@ -165,6 +169,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private sendMessage(msg: Message) {
         const messages = this.state.messages;
         messages.push(msg);
+        if (this.props.sender) {
+            this.props.sender(messages);
+        }
         this.setState({
                 messages: messages
             }

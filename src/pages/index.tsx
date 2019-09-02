@@ -4,6 +4,7 @@ import * as React from "react";
 import {Layout, Menu, Icon} from 'antd';
 
 import styles from "./assets/css/index.module.css";
+import {Chat} from "./wechat/chat";
 
 const {SubMenu} = Menu;
 const {Header, Content, Footer} = Layout;
@@ -42,7 +43,7 @@ export class Index extends React.Component<{}, IndexStats> {
                 <Content className={styles.body}>
                     <Layout className={styles.content}>
                         <Content className={styles.page}>
-                            {this.state.selectedKey}
+                            <Chat/>
                         </Content>
                     </Layout>
                 </Content>
