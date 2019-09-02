@@ -8,4 +8,6 @@
 
 .message:hover {
     background-color: #e53b32;
+    border-radius: 10px;
+    border: 1px dot-dash #7c7a76;
 }
