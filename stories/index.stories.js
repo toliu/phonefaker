@@ -5,6 +5,7 @@ import {action} from '@storybook/addon-actions';
 
 import {FixedPhone} from "../src/components/phone/fixedphone";
 import {FixedChat} from "../src/components/wechat/chat/fixedChat";
+import {Index} from "../src/pages";
 
 storiesOf("手机", module)
     .add("空手机", () => <FixedPhone/>)
@@ -18,4 +19,7 @@ storiesOf("微信", module)
     .add("对话", () => {
         return <FixedChat/>
     });
+
+storiesOf("首页", module)
+    .add("page", () => <Index/>);
 
