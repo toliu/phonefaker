@@ -17,7 +17,10 @@ interface FixedPhoneProps {
 interface FixedPhoneStats {
     operator: string;
     signalType: string;
+
+
     battery: number;
+    inCharge: boolean;
 
     time: string;
     setHours: boolean;
@@ -66,6 +69,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
             signalType: this.signalTypes[0],
             time: this.getNow(),
             battery: 80,
+            inCharge: false,
             setHours: false,
             setMinute: false,
             timeSet: false,
@@ -175,16 +179,22 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                 className={styles["battery-percent"]}
                                 onClick={(e) => this.switchBattery(true)(e)}
                                 onContextMenu={(e) => this.switchBattery()(e)}
+                                style={{width: this.state.inCharge ? 35 : 45}}
                             >
                                 {this.state.battery}%
                             </div>
-                            <div className={styles["battery-icon"]}>
+                            <div className={styles["battery-icon"]} onClick={() => this.setState({
+                                inCharge: !this.state.inCharge,
+                            })}>
                                         <span style={{
                                             width: batteryLength,
-                                            backgroundColor: this.state.battery > 20 ? "black" : "red",
+                                            backgroundColor: this.state.inCharge ? "#56EB2C" : (this.state.battery > 20 ? "black" : "red"),
                                         }}>
 
                                         </span>
+                            </div>
+                            <div className={styles.lightning}>
+
                             </div>
 
                         </div>

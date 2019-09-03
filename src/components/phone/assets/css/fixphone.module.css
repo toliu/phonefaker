@@ -153,7 +153,6 @@
 .header .battery-percent {
     text-align: right;
     margin-right: 4px;
-    width: 45px;
     cursor: pointer;
 }
 
@@ -167,6 +166,20 @@
     background-size: 26px 12px;
     width: 26px;
     margin-right: 4px;
+}
+
+.header .battery-icon:hover {
+    background-color: #bfbfbf;
+    cursor: pointer;
+}
+
+.header .lightning {
+    display: inline-block;
+    background: url("../img/lightning.png") no-repeat left;
+    background-size: 10px 10px;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
 }
 
 .battery-icon span {
