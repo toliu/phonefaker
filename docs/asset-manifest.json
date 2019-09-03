@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f2e5cd67.chunk.css",
+    "main.js": "/static/js/main.2bc9e038.chunk.js",
+    "main.js.map": "/static/js/main.2bc9e038.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.1227e4c8.js",
+    "runtime~main.js.map": "/static/js/runtime~main.1227e4c8.js.map",
+    "static/css/2.9692cc1a.chunk.css": "/static/css/2.9692cc1a.chunk.css",
+    "static/js/2.99dd4a97.chunk.js": "/static/js/2.99dd4a97.chunk.js",
+    "static/js/2.99dd4a97.chunk.js.map": "/static/js/2.99dd4a97.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.91ac822b4f6ed3f41b21ca0d7049dea9.js": "/precache-manifest.91ac822b4f6ed3f41b21ca0d7049dea9.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.9692cc1a.chunk.css.map": "/static/css/2.9692cc1a.chunk.css.map",
+    "static/css/main.f2e5cd67.chunk.css.map": "/static/css/main.f2e5cd67.chunk.css.map",
+    "static/media/default_avatar1.jpg": "/static/media/default_avatar1.2d511b01.jpg",
+    "static/media/default_avatar2.jpg": "/static/media/default_avatar2.ff4149c2.jpg",
+    "static/media/fixphone.module.css": "/static/media/wifi.8f524f63.svg"
+  }
+}

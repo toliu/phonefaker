@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "github-page": "react-scripts build && mv build docs || move build docs",
     "serve": "react-scripts build && serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
