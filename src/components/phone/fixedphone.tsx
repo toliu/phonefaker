@@ -17,8 +17,12 @@ interface FixedPhoneProps {
 interface FixedPhoneStats {
     operator: string;
     signalType: string;
-    time: string;
     battery: number;
+
+    time: string;
+    setHours: boolean;
+    setMinute: boolean;
+    timeSet: boolean;
 }
 
 export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats> {
@@ -26,6 +30,10 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
     private readonly signalTypes: string[];
 
     private screenRef: any;
+
+    private setHour: string;
+    private setMinute: string;
+    private timeInterval: any;
 
     constructor(props: FixedPhoneProps) {
         super(props);
@@ -47,14 +55,21 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         this.switchSignalType = this.switchSignalType.bind(this);
         this.switchBattery = this.switchBattery.bind(this);
         this.screenSnapshot = this.screenSnapshot.bind(this);
+        this.cleanTimer = this.cleanTimer.bind(this);
+
+        this.setMinute = "";
+        this.setHour = "";
+        this.timeInterval = null;
 
         this.state = {
             operator: this.operators[0],
             signalType: this.signalTypes[0],
             time: this.getNow(),
             battery: 80,
+            setHours: false,
+            setMinute: false,
+            timeSet: false,
         }
-
     }
 
     public render(): React.ReactElement {
@@ -73,10 +88,11 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
 
         const batteryLength: number = this.state.battery / 100 * 20;
 
-
-        setInterval(() => {
-            this.setState({time: this.getNow()})
-        }, 30000);
+        if (!this.timeInterval) {
+            this.timeInterval = setInterval(() => {
+                this.setState({time: this.getNow()})
+            }, 30000);
+        }
 
 
         return (
@@ -97,7 +113,63 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                 {this.state.signalType === "wifi" ? "" : this.state.signalType}
                             </div>
                             <div className={styles.timer}>
-                                {this.state.time}
+                                <span className={styles.hours} onClick={() => this.setState({setHours: true})}>
+                                    {this.state.setHours ?
+                                        <input type={"number"} min={0} max={23}
+                                               onKeyUp={(e: any) => {
+                                                   if (e.keyCode === 13) {
+                                                       this.setState({
+                                                           time: this.setHour + this.state.time.slice(2, 5),
+                                                           setHours: false,
+                                                           timeSet: true,
+                                                       });
+                                                       this.cleanTimer()
+                                                   }
+                                               }}
+                                               onChange={(e: any) => {
+                                                   const v = e.target.value;
+                                                   if (v > 23) {
+                                                       this.setHour = "23";
+                                                   } else if (v < 0) {
+                                                       this.setHour = "0";
+                                                   } else {
+                                                       this.setHour = v > 9 ? v : "0" + v;
+                                                   }
+
+                                               }}
+                                               autoFocus={true}
+                                        /> :
+                                        this.state.time.slice(0, 2)}
+                                </span>
+                                :
+                                <span className={styles.minute} onClick={() => this.setState({setMinute: true})}>
+                                    {this.state.setMinute ?
+                                        <input type={"number"} min={0} max={59}
+                                               onKeyUp={(e: any) => {
+                                                   if (e.keyCode === 13) {
+                                                       this.setState({
+                                                           time: this.state.time.slice(0, 3) + this.setMinute,
+                                                           setMinute: false,
+                                                           timeSet: true,
+                                                       });
+                                                       this.cleanTimer()
+                                                   }
+                                               }}
+                                               onChange={(e: any) => {
+                                                   const v = e.target.value;
+                                                   if (v > 59) {
+                                                       this.setMinute = "59";
+                                                   } else if (v < 0) {
+                                                       this.setMinute = "0";
+                                                   } else {
+                                                       this.setMinute = v > 9 ? v : "0" + v;
+                                                   }
+
+                                               }}
+                                               autoFocus={true}
+                                        /> : this.state.time.slice(3, 5)
+                                    }
+                                        </span>
                             </div>
                             <div
                                 className={styles["battery-percent"]}
@@ -107,12 +179,12 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                 {this.state.battery}%
                             </div>
                             <div className={styles["battery-icon"]}>
-                                <span style={{
-                                    width: batteryLength,
-                                    backgroundColor: this.state.battery > 20 ? "black" : "red",
-                                }}>
+                                        <span style={{
+                                            width: batteryLength,
+                                            backgroundColor: this.state.battery > 20 ? "black" : "red",
+                                        }}>
 
-                                </span>
+                                        </span>
                             </div>
 
                         </div>
@@ -207,4 +279,9 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         )
     }
 
+    private cleanTimer() {
+        if (this.timeInterval) {
+            clearInterval(this.timeInterval);
+        }
+    }
 }

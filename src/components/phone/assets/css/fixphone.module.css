@@ -179,3 +179,22 @@
     border-radius: 2px;
     transition: 0.5s;
 }
+
+.hours:hover, .minute:hover {
+    cursor: pointer;
+    background-color: #bfbfbf;
+}
+
+.hours input, .minute input {
+    height: 18px;
+    width: 20px;
+    background-color: #bfbfbf;
+    outline: none;
+}
+
+.hours input::-webkit-inner-spin-button, .minute input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
