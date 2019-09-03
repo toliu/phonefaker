@@ -1,0 +1,56 @@
+.left, .right {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+}
+
+.right {
+    animation-name: right;
+}
+
+@keyframes right {
+    from {
+        left: 0;
+    }
+
+    50% {
+        width: 50px;
+        transform: rotateZ(180deg);
+    }
+    98% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        left: 100%;
+        transform: rotateZ(180deg);
+    }
+}
+
+.left {
+    animation-name: left;
+}
+
+@keyframes left {
+    from {
+        right: 0;
+    }
+
+    50% {
+        width: 25px;
+        transform: rotateZ(180deg);
+    }
+    98% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        right: 100%;
+        transform: rotateZ(180deg);
+    }
+}
