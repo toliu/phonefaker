@@ -3,7 +3,7 @@
     width: 277px;
     padding-top: 18px;
     height: 51px;
-    background-color: #cccccc;
+    background-color: #e1e1e1;
     overflow: hidden;
 }
 
@@ -119,7 +119,7 @@
     overflow: scroll;
     height: 402px;
     transition: 1s height;
-    background-color: #e5e5e5;
+    background-color: #f4f4f4;
 }
 
 .body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {
