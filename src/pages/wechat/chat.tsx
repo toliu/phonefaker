@@ -4,8 +4,8 @@ import {FixedChat} from "../../components/wechat/chat/fixedChat";
 import {Message} from "../../components/wechat/chat/messages";
 import {Transport} from "../../components/transport";
 
-import default_avatar from "./assets/img/xuwei_avatar.jpg";
-import default_li_avatar from "./assets/img/liyanliang_avatar.jpg";
+import default_avatar1 from "./assets/img/default_avatar1.jpg";
+import default_avatar2 from "./assets/img/default_avatar2.jpg";
 
 import styles from "./assets/css/chat.module.css";
 
@@ -34,10 +34,10 @@ export class Chat extends React.Component<{}, ChatStats> {
         this.userNameInputRef = React.createRef<HTMLInputElement>();
         this.receiverNameInputRef = React.createRef<HTMLInputElement>();
         this.state = {
-            userName: "许巍",
-            userAvatar: default_avatar,
-            receiverName: "李延亮",
-            receiverAvatar: default_li_avatar,
+            userName: "时光",
+            userAvatar: default_avatar1,
+            receiverName: "🗢汤圆。б",
+            receiverAvatar: default_avatar2,
             messages: [],
             transports: []
         }
