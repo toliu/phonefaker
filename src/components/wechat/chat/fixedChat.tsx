@@ -43,6 +43,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         this.sendMessage = this.sendMessage.bind(this);
         this.inputText = this.inputText.bind(this);
         this.deleteMessage = this.deleteMessage.bind(this);
+        this.changeBodyBackground = this.changeBodyBackground.bind(this);
 
         this.currentInputText = "";
 
@@ -196,6 +197,20 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                         Addition
                     </InputPanel>
                 );
+        }
+    }
+
+    private changeBodyBackground() {
+        const input = document.createElement("input");
+        input.setAttribute("type", "file");
+        input.setAttribute("accept", "image/*");
+        input.click();
+        input.onchange = (e: any) => {
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
+            this.bodyRef.style.background = "url(" + url + ") no-repeat";
+            this.bodyRef.style.backgroundSize = "277px 100%";
+            input.remove();
         }
     }
 }
