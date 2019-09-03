@@ -4,6 +4,7 @@ import * as React from "react";
 import {Layout, Menu, Icon} from 'antd';
 
 import styles from "./assets/css/index.module.css";
+import {Developing} from "./developing";
 import {Chat} from "./wechat/chat";
 
 const {SubMenu} = Menu;
@@ -19,9 +20,14 @@ interface IndexStats {
 }
 
 export class Index extends React.Component<{}, IndexStats> {
+    private readonly keyMaps: { [key: string]: React.ReactElement };
+
     constructor(props: any) {
         super(props);
         this.switchMenu = this.switchMenu.bind(this);
+
+        this.keyMaps = {};
+        this.keyMaps[MenuKeys.WechatChat] = <Chat/>;
 
         this.state = {
             selectedKey: MenuKeys.WechatChat,
@@ -43,11 +49,11 @@ export class Index extends React.Component<{}, IndexStats> {
                 <Content className={styles.body}>
                     <Layout className={styles.content}>
                         <Content className={styles.page}>
-                            <Chat/>
+                            {this.state.selectedKey in this.keyMaps ? this.keyMaps[this.state.selectedKey] : <Developing/>}
                         </Content>
                     </Layout>
                 </Content>
-                <Footer className={styles.footer}>Phone Faker ©2019 Created by liushi</Footer>
+                <Footer className={styles.footer}>Phone Faker ©2019 Created by <a href={"Mailto:1928385951@qq.com"}>时光</a></Footer>
             </Layout>
         );
     }

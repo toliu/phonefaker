@@ -32,7 +32,8 @@
     "html2canvas": "^1.0.0-rc.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "react-spinners": "^0.6.1"
   },
   "eslintConfig": {
     "extends": "react-app"

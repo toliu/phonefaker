@@ -51,7 +51,7 @@ export class Chat extends React.Component<{}, ChatStats> {
                         <div className={styles.form}>
                             <span>
                                 <label htmlFor={"user-avatar"}>
-                                    <img src={this.state.userAvatar} alt={"头像"}/>
+                                    <img src={this.state.userAvatar} alt={"头像"} title={"点击修改"}/>
                                 </label>
                                 <input id={"user-avatar"} type={"file"} accept={"image/*"} style={{display: "none"}} onChange={this.uploadAvatar()}/>
                             </span>
@@ -76,7 +76,7 @@ export class Chat extends React.Component<{}, ChatStats> {
                     <div className={styles.form}>
                         <span>
                             <label htmlFor={"receiver-avatar"}>
-                                <img src={this.state.receiverAvatar} alt={"头像"}/>
+                                <img src={this.state.receiverAvatar} alt={"头像"} title={"点击修改"}/>
                             </label>
                             <input id={"receiver-avatar"} type={"file"} accept={"image/*"} style={{display: "none"}} onChange={this.uploadAvatar(true)}/>
                         </span>
