@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import {EmojiInput} from "./emoji_input";
 import {Message} from "./messages";
 import {MineText, OtherText} from "./messages/text";
 import {MineVoice, OtherVoice} from "./messages/voice";
@@ -25,6 +25,7 @@ interface ChatProps {
 }
 
 interface ChatStats {
+    currentInputText: string;
     bottomInput?: inputType;
     messages: Message[];
 }
@@ -32,8 +33,6 @@ interface ChatStats {
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private bodyRef: any;
     private textInputRef: any;
-
-    private currentInputText: string;
 
     constructor(props: ChatProps) {
         super(props);
@@ -45,10 +44,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         this.deleteMessage = this.deleteMessage.bind(this);
         this.changeBodyBackground = this.changeBodyBackground.bind(this);
 
-        this.currentInputText = "";
-
         this.state = {
             bottomInput: undefined,
+            currentInputText: "",
             messages: this.props.messages ? this.props.messages : [],
         }
     }
@@ -116,6 +114,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     autoFocus={true}
                     onChange={this.inputText}
                     onKeyUp={this.inputText}
+                    value={this.state.currentInputText}
                 />
                 <div className={styles.emoji} onClick={() => this.setState({bottomInput: inputType.emoji})}>
 
@@ -146,7 +145,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
             this.props.sender(messages);
         }
         this.setState({
-                messages: messages
+                currentInputText: "",
+                messages: messages,
             }
         )
     }
@@ -154,15 +154,16 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private inputText(e: any) {
         if (e.keyCode === 13) {
             this.textInputRef.value = "";
-            if (this.currentInputText) {
+            if (this.state.currentInputText) {
                 this.sendMessage({
                     kind: "text", user: this.props.userName,
-                    avatar: this.props.userAvatar, content: this.currentInputText,
+                    avatar: this.props.userAvatar, content: this.state.currentInputText,
                 });
-                this.currentInputText = "";
             }
         } else if (e.target) {
-            this.currentInputText = e.target.value;
+            this.setState({
+                currentInputText: e.target.value
+            });
         }
     }
 
@@ -188,7 +189,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
             case inputType.emoji:
                 return (
                     <InputPanel onBack={back}>
-                        Emoji
+                        <EmojiInput onSelect={(e: string) => {
+                            this.setState({currentInputText: this.state.currentInputText + e})
+                        }}/>
                     </InputPanel>
                 );
             case inputType.addition:

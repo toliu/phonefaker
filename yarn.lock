@@ -1694,6 +1694,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/emoji-mart@^2.11.0":
+  version "2.11.0"
+  resolved "https://registry.npm.taobao.org/@types/emoji-mart/download/@types/emoji-mart-2.11.0.tgz#eb09c71ab592747a25fecb093e2f350c3d5761a1"
+  integrity sha1-6wnHGrWSdHol/ssJPi81DD1XYaE=
+  dependencies:
+    "@types/react" "*"
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/@types/eslint-visitor-keys/download/@types/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -4749,6 +4756,13 @@ elliptic@^6.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
+
+emoji-mart@^2.11.1:
+  version "2.11.1"
+  resolved "https://registry.npm.taobao.org/emoji-mart/download/emoji-mart-2.11.1.tgz#fc9330b513803c17b98c9ad289c12ab61ff05f8f"
+  integrity sha1-/JMwtROAPBe5jJrSicEqth/wX48=
+  dependencies:
+    prop-types "^15.6.0"
 
 emoji-regex@^7.0.1, emoji-regex@^7.0.2:
   version "7.0.3"
