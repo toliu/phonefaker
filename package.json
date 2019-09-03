@@ -2,6 +2,7 @@
   "name": "phone-facker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://toliu.github.io/phone-faker/",
   "scripts": {
     "start": "react-scripts start",
     "github-page": "react-scripts build && mv build docs || move build docs",
