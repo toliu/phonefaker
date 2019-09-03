@@ -46,6 +46,23 @@
     margin-right: 50px;
 }
 
+.form .name {
+    display: block;
+    text-align: left;
+}
+
+.form .name input {
+    display: block;
+    outline: none;
+    width: 70px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.receiver .form .name {
+    margin-left: 10px;
+}
+
 .receiver .form img {
     margin-left: 50%;
 }

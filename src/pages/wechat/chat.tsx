@@ -21,14 +21,18 @@ interface ChatStats {
 export class Chat extends React.Component<{}, ChatStats> {
 
     private readonly avatarUploadRef: React.RefObject<HTMLInputElement>;
+    private readonly userNameInputRef: React.RefObject<HTMLInputElement>;
+    private readonly receiverNameInputRef: React.RefObject<HTMLInputElement>;
 
     constructor(props: any) {
         super(props);
         this.newMessageSender = this.newMessageSender.bind(this);
         this.uploadAvatar = this.uploadAvatar.bind(this);
+        this.modifyUserName = this.modifyUserName.bind(this);
 
         this.avatarUploadRef = React.createRef<HTMLInputElement>();
-
+        this.userNameInputRef = React.createRef<HTMLInputElement>();
+        this.receiverNameInputRef = React.createRef<HTMLInputElement>();
         this.state = {
             userName: "许巍",
             userAvatar: default_avatar,
@@ -49,32 +53,15 @@ export class Chat extends React.Component<{}, ChatStats> {
                                 <label htmlFor={"user-avatar"}>
                                     <img src={this.state.userAvatar} alt={"头像"}/>
                                 </label>
-                                <input
-                                    id={"user-avatar"}
-                                    type={"file"}
-                                    accept={"image/*"}
-                                    style={{display: "none"}}
-                                    onChange={this.uploadAvatar()}
-                                />
+                                <input id={"user-avatar"} type={"file"} accept={"image/*"} style={{display: "none"}} onChange={this.uploadAvatar()}/>
                             </span>
-                            <div>
-                                name
+                            <div className={styles.name}>
+                                <label>修改用户名:</label>
+                                <input type={"text"} placeholder={this.state.userName} ref={this.userNameInputRef} onKeyUp={this.modifyUserName()}/>
+                                <input type={"button"} value={"修改"} onClick={this.modifyUserName()}/>
                             </div>
                         </div>
-                        <FixedChat
-                            user={{
-                                name: this.state.userName,
-                                avatar: this.state.userAvatar,
-                            }}
-                            otherUser={{
-                                name: this.state.receiverName,
-                                avatar: this.state.receiverAvatar,
-                            }}
-                            messages={this.state.messages}
-                            sender={this.newMessageSender(true)}
-                        />
-
-
+                        <FixedChat userName={this.state.userName} userAvatar={this.state.userAvatar} otherUserName={this.state.receiverName} otherUserAvatar={this.state.receiverAvatar} messages={this.state.messages} sender={this.newMessageSender(true)}/>
                     </div>
                 </div>
 
@@ -84,34 +71,19 @@ export class Chat extends React.Component<{}, ChatStats> {
 
                 <div className={styles.receiver}>
                     <div className={styles.phone}>
-                        <FixedChat
-                            user={{
-                                name: this.state.receiverName,
-                                avatar: this.state.receiverAvatar,
-                            }}
-                            otherUser={{
-                                name: this.state.userName, avatar:
-                                this.state.userAvatar,
-                            }}
-                            messages={this.state.messages}
-                            sender={this.newMessageSender(false)}
-                        />
+                        <FixedChat userName={this.state.receiverName} userAvatar={this.state.receiverAvatar} otherUserName={this.state.userName} otherUserAvatar={this.state.userAvatar} messages={this.state.messages} sender={this.newMessageSender(false)}/>
                     </div>
                     <div className={styles.form}>
                         <span>
                             <label htmlFor={"receiver-avatar"}>
                                 <img src={this.state.receiverAvatar} alt={"头像"}/>
                             </label>
-                            <input
-                                id={"receiver-avatar"}
-                                type={"file"}
-                                accept={"image/*"}
-                                style={{display: "none"}}
-                                onChange={this.uploadAvatar(true)}
-                            />
-                            </span>
-                        <div>
-                            name
+                            <input id={"receiver-avatar"} type={"file"} accept={"image/*"} style={{display: "none"}} onChange={this.uploadAvatar(true)}/>
+                        </span>
+                        <div className={styles.name}>
+                            <label>修改用户名:</label>
+                            <input type={"text"} placeholder={this.state.receiverName} ref={this.receiverNameInputRef} onKeyUp={this.modifyUserName(true)}/>
+                            <input type={"button"} value={"修改"} onClick={this.modifyUserName(true)}/>
                         </div>
                     </div>
                 </div>
@@ -149,9 +121,47 @@ export class Chat extends React.Component<{}, ChatStats> {
                 }
                 nmsg.push(msg);
             }
-            receiver ?
-                this.setState({receiverAvatar: nUrl, messages: nmsg}) :
+            if (receiver) {
+                this.setState({receiverAvatar: nUrl, messages: nmsg})
+            } else {
                 this.setState({userAvatar: nUrl, messages: nmsg})
+            }
+        }
+    }
+
+    private modifyUserName(receiver?: boolean): (event: any) => void {
+        return (event: any) => {
+            if (event.keyCode && event.keyCode !== 13) {
+                return;
+            }
+            let current: any = receiver ? this.receiverNameInputRef.current : this.userNameInputRef.current;
+            if (!current) return;
+            const newName = current.value;
+            if (this.receiverNameInputRef.current) this.receiverNameInputRef.current.value = "";
+            if (this.userNameInputRef.current) this.userNameInputRef.current.value = "";
+            if (!newName) return;
+            let nmsg: any[] = [];
+            const messages = this.state.messages;
+            for (let msg of messages) {
+                switch (msg.kind) {
+                    case "text":
+                    case "voice":
+                        if (receiver) {
+                            msg.user = msg.user === this.state.receiverName ? newName : msg.user
+                        } else {
+                            msg.user = msg.user === this.state.userName ? newName : msg.user
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                nmsg.push(msg);
+            }
+            if (receiver) {
+                this.setState({receiverName: newName, messages: nmsg})
+            } else {
+                this.setState({userName: newName, messages: nmsg})
+            }
         }
     }
 }
