@@ -131,13 +131,13 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                                    }
                                                }}
                                                onChange={(e: any) => {
-                                                   const v = e.target.value;
+                                                   const v = parseInt(e.target.value, 10);
                                                    if (v > 23) {
                                                        this.setHour = "23";
                                                    } else if (v < 0) {
-                                                       this.setHour = "0";
+                                                       this.setHour = "00";
                                                    } else {
-                                                       this.setHour = v > 9 ? v : "0" + v;
+                                                       this.setHour = v > 9 ? v + "" : "0" + v;
                                                    }
 
                                                }}
@@ -160,13 +160,13 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                                    }
                                                }}
                                                onChange={(e: any) => {
-                                                   const v = e.target.value;
+                                                   const v = parseInt(e.target.value, 10);
                                                    if (v > 59) {
                                                        this.setMinute = "59";
                                                    } else if (v < 0) {
-                                                       this.setMinute = "0";
+                                                       this.setMinute = "00";
                                                    } else {
-                                                       this.setMinute = v > 9 ? v : "0" + v;
+                                                       this.setMinute = v > 9 ? v + "" : "0" + v;
                                                    }
 
                                                }}
