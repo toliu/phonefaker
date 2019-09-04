@@ -93,7 +93,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                     <OtherVoice avatarURL={msg.avatar}
                                                 length={msg.voice}
                                                 key={index}
-                                                onDelete={od}/>
+                                                onDelete={od}/>;
+                            default:
+                                return <MineText avatarURL={this.props.userAvatar} content={"未知类型"} onDelete={od}/>;
                         }
                     })}
                 </div>
