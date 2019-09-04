@@ -5,7 +5,7 @@ type UserMessage = {
 
 export type TextMessage = UserMessage & {
     kind: "text"
-    content: any;
+    content: string;
 }
 
 export type VoiceMessage = UserMessage & {

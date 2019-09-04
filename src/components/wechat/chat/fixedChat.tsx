@@ -78,12 +78,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                         switch (msg.kind) {
                             case "text":
                                 return msg.user === this.props.userName ?
-                                    <MineText avatarURL={msg.avatar} key={index} onDelete={od}>
-                                        {msg.content}
-                                    </MineText>
-                                    : <OtherText avatarURL={msg.avatar} key={index} onDelete={od}>
-                                        {msg.content}
-                                    </OtherText>;
+                                    <MineText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content}/>
+                                    : <OtherText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content}/>;
                             case "voice":
                                 return msg.user === this.props.userName ?
                                     <MineVoice avatarURL={msg.avatar}
@@ -95,7 +91,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                 key={index}
                                                 onDelete={od}/>;
                             default:
-                                return <MineText avatarURL={this.props.userAvatar} onDelete={od}>未知类型</MineText>;
+                                return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"}/>;
                         }
                     })}
                 </div>
@@ -109,14 +105,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                 <div className={styles.voice} onClick={() => this.setState({bottomInput: inputType.voice})}>
 
                 </div>
-                <input
-                    className={styles.input}
-                    type={"text"}
-                    ref={(e) => this.textInputRef = e}
-                    autoFocus={true}
-                    onChange={this.inputText}
-                    onKeyUp={this.inputText}
-                    value={this.state.currentInputText}
+                <input className={styles.input} type={"text"} ref={(e) => this.textInputRef = e} autoFocus={true}
+                       onChange={this.inputText} onKeyUp={this.inputText} value={this.state.currentInputText}
                 />
                 <div className={styles.emoji} onClick={() => this.setState({bottomInput: inputType.emoji})}>
 

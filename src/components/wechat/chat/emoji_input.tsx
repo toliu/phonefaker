@@ -16,7 +16,7 @@ export class EmojiInput extends React.Component<EmojiInputProps, {}> {
         return (
             <InputPanel onBack={this.props.onBack}>
                 <Picker
-                    onSelect={(ed: any) => this.props.onSelect(ed.native)}
+                    onSelect={(ed: any) => this.props.onSelect(`[${ed.id}]`)}
                     emojiSize={16}
                     style={{
                         maxWidth: "100%"
