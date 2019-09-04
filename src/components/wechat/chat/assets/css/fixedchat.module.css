@@ -120,7 +120,6 @@
     height: 402px;
     transition: 1s height;
     background-color: #f4f4f4;
-    cursor: pointer;
 }
 
 .body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {
