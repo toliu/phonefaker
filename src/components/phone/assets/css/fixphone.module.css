@@ -18,8 +18,15 @@
 .middle {
     background: url("../img/phone-middle.png") no-repeat;
     height: 493px;
-    font-family: "PingFang SC", sans-serif;
+    font-family: "iPhone", "PingFang SC", sans-serif;
     font-size: 12px;
+}
+
+@font-face {
+    font-family: "iPhone";
+    src: url("../ttf/PingFang-SC-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .bottom {
@@ -186,7 +193,6 @@
     position: relative;
     display: inline-block;
     left: 2px;
-    top: -1px;
     height: 8px;
     min-width: 1px;
     border-radius: 2px;
