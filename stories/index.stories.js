@@ -6,7 +6,8 @@ import {action} from '@storybook/addon-actions';
 import {FixedPhone} from "../src/components/phone/fixedphone";
 import {FixedChat} from "../src/components/wechat/chat/fixedChat";
 import {Index} from "../src/pages";
-import {Transport} from "../src/components/transport";
+
+import default_avatar1 from "../src/pages/wechat/assets/img/default_avatar1.jpg";
 
 storiesOf("手机", module)
     .add("空手机", () => <FixedPhone/>)
@@ -18,7 +19,7 @@ storiesOf("手机", module)
 
 storiesOf("微信", module)
     .add("对话", () => {
-        return <FixedChat/>
+        return <FixedChat otherUserAvatar={default_avatar1} otherUserName={"时光"} userAvatar={default_avatar1} userName={"时光"}/>
     });
 
 storiesOf("首页", module)

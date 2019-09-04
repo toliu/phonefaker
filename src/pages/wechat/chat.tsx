@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import {FixedChat} from "../../components/wechat/chat/fixedChat";
-import {Message} from "../../components/wechat/chat/messages";
+import {MessageType} from "../../components/wechat/chat/messages";
 import {Transport} from "../../components/transport";
 
 import default_avatar1 from "./assets/img/default_avatar1.jpg";
@@ -14,7 +14,7 @@ interface ChatStats {
     userAvatar: string;
     receiverName: string;
     receiverAvatar: string;
-    messages: Message[];
+    messages: MessageType[];
     transports: React.ReactElement[];
 }
 
@@ -91,8 +91,8 @@ export class Chat extends React.Component<{}, ChatStats> {
         );
     }
 
-    private newMessageSender(left: boolean): (messages: Message[]) => void {
-        return (messages: Message[]) => {
+    private newMessageSender(left: boolean): (messages: MessageType[]) => void {
+        return (messages: MessageType[]) => {
             let transports = this.state.transports;
             transports.push(<Transport toRight={left}/>);
             this.setState({

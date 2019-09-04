@@ -5,7 +5,7 @@ type UserMessage = {
 
 export type TextMessage = UserMessage & {
     kind: "text"
-    content: string;
+    content: any;
 }
 
 export type VoiceMessage = UserMessage & {
@@ -18,4 +18,4 @@ export type DatetimeMessage = {
     time: Date;
 }
 
-export type Message = TextMessage | VoiceMessage | DatetimeMessage;
+export type MessageType = TextMessage | VoiceMessage | DatetimeMessage;

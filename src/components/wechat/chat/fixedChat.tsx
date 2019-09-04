@@ -1,6 +1,6 @@
 import * as React from "react";
 import {EmojiInput} from "./emoji_input";
-import {Message} from "./messages";
+import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
 import {MineVoice, OtherVoice} from "./messages/voice";
 import {FixedPhone} from "../../phone/fixedphone";
@@ -20,14 +20,14 @@ interface ChatProps {
     userAvatar: string;
     otherUserName: string;
     otherUserAvatar: string;
-    sender?: (m: Message[]) => void;
-    messages?: Message[];
+    sender?: (m: MessageType[]) => void;
+    messages?: MessageType[];
 }
 
 interface ChatStats {
     currentInputText: string;
     bottomInput?: inputType;
-    messages: Message[];
+    messages: MessageType[];
 }
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
@@ -71,19 +71,17 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     </div>
                 </div>
                 <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
-                    {this.state.messages.map((msg: Message, index: number) => {
+                    {this.state.messages.map((msg: MessageType, index: number) => {
                         const od = this.deleteMessage(index);
                         switch (msg.kind) {
                             case "text":
                                 return msg.user === this.props.userName ?
-                                    <MineText avatarURL={msg.avatar}
-                                              content={msg.content}
-                                              key={index}
-                                              onDelete={od}/>
-                                    : <OtherText avatarURL={msg.avatar}
-                                                 content={msg.content}
-                                                 key={index}
-                                                 onDelete={od}/>;
+                                    <MineText avatarURL={msg.avatar} key={index} onDelete={od}>
+                                        {msg.content}
+                                    </MineText>
+                                    : <OtherText avatarURL={msg.avatar} key={index} onDelete={od}>
+                                        {msg.content}
+                                    </OtherText>;
                             case "voice":
                                 return msg.user === this.props.userName ?
                                     <MineVoice avatarURL={msg.avatar}
@@ -95,7 +93,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                 key={index}
                                                 onDelete={od}/>;
                             default:
-                                return <MineText avatarURL={this.props.userAvatar} content={"未知类型"} onDelete={od}/>;
+                                return <MineText avatarURL={this.props.userAvatar} onDelete={od}>未知类型</MineText>;
                         }
                     })}
                 </div>
@@ -140,7 +138,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         }
     }
 
-    private sendMessage(msg: Message) {
+    private sendMessage(msg: MessageType) {
         const messages = this.state.messages;
         messages.push(msg);
         if (this.props.sender) {
