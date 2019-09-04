@@ -1,4 +1,6 @@
 import * as React from "react";
+
+import {AdditionInput} from "./addition-input";
 import {EmojiInput} from "./emoji_input";
 import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
@@ -174,32 +176,25 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
 
         switch (this.state.bottomInput) {
             case inputType.voice:
-                return (
-                    <InputPanel onBack={back}>
-                        <VoiceInput onSubmit={(v: number) => {
-                            this.sendMessage({
-                                kind: "voice",
-                                user: this.props.userName,
-                                avatar: this.props.userAvatar,
-                                voice: v,
-                            })
-                        }}/>
-                    </InputPanel>
-                );
+                return <VoiceInput
+                    onBack={back}
+                    onSubmit={(v: number) => {
+                        this.sendMessage({
+                            kind: "voice",
+                            user: this.props.userName,
+                            avatar: this.props.userAvatar,
+                            voice: v,
+                        })
+                    }}/>;
             case inputType.emoji:
-                return (
-                    <InputPanel onBack={back}>
-                        <EmojiInput onSelect={(e: string) => {
-                            this.setState({currentInputText: this.state.currentInputText + e})
-                        }}/>
-                    </InputPanel>
-                );
+                return <EmojiInput
+                    onBack={back}
+                    onSelect={(e: string) => {
+                        this.setState({currentInputText: this.state.currentInputText + e})
+                    }}
+                />;
             case inputType.addition:
-                return (
-                    <InputPanel onBack={back}>
-                        Addition
-                    </InputPanel>
-                );
+                return <AdditionInput onBack={back}/>;
         }
     }
 
@@ -215,23 +210,6 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
             this.bodyRef.style.backgroundSize = "277px 100%";
             input.remove();
         }
-    }
-}
-
-class InputPanel extends React.Component<{
-    onBack: () => void
-}, {}> {
-    public render(): React.ReactElement {
-        return (
-            <div className={styles["input-panel"]}>
-                <div className={styles.child}>
-                    {this.props.children}
-                </div>
-                <div className={styles.back} title={"返回"} onClick={this.props.onBack}>
-
-                </div>
-            </div>
-        );
     }
 }
 

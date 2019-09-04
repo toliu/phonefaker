@@ -1,8 +1,11 @@
 import * as React from "react";
 
+import {InputPanel} from "./bottom-panel";
+
 import styles from "./assets/css/voiceinput.module.css";
 
 interface VoiceInputProps {
+    onBack: () => void;
     onSubmit: (v: number) => void;
 }
 
@@ -22,18 +25,21 @@ export class VoiceInput extends React.Component<VoiceInputProps, VoiceInputStats
 
     public render(): React.ReactElement {
         return (
-            <div className={styles.input}>
-                <p>{this.state.voice}s:</p>
-                <div className={styles.submit} onClick={() => this.props.onSubmit(this.state.voice)}>发送</div>
-                <input type={"range"}
-                       min={1}
-                       max={60}
-                       onChange={this.onChange}
-                       value={this.state.voice}
-                       className={styles.range}
-                       ref={(e) => this.inputRef = e}
-                />
-            </div>
+            <InputPanel onBack={this.props.onBack}>
+                <div className={styles.input}>
+                    <p>{this.state.voice}s:</p>
+                    <div className={styles.submit} onClick={() => this.props.onSubmit(this.state.voice)}>发送</div>
+                    <input type={"range"}
+                           min={1}
+                           max={60}
+                           onChange={this.onChange}
+                           value={this.state.voice}
+                           className={styles.range}
+                           ref={(e) => this.inputRef = e}
+                    />
+                </div>
+            </InputPanel>
+
         );
     }
 

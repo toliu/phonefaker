@@ -79,41 +79,6 @@
     cursor: pointer;
 }
 
-.input-panel {
-    width: 277px;
-    height: 114px;
-}
-
-.input-panel .child {
-    display: inline-block;
-    height: 114px;
-    width: 238px;
-    border-right: 2px solid #7c7a76;
-    word-break: break-word;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
-.input-panel .child::-webkit-scrollbar {
-    display: none;
-}
-
-.input-panel .back {
-    display: inline-block;
-    background: url("../img/bottom_input_back.png") no-repeat center;
-    background-size: 30px;
-    width: 35px;
-    height: 30px;
-    margin-top: 40px;
-    position: absolute;
-    cursor: pointer;
-}
-
-.input-panel .back:active {
-    border: 1px solid #7c7a76;
-    border-radius: 5px;
-}
-
 .body, .body-no-input {
     word-break: break-word;
     overflow: scroll;
