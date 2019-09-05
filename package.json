@@ -1,14 +1,12 @@
 {
-  "name": "phone-facker",
+  "name": "phonefacker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://toliu.github.io/phone-faker/",
+  "homepage": "https://toliu.github.io/phonefaker/",
   "scripts": {
     "start": "react-scripts start",
-    "github-page": "react-scripts build && mv build docs || move build docs",
-    "serve": "react-scripts build && serve -s build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "storybook": "start-storybook -p 6006 --quiet"
   },
   "devDependencies": {
@@ -25,8 +23,8 @@
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
+    "gh-pages": "^2.1.1",
     "react-docgen-typescript-loader": "^3.1.1",
-    "serve": "^11.1.0",
     "typescript": "3.5.3"
   },
   "dependencies": {
