@@ -282,7 +282,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
             scale: 2,
             height: 493,
             width: 277,
-            allowTaint: true,
+            useCORS: true,
         }).then(
             (canvas) => {
                 const now = new Date();
