@@ -1,6 +1,7 @@
 type UserMessage = {
     user: string;
     avatar: string;
+    unread: boolean;
 }
 
 export type TextMessage = UserMessage & {

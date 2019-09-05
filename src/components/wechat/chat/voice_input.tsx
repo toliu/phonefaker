@@ -6,11 +6,12 @@ import styles from "./assets/css/voiceinput.module.css";
 
 interface VoiceInputProps {
     onBack: () => void;
-    onSubmit: (v: number) => void;
+    onSubmit: (v: number, unread: boolean) => void;
 }
 
 interface VoiceInputStats {
     voice: number;
+    unread: boolean;
 }
 
 export class VoiceInput extends React.Component<VoiceInputProps, VoiceInputStats> {
@@ -20,7 +21,10 @@ export class VoiceInput extends React.Component<VoiceInputProps, VoiceInputStats
         super(props);
         this.onChange = this.onChange.bind(this);
 
-        this.state = {voice: 10};
+        this.state = {
+            voice: 10,
+            unread: false,
+        };
     }
 
     public render(): React.ReactElement {
@@ -28,7 +32,23 @@ export class VoiceInput extends React.Component<VoiceInputProps, VoiceInputStats
             <InputPanel onBack={this.props.onBack}>
                 <div className={styles.input}>
                     <p>{this.state.voice}s:</p>
-                    <div className={styles.submit} onClick={() => this.props.onSubmit(this.state.voice)}>发送</div>
+                    <input
+                        className={styles.switch + " " + styles["check-switch-anim"]}
+                        type={"checkbox"}
+                        onChange={() => {
+                            this.setState({
+                                unread: !this.state.unread,
+                            })
+                        }}
+                    />
+                    <div
+                        className={styles.submit}
+                        onClick={() => {
+                            this.props.onSubmit(this.state.voice, this.state.unread)
+                        }}
+                    >
+                        发送
+                    </div>
                     <input type={"range"}
                            min={1}
                            max={60}

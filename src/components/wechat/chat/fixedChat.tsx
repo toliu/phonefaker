@@ -39,6 +39,8 @@ export const ChatHelpList: string[] = [
     "点击输入框发送文本信息",
     "点击Emoji往输入框追加表情包",
     "点击+号发送更多类型消息",
+    "---------语言----------",
+    "点击按钮切换语言已读/未读",
 ];
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
@@ -94,10 +96,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                     <MineVoice avatarURL={msg.avatar}
                                                length={msg.voice}
                                                key={index}
+                                               unread={msg.unread}
                                                onDelete={od}/> :
                                     <OtherVoice avatarURL={msg.avatar}
                                                 length={msg.voice}
                                                 key={index}
+                                                unread={msg.unread}
                                                 onDelete={od}/>;
                             default:
                                 return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"}/>;
@@ -158,8 +162,11 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
             const text: string = this.state.currentInputText.trim();
             if (text) {
                 this.sendMessage({
-                    kind: "text", user: this.props.userName,
-                    avatar: this.props.userAvatar, content: text,
+                    kind: "text",
+                    user: this.props.userName,
+                    avatar: this.props.userAvatar,
+                    content: text,
+                    unread: false,
                 });
             }
         } else if (e.target) {
@@ -178,12 +185,13 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
             case inputType.voice:
                 return <VoiceInput
                     onBack={back}
-                    onSubmit={(v: number) => {
+                    onSubmit={(v: number, unread: boolean) => {
                         this.sendMessage({
                             kind: "voice",
                             user: this.props.userName,
                             avatar: this.props.userAvatar,
                             voice: v,
+                            unread: unread,
                         })
                     }}/>;
             case inputType.emoji:

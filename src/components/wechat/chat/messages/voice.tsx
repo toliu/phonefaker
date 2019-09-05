@@ -10,6 +10,7 @@ interface VoiceProps {
     avatarURL: string;
     length: number;
     onDelete: () => void;
+    unread: boolean;
 }
 
 export class MineVoice extends React.Component<VoiceProps, {}> {
@@ -21,6 +22,7 @@ export class MineVoice extends React.Component<VoiceProps, {}> {
             length = 1;
         }
         const width: number = 120 * length / 60;
+
         return (
             <Message onDelete={this.props.onDelete}>
                 <div className={styles.mine}>
@@ -45,12 +47,16 @@ export class OtherVoice extends React.Component<VoiceProps, {}> {
             length = 1;
         }
         const width: number = 120 * length / 60;
+        let className: string = styles.content;
+        if (this.props.unread) {
+            className += " " + styles.unread;
+        }
 
         return (
             <Message onDelete={this.props.onDelete}>
                 <div className={styles.other}>
                     <img className={styles.avatar} src={this.props.avatarURL} alt={"头像"}/>
-                    <div className={styles.content} style={{width: width}}>
+                    <div className={className} style={{width: width}}>
                         <img src={voicePicture} alt="声音" className={styles.voice}/>
                         {length}''
                     </div>
