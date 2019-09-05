@@ -1,4 +1,5 @@
 .input-panel {
+    position: relative;
     width: 277px;
     height: 114px;
 }
@@ -6,29 +7,38 @@
 .input-panel .child {
     display: inline-block;
     height: 114px;
-    width: 238px;
+    width: 273px;
     border-right: 2px solid #7c7a76;
     word-break: break-word;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.input-panel .child::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
 }
 
 .input-panel .back {
-    display: inline-block;
-    background: url("../img/bottom_input_back.png") no-repeat center;
     background-size: 30px;
-    width: 35px;
-    height: 30px;
-    margin-top: 40px;
+    width: 20px;
+    height: 20px;
     position: absolute;
     cursor: pointer;
+    bottom: 0;
+    right: 0;
+    background-color: #d6d6d6;
+    box-shadow: 0 0 1px 1px #bfbfbf;
+}
+
+.back img {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .input-panel .back:active {
-    border: 1px solid #7c7a76;
-    border-radius: 5px;
+    width: 18px;
+    height: 18px;
+    background-color: #9c9c9c;
+    box-shadow: 0 0 2px 2px #9c9c9c;
 }
