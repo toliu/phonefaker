@@ -83,7 +83,7 @@
     word-break: break-word;
     overflow: scroll;
     height: 402px;
-    transition: 1s height;
+    transition: 200ms height;
     background-color: #f4f4f4;
 }
 

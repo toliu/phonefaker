@@ -84,7 +84,7 @@
     word-break: break-word;
     overflow: hidden;
     min-height: 338px;
-    transition: 1s ease;
+    transition: 200ms ease;
 }
 
 .screen .body {
