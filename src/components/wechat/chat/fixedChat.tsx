@@ -146,10 +146,11 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private inputText(e: any) {
         if (e.keyCode === 13) {
             this.textInputRef.value = "";
-            if (this.state.currentInputText) {
+            const text: string = this.state.currentInputText.trim();
+            if (text) {
                 this.sendMessage({
                     kind: "text", user: this.props.userName,
-                    avatar: this.props.userAvatar, content: this.state.currentInputText,
+                    avatar: this.props.userAvatar, content: text,
                 });
             }
         } else if (e.target) {

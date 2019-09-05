@@ -63,17 +63,3 @@
     height: 10px;
     transform: rotateZ(45deg);
 }
-
-.emoji {
-    position: relative;
-    height: 21px;
-    overflow: hidden;
-    max-height: 21px;
-}
-
-.emoji span {
-    position: relative;
-    top: 1px;
-    height: 21px;
-    max-height: 21px;
-}
