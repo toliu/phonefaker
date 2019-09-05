@@ -47,20 +47,20 @@ export class Chat extends React.Component<{}, ChatStats> {
         return (
             <div className={styles.chat}>
                 <div className={styles.user}>
-                    <div className={styles.phone}>
-                        <div className={styles.form}>
-                            <span>
-                                <label htmlFor={"user-avatar"}>
-                                    <img src={this.state.userAvatar} alt={"头像"} title={"点击修改"}/>
-                                </label>
-                                <input id={"user-avatar"} type={"file"} accept={"image/*"} style={{display: "none"}} onChange={this.uploadAvatar()}/>
-                            </span>
-                            <div className={styles.name}>
-                                <label>修改用户名:</label>
-                                <input type={"text"} placeholder={this.state.userName} ref={this.userNameInputRef} onKeyUp={this.modifyUserName()}/>
-                                <input type={"button"} value={"修改"} onClick={this.modifyUserName()}/>
-                            </div>
+                    <div className={styles.form}>
+                        <span>
+                            <label htmlFor={"user-avatar"}>
+                                <img src={this.state.userAvatar} alt={"头像"} title={"点击修改"}/>
+                            </label>
+                            <input id={"user-avatar"} type={"file"} accept={"image/*"} style={{display: "none"}} onChange={this.uploadAvatar()}/>
+                        </span>
+                        <div className={styles.name}>
+                            <label>修改用户名:</label>
+                            <input type={"text"} placeholder={this.state.userName} ref={this.userNameInputRef} onKeyUp={this.modifyUserName()}/>
+                            <input type={"button"} value={"修改"} onClick={this.modifyUserName()}/>
                         </div>
+                    </div>
+                    <div className={styles.phone}>
                         <FixedChat userName={this.state.userName} userAvatar={this.state.userAvatar} otherUserName={this.state.receiverName} otherUserAvatar={this.state.receiverAvatar} messages={this.state.messages} sender={this.newMessageSender(true)}/>
                     </div>
                 </div>

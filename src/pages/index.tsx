@@ -47,11 +47,7 @@ export class Index extends React.Component<{}, IndexStats> {
                     </Menu>
                 </Header>
                 <Content className={styles.body}>
-                    <Layout className={styles.content}>
-                        <Content className={styles.page}>
-                            {this.state.selectedKey in this.keyMaps ? this.keyMaps[this.state.selectedKey] : <Developing/>}
-                        </Content>
-                    </Layout>
+                    {this.state.selectedKey in this.keyMaps ? this.keyMaps[this.state.selectedKey] : <Developing/>}
                 </Content>
                 <Footer className={styles.footer}>Phone Faker ©2019 Created by <a href={"Mailto:1928385951@qq.com"}>时光</a></Footer>
             </Layout>
