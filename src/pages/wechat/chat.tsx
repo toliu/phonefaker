@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {FixedChat} from "../../components/wechat/chat/fixedChat";
+import {FixedChat, ChatHelpList} from "../../components/wechat/chat/fixedChat";
 import {MessageType} from "../../components/wechat/chat/messages";
 import {Transport} from "../../components/transport";
 
@@ -66,7 +66,17 @@ export class Chat extends React.Component<{}, ChatStats> {
                 </div>
 
                 <div className={styles.transport}>
-                    {this.state.transports}
+                    <div className={styles.trans}>
+                        {this.state.transports}
+                    </div>
+                    <div className={styles.helper}>
+                        <p>使用教程:</p>
+                        <ul>
+                            {ChatHelpList.map((item: string, index: number) => {
+                                return <li key={index}>{item}</li>
+                            })}
+                        </ul>
+                    </div>
                 </div>
 
                 <div className={styles.receiver}>

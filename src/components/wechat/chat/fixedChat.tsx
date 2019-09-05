@@ -5,7 +5,7 @@ import {EmojiInput} from "./emoji_input";
 import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
 import {MineVoice, OtherVoice} from "./messages/voice";
-import {FixedPhone} from "../../phone/fixedphone";
+import {FixedPhone, PhoneHelpList} from "../../phone/fixedphone";
 
 import styles from "./assets/css/fixedchat.module.css";
 
@@ -31,6 +31,15 @@ interface ChatStats {
     bottomInput?: inputType;
     messages: MessageType[];
 }
+
+export const ChatHelpList: string[] = [
+    ...PhoneHelpList,
+    "*********微信*********",
+    "点击语言发送语言信息",
+    "点击输入框发送文本信息",
+    "点击Emoji往输入框追加表情包",
+    "点击+号发送更多类型消息",
+];
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
     private bodyRef: any;

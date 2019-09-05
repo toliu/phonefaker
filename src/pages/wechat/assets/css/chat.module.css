@@ -81,3 +81,25 @@
     width: 300px;
     height: 684px;
 }
+
+.transport .trans {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60%;
+}
+
+.transport .helper {
+    background: rgba(215, 215, 215, 0.1);
+    width: 100%;
+    height: 35%;
+    padding: 0 10px;
+    margin-bottom: 5%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-align: left;
+}
+
+.transport .helper::-webkit-scrollbar {
+    display: none;
+}

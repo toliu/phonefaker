@@ -5,6 +5,14 @@ import styles from "./assets/css/fixphone.module.css";
 
 export const HEADERPADDINGPX: number = 18;
 
+export const PhoneHelpList: string[] = [
+    "点击运营商切换运营商标志",
+    "点击wifi切换信号类型",
+    "点击时间进行设置",
+    "左键/右键点击电量增加/减少电量",
+    "点击电池切换电池状态",
+];
+
 interface FixedPhoneProps {
     controllerPanel?: React.ReactElement;
     controllerInput?: React.ReactElement | void;
