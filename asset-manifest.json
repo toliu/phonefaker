@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/phone-faker/static/css/main.e7546b1b.chunk.css",
+    "main.js": "/phone-faker/static/js/main.995f201f.chunk.js",
+    "main.js.map": "/phone-faker/static/js/main.995f201f.chunk.js.map",
+    "runtime~main.js": "/phone-faker/static/js/runtime~main.2feec4a4.js",
+    "runtime~main.js.map": "/phone-faker/static/js/runtime~main.2feec4a4.js.map",
+    "static/css/2.3795f1f3.chunk.css": "/phone-faker/static/css/2.3795f1f3.chunk.css",
+    "static/js/2.ce352162.chunk.js": "/phone-faker/static/js/2.ce352162.chunk.js",
+    "static/js/2.ce352162.chunk.js.map": "/phone-faker/static/js/2.ce352162.chunk.js.map",
+    "index.html": "/phone-faker/index.html",
+    "precache-manifest.298514da8362169c73354c4a65362d11.js": "/phone-faker/precache-manifest.298514da8362169c73354c4a65362d11.js",
+    "service-worker.js": "/phone-faker/service-worker.js",
+    "static/css/2.3795f1f3.chunk.css.map": "/phone-faker/static/css/2.3795f1f3.chunk.css.map",
+    "static/css/main.e7546b1b.chunk.css.map": "/phone-faker/static/css/main.e7546b1b.chunk.css.map",
+    "static/media/fixphone.module.css": "/phone-faker/static/media/wifi.8f524f63.svg",
+    "static/media/default_avatar1.jpg": "/phone-faker/static/media/default_avatar1.2d511b01.jpg",
+    "static/media/default_avatar2.jpg": "/phone-faker/static/media/default_avatar2.ff4149c2.jpg"
+  }
+}
