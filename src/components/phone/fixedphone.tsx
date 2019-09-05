@@ -128,6 +128,10 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                                            timeSet: true,
                                                        });
                                                        this.cleanTimer()
+                                                   } else if (e.keyCode === 27) {
+                                                       this.setState({
+                                                           setHours: false,
+                                                       });
                                                    }
                                                }}
                                                onChange={(e: any) => {
@@ -157,6 +161,10 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                                                            timeSet: true,
                                                        });
                                                        this.cleanTimer()
+                                                   } else if (e.keyCode === 27) {
+                                                       this.setState({
+                                                           setMinute: false,
+                                                       });
                                                    }
                                                }}
                                                onChange={(e: any) => {
