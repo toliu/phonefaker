@@ -11,3 +11,21 @@
     border-radius: 10px;
     border: 1px dot-dash #7c7a76;
 }
+
+.system {
+    text-align: center;
+}
+
+.system > span {
+    display: inline-block;
+    padding: 0 2px;
+    max-width: 210px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 5px;
+}
+
+.system span .send {
+    color: #345bff;
+}

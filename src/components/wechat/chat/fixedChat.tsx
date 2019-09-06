@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {AdditionInput} from "./addition-input";
 import {EmojiInput} from "./emoji_input";
+import {FriendRequire} from "./messages/friendRequire";
 import {VoiceInput} from "./voice_input";
 import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
@@ -36,7 +37,7 @@ export const ChatHelpList: string[] = [
     ...PhoneHelpList,
     "*********微信*********",
     "点击语言发送语言信息",
-    "点击输入框发送文本信息",
+    "输入框内敲回车/Ctrl发送正常/拒绝接受文本信息",
     "点击Emoji往输入框追加表情包",
     "点击+号发送更多类型消息",
     "---------语言----------",
@@ -88,9 +89,15 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                         const od = this.deleteMessage(index);
                         switch (msg.kind) {
                             case "text":
-                                return msg.user === this.props.userName ?
-                                    <MineText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>
-                                    : <OtherText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>;
+                                if (msg.user === this.props.userName) {
+                                    let msgs: any[] = [<MineText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>];
+                                    if (msg.unread) {
+                                        msgs.push(<FriendRequire who={this.props.otherUserName} onDelete={od} key={index + "_unread"}/>)
+                                    }
+                                    return msgs;
+                                } else {
+                                    return <OtherText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>;
+                                }
                             case "voice":
                                 return msg.user === this.props.userName ?
                                     <MineVoice avatarURL={msg.avatar}
@@ -157,6 +164,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
     }
 
     private inputText(e: any) {
+        console.log(e.keyCode);
         if (e.keyCode === 13) {
             this.textInputRef.value = "";
             const text: string = this.state.currentInputText.trim();
@@ -167,6 +175,18 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     avatar: this.props.userAvatar,
                     content: text,
                     unread: false,
+                });
+            }
+        } else if (e.keyCode === 17) {
+            this.textInputRef.value = "";
+            const text: string = this.state.currentInputText.trim();
+            if (text) {
+                this.sendMessage({
+                    kind: "text",
+                    user: this.props.userName,
+                    avatar: this.props.userAvatar,
+                    content: text,
+                    unread: true,
                 });
             }
         } else if (e.target) {
