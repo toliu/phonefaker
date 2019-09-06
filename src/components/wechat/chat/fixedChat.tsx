@@ -89,8 +89,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                         switch (msg.kind) {
                             case "text":
                                 return msg.user === this.props.userName ?
-                                    <MineText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content}/>
-                                    : <OtherText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content}/>;
+                                    <MineText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>
+                                    : <OtherText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>;
                             case "voice":
                                 return msg.user === this.props.userName ?
                                     <MineVoice avatarURL={msg.avatar}
@@ -104,7 +104,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                 unread={msg.unread}
                                                 onDelete={od}/>;
                             default:
-                                return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"}/>;
+                                return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"} unread={false}/>;
                         }
                     })}
                 </div>
