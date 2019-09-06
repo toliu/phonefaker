@@ -18,7 +18,7 @@
 .middle {
     background: url("../img/phone-middle.png") no-repeat;
     height: 493px;
-    font-family: "iPhone", "PingFang SC", sans-serif;
+    font-family: "PingFang SC", "iPhone", "serif";
     font-size: 12px;
 }
 
@@ -78,6 +78,7 @@
     display: block;
     height: 18px;
     overflow: hidden;
+    font-weight: bold;
 }
 
 .screen .body, .screen .body-no-controller, .screen .body-no-input {
@@ -170,6 +171,7 @@
 
 .header .battery-icon {
     background: url("../img/battery.png") no-repeat center;
+    font-family: serif;
     background-size: 26px 12px;
     width: 26px;
     margin-right: 4px;
