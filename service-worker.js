@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/phonefaker/precache-manifest.c1890e46bfc28616bd54657fef291e6e.js"
+  "/phonefaker/precache-manifest.49b773c19601f3452b85d6007741942e.js"
 );
 
 self.addEventListener('message', (event) => {
