@@ -226,7 +226,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     }}
                 />;
             case inputType.addition:
-                return <AdditionInput onBack={back}/>;
+                return <AdditionInput
+                    onBack={back}
+                    selectTime={(t: Date) => {
+                        this.sendMessage({kind: "date", time: t})
+                    }}
+                />;
         }
     }
 
