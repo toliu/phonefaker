@@ -21,7 +21,7 @@ export class MineVoice extends React.Component<VoiceProps, {}> {
         } else if (length < 0) {
             length = 1;
         }
-        const width: number = 120 * length / 60;
+        const width: number = 150 * length / 60;
 
         return (
             <Message onDelete={this.props.onDelete}>
@@ -46,7 +46,7 @@ export class OtherVoice extends React.Component<VoiceProps, {}> {
         } else if (length < 0) {
             length = 1;
         }
-        const width: number = 120 * length / 60;
+        const width: number = 150 * length / 60;
         let className: string = styles.content;
         if (this.props.unread) {
             className += " " + styles.unread;

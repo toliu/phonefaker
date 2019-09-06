@@ -5,8 +5,8 @@
 }
 
 .avatar {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
     margin: 0 10px;
 }
@@ -14,9 +14,9 @@
 .content {
     position: relative;
     font-size: 14px;
-    line-height: 21px;
+    line-height: 19px;
     border-radius: 5px;
-    padding: 2px 5px;
+    padding: 5px 5px;
     max-width: 180px;
     text-align: left;
     word-break: break-all;
@@ -28,13 +28,13 @@
 
 .mine .content {
     background-color: #68eb4a;
-    padding-right: 10px;
+    padding-right: 7px;
     float: right;
 }
 
 .mine .content:after {
     position: absolute;
-    top: 7px;
+    top: 10px;
     right: -4px;
     content: "";
     background-color: inherit;
@@ -49,13 +49,13 @@
 
 .other .content {
     background-color: white;
-    padding-left: 10px;
+    padding-left: 7px;
     float: left;
 }
 
 .other .content:before {
     position: absolute;
-    top: 7px;
+    top: 10px;
     left: -4px;
     content: "";
     background-color: inherit;
