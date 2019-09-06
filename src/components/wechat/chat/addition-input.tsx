@@ -5,12 +5,14 @@ import {DatePicker, Modal, TimePicker} from "antd";
 import {InputPanel} from "./bottom-panel";
 
 import timeIcon from "../../../assets/img/wechat_time_input.png";
+import alreadyFriendIcon from "../../../assets/img/already_friend_icon.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
 interface AdditionInputProps {
     onBack: () => void;
     selectTime: (t: Date) => void;
+    alreadyFriend: () => void;
 }
 
 interface AdditionInputStats {
@@ -73,6 +75,18 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                             />
                         </Modal>
                     </div>
+
+
+                    <div className={styles.item} title={"添加已是好友系统消息"}>
+                        <img
+                            src={alreadyFriendIcon} alt={"好友"}
+                            className={styles.icon}
+                            onClick={this.props.alreadyFriend}/>
+                        <div className={styles.label}>
+                            好友
+                        </div>
+                    </div>
+
                 </div>
             </InputPanel>
         );

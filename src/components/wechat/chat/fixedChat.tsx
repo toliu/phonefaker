@@ -234,6 +234,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     selectTime={(t: Date) => {
                         this.sendMessage({kind: "date", time: t})
                     }}
+                    alreadyFriend={() => {
+                        this.sendMessage({kind: "alreadyFriend", who: this.props.otherUserName})
+                    }}
                 />;
         }
     }
