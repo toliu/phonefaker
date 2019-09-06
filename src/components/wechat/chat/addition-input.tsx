@@ -1,11 +1,13 @@
+import {UploadChangeParam} from "antd/es/upload";
 import * as React from "react";
 import moment from "moment";
-import {DatePicker, Modal, TimePicker} from "antd";
+import {DatePicker, Modal, TimePicker, Icon, Upload, message} from "antd";
 
 import {InputPanel} from "./bottom-panel";
 
 import timeIcon from "../../../assets/img/wechat_time_input.png";
 import alreadyFriendIcon from "../../../assets/img/already_friend_icon.png";
+import backgroudIcon from "../../../assets/img/wechat_backgroud_input.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
@@ -13,11 +15,15 @@ interface AdditionInputProps {
     onBack: () => void;
     selectTime: (t: Date) => void;
     alreadyFriend: () => void;
+    backgroundImage: (src: string) => void;
 }
 
 interface AdditionInputStats {
     timeInputVisible: boolean;
     selectedTime: Date;
+
+    backgroundInputVisible: boolean;
+    selectedBackground: string;
 }
 
 
@@ -27,6 +33,8 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
         this.state = {
             timeInputVisible: false,
             selectedTime: new Date(),
+            backgroundInputVisible: false,
+            selectedBackground: "",
         };
     };
 
@@ -76,7 +84,6 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                         </Modal>
                     </div>
 
-
                     <div className={styles.item} title={"添加已是好友系统消息"}>
                         <img
                             src={alreadyFriendIcon} alt={"好友"}
@@ -87,8 +94,63 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                         </div>
                     </div>
 
+                    <div className={styles.item} title={"更换聊天背景"}>
+                        <img
+                            src={backgroudIcon} alt={"背景"} className={styles.icon}
+                            onClick={() => this.setState({backgroundInputVisible: true})}
+                        />
+                        <div className={styles.label}>
+                            换背景
+                        </div>
+                        <Modal title="更换聊天背景" visible={this.state.backgroundInputVisible}
+                               onOk={() => {
+                                   if (this.state.selectedBackground) {
+                                       this.props.backgroundImage(this.state.selectedBackground)
+                                   }
+                                   this.setState({backgroundInputVisible: false})
+                               }}
+                               onCancel={() => this.setState({backgroundInputVisible: false})}
+                               okText="更换背景" cancelText="取消">
+                            <Upload
+                                name="background" accept={"image/*"} listType="picture-card"
+                                showUploadList={false}
+                                className={styles["background-uploader"]}
+                                beforeUpload={AdditionInput.beforeImageUpload}
+                                onChange={(info: UploadChangeParam) => {
+                                    const reader = new FileReader();
+                                    reader.addEventListener("load", () => {
+                                        this.setState({
+                                                selectedBackground: reader.result as string,
+                                            }
+                                        );
+                                    });
+                                    reader.readAsDataURL(info.file.originFileObj as File);
+                                }}
+                            >
+                                {this.state.selectedBackground ?
+                                    <img src={this.state.selectedBackground} alt={"background"} style={{width: "100%"}}/>
+                                    : <div>
+                                        <Icon type="plus"/>
+                                        <div className="ant-upload-text">Upload</div>
+                                    </div>}
+                            </Upload>
+                        </Modal>
+                    </div>
+
                 </div>
             </InputPanel>
         );
+    }
+
+    private static beforeImageUpload(file: File) {
+        const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+        if (!isJpgOrPng) {
+            message.error("只能是jpeg或png格式的图片")
+        }
+        const isLt5M = file.size / 1024 / 1024 < 5;
+        if (!isLt5M) {
+            message.error("图片不能大于5M")
+        }
+        return isJpgOrPng && isLt5M;
     }
 }

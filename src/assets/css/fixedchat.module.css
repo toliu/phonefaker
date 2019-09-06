@@ -81,11 +81,13 @@
 }
 
 .body, .body-no-input {
+    position: relative;
     word-break: break-word;
     overflow: scroll;
     height: 402px;
     transition: 200ms height;
     background-color: #EEEDED;
+    background-size: 277px 402px;
 }
 
 .body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {

@@ -13,7 +13,6 @@ import {FixedPhone, PhoneHelpList} from "../../phone/fixedphone";
 
 import styles from "../../../assets/css/fixedchat.module.css";
 
-
 enum inputType {
     voice = "voice",
     emoji = "emoji",
@@ -33,6 +32,7 @@ interface ChatStats {
     currentInputText: string;
     bottomInput?: inputType;
     messages: MessageType[];
+    backgroundSrc: string;
 }
 
 export const ChatHelpList: string[] = [
@@ -58,17 +58,19 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         this.sendMessage = this.sendMessage.bind(this);
         this.inputText = this.inputText.bind(this);
         this.deleteMessage = this.deleteMessage.bind(this);
-        this.changeBodyBackground = this.changeBodyBackground.bind(this);
 
         this.state = {
             bottomInput: undefined,
             currentInputText: "",
             messages: this.props.messages ? this.props.messages : [],
+            backgroundSrc: "",
         }
     }
 
     public componentDidUpdate() {
-        this.bodyRef.scrollTop = this.bodyRef.scrollHeight;
+        setTimeout(() => {
+            this.bodyRef.scrollTop = this.bodyRef.scrollHeight;
+        }, 220)
     }
 
     public render(): React.ReactElement {
@@ -86,7 +88,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     <div className={styles.profile}>
                     </div>
                 </div>
-                <div className={bodyClassName} ref={(e) => this.bodyRef = e}>
+                <div
+                    className={bodyClassName} ref={(e) => this.bodyRef = e}
+                    style={{
+                        backgroundImage: "url(" + this.state.backgroundSrc + ")"
+                    }}
+                >
                     {this.state.messages.map((msg: MessageType, index: number) => {
                         const od = this.deleteMessage(index);
                         switch (msg.kind) {
@@ -237,21 +244,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     alreadyFriend={() => {
                         this.sendMessage({kind: "alreadyFriend", who: this.props.otherUserName})
                     }}
+                    backgroundImage={(src: string) => {
+                        this.setState({
+                            backgroundSrc: src
+                        })
+                    }}
                 />;
-        }
-    }
-
-    private changeBodyBackground() {
-        const input = document.createElement("input");
-        input.setAttribute("type", "file");
-        input.setAttribute("accept", "image/*");
-        input.click();
-        input.onchange = (e: any) => {
-            const file = e.target.files[0];
-            const url = URL.createObjectURL(file);
-            this.bodyRef.style.background = "url(" + url + ") no-repeat";
-            this.bodyRef.style.backgroundSize = "277px 100%";
-            input.remove();
         }
     }
 }
