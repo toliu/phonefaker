@@ -6,6 +6,7 @@
     background-color: #EEEDED;
     overflow: hidden;
     border-bottom: 1px solid #D5D5D5;
+    font-family: 微软雅黑, serif;
 }
 
 .header .back {
@@ -43,6 +44,7 @@
     background-size: 277px 37px;
     width: 277px;
     height: 37px;
+    font-family: 微软雅黑, serif;
 }
 
 .panel .voice, .panel .input, .panel .emoji, .panel .addition {
@@ -88,6 +90,7 @@
     transition: 200ms height;
     background-color: #EEEDED;
     background-size: 277px 402px;
+    font-family: 微软雅黑, serif;
 }
 
 .body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {

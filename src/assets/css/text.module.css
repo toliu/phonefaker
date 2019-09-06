@@ -13,7 +13,7 @@
 
 .content {
     position: relative;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 19px;
     border-radius: 5px;
     padding: 5px 5px;
@@ -28,7 +28,6 @@
 
 .mine .content {
     background-color: #68eb4a;
-    padding-right: 7px;
     float: right;
 }
 
@@ -61,7 +60,6 @@
 
 .other .content {
     background-color: white;
-    padding-left: 7px;
     float: left;
 }
 

@@ -5,41 +5,41 @@
     width: 180px;
     height: 45px;
     border-radius: 5px 5px 0 0;
-    padding: 8px;
+    padding: 5px;
     margin-bottom: 15px;
-    font-family: 黑体, serif;
 }
 
 .package:after {
-    font-family: 仿宋, serif;
     position: absolute;
     content: "微信红包";
-    font-size: 1em;
-    color: #9c9c9c;
+    font-size: 8px;
+    color: #535353;
     background-color: white;
-    width: 180px;
-    height: 15px;
+    width: 257px;
+    height: 20px;
     border-radius: 0 0 5px 5px;
-    bottom: -15px;
-    left: 0;
-    padding-left: 8px;
+    bottom: -17px;
+    left: -39px;
+    padding-left: 12px;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.7, 0.7);
 }
 
 .package .icon {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    background: url("../img/wechat-red-package.png");
-    background-size: 30px 30px;
+    width: 35px;
+    height: 35px;
+    background: url("../img/wechat-red-package.png") no-repeat;
+    background-size: 35px 35px;
 }
 
 .package .title {
     position: absolute;
-    top: 13px;
+    top: 12px;
     margin-left: 5px;
     display: inline-block;
     text-align: left;
-    font-size: 14px;
+    font-size: 13px;
     color: white;
     max-width: 130px;
     overflow: hidden;
