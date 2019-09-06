@@ -14,6 +14,11 @@ type VoiceMessage = UserMessage & {
     voice: number;
 }
 
+type RedPackageMessage = UserMessage & {
+    kind: "redPackage",
+    title: string;
+}
+
 type DatetimeMessage = {
     kind: "date",
     time: Date;
@@ -24,4 +29,4 @@ type AlreadyFriendMessage = {
     who: string;
 }
 
-export type MessageType = TextMessage | VoiceMessage | DatetimeMessage | AlreadyFriendMessage;
+export type MessageType = TextMessage | VoiceMessage | DatetimeMessage | AlreadyFriendMessage | RedPackageMessage;

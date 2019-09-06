@@ -1,0 +1,90 @@
+.package {
+    display: inline-block;
+    position: relative;
+    background-color: #F39A39;
+    width: 180px;
+    height: 45px;
+    border-radius: 5px 5px 0 0;
+    padding: 8px;
+    margin-bottom: 15px;
+    font-family: 黑体, serif;
+}
+
+.package:after {
+    font-family: 仿宋, serif;
+    position: absolute;
+    content: "微信红包";
+    font-size: 1em;
+    color: #9c9c9c;
+    background-color: white;
+    width: 180px;
+    height: 15px;
+    border-radius: 0 0 5px 5px;
+    bottom: -15px;
+    left: 0;
+    padding-left: 8px;
+}
+
+.package .icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("../img/wechat-red-package.png");
+    background-size: 30px 30px;
+}
+
+.package .title {
+    position: absolute;
+    top: 13px;
+    margin-left: 5px;
+    display: inline-block;
+    text-align: left;
+    font-size: 14px;
+    color: white;
+    max-width: 130px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.avatar {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.mine .package {
+    float: right;
+}
+
+.mine .package:before {
+    position: absolute;
+    top: 10px;
+    right: -4px;
+    content: "";
+    background-color: inherit;
+    width: 10px;
+    height: 10px;
+    transform: rotateZ(45deg);
+}
+
+.mine .avatar {
+    float: right;
+}
+
+.other .avatar, .other .package {
+    float: left;
+}
+
+.other .package:before {
+    position: absolute;
+    top: 10px;
+    left: -4px;
+    content: "";
+    background-color: inherit;
+    width: 10px;
+    height: 10px;
+    transform: rotateZ(45deg);
+}

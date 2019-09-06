@@ -31,6 +31,12 @@ storiesOf("微信", module)
                 kind: "text", avatar: default_avatar1, user: "时光", content: "已读消息已读消息已读消息已读消息", unread: false,
             },
             {
+                kind: "redPackage", avatar: default_avatar1, user: "时光", unread: false, title: "恭喜发财，大吉大利",
+            },
+            {
+                kind: "redPackage", avatar: default_avatar1, user: "机器", unread: false, title: "恭喜发财，大吉大利打理打理",
+            },
+            {
                 kind: "text", avatar: default_avatar1, user: "机器", content: "已读消息已读消息已读消息已读消息", unread: false,
             },
             {

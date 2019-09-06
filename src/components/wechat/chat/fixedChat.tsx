@@ -5,6 +5,7 @@ import {EmojiInput} from "./emoji_input";
 import {AlreadyFriend} from "./messages/alreadyFriend";
 import {DateMessage} from "./messages/date";
 import {FriendRequire} from "./messages/friendRequire";
+import {MineRedPackage, OtherRedPackage} from "./messages/redPackage";
 import {VoiceInput} from "./voice_input";
 import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
@@ -119,11 +120,23 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                 key={index}
                                                 unread={msg.unread}
                                                 onDelete={od}/>;
+                            case "redPackage":
+                                return msg.user === this.props.userName ?
+                                    <MineRedPackage avatarURL={msg.avatar}
+                                                    key={index}
+                                                    unread={msg.unread}
+                                                    title={msg.title}
+                                                    onDelete={od}/>
+                                    : <OtherRedPackage avatarURL={msg.avatar}
+                                                       key={index}
+                                                       unread={msg.unread}
+                                                       title={msg.title}
+                                                       onDelete={od}/>;
+
                             case "date":
                                 return <DateMessage onDelete={od} time={msg.time}/>;
                             case "alreadyFriend":
                                 return <AlreadyFriend onDelete={od} who={this.props.otherUserName}/>;
-
                             default:
                                 return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"} unread={false}/>;
                         }
