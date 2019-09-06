@@ -278,11 +278,9 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         const now = new Date();
         const h = now.getHours();
         const m = now.getMinutes();
-        if (m >= 10) {
-            return [h, m].join(":")
-        } else {
-            return [h, "0" + m].join(":")
-        }
+        const hs: string = h > 9 ? h + "" : "0" + h;
+        const ms: string = m > 9 ? m + "" : "0" + m;
+        return [hs, ms].join(":");
     }
 
     private screenSnapshot() {
