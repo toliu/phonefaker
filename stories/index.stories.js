@@ -19,7 +19,11 @@ storiesOf("手机", module)
 
 storiesOf("微信", module)
     .add("对话", () => {
+        const now = new Date();
         const messages = [
+            {
+                kind: "date", time: new Date(now.getTime() - (3600 * 24 * 3) * 1000),
+            },
             {
                 kind: "text", avatar: default_avatar1, user: "时光", content: "已读消息已读消息已读消息已读消息", unread: false,
             },
@@ -27,19 +31,26 @@ storiesOf("微信", module)
                 kind: "text", avatar: default_avatar1, user: "机器", content: "已读消息已读消息已读消息已读消息", unread: false,
             },
             {
+                kind: "date", time: new Date(now.getTime() - (3600 * 24 * 7) * 1000),
+            },
+            {
                 kind: "text", avatar: default_avatar1, user: "时光", content: "未读消息未读消息未读消息未读消息", unread: true,
+            },
+            {
+                kind: "date", time: new Date(now.getTime() - (3600 * 24) * 1000),
             },
             {
                 kind: "text", avatar: default_avatar1, user: "机器", content: "未读消息未读消息未读消息未读消息", unread: true,
             },
-
             {
                 kind: "text", avatar: default_avatar1, user: "时光", content: "带表情消[kissing_heart]带表情", unread: true,
             },
             {
                 kind: "text", avatar: default_avatar1, user: "机器", content: "带表情消[kissing_heart]带表情", unread: true,
             },
-
+            {
+                kind: "date", time: now,
+            },
             {
                 kind: "voice", avatar: default_avatar1, user: "时光", voice: 10, unread: false,
             },
