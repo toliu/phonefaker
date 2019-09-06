@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {AdditionInput} from "./addition-input";
 import {EmojiInput} from "./emoji_input";
+import {AlreadyFriend} from "./messages/alreadyFriend";
 import {DateMessage} from "./messages/date";
 import {FriendRequire} from "./messages/friendRequire";
 import {VoiceInput} from "./voice_input";
@@ -113,6 +114,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                 onDelete={od}/>;
                             case "date":
                                 return <DateMessage onDelete={od} time={msg.time}/>;
+                            case "alreadyFriend":
+                                return <AlreadyFriend onDelete={od} who={this.props.otherUserName}/>;
 
                             default:
                                 return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"} unread={false}/>;

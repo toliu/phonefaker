@@ -4,19 +4,24 @@ type UserMessage = {
     unread: boolean;
 }
 
-export type TextMessage = UserMessage & {
+type TextMessage = UserMessage & {
     kind: "text"
     content: string;
 }
 
-export type VoiceMessage = UserMessage & {
+type VoiceMessage = UserMessage & {
     kind: "voice"
     voice: number;
 }
 
-export type DatetimeMessage = {
+type DatetimeMessage = {
     kind: "date",
     time: Date;
 }
 
-export type MessageType = TextMessage | VoiceMessage | DatetimeMessage;
+type AlreadyFriendMessage = {
+    kind: "alreadyFriend",
+    who: string;
+}
+
+export type MessageType = TextMessage | VoiceMessage | DatetimeMessage | AlreadyFriendMessage;

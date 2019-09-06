@@ -37,3 +37,9 @@
     padding: 0 2px;
     border-radius: 5px;
 }
+
+.system span .already {
+    color: #9c9c9c;
+    max-width: 200px;
+    text-align: left;
+}

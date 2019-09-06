@@ -25,6 +25,9 @@ storiesOf("微信", module)
                 kind: "date", time: new Date(now.getTime() - (3600 * 24 * 3) * 1000),
             },
             {
+                kind: "alreadyFriend", who: "机器",
+            },
+            {
                 kind: "text", avatar: default_avatar1, user: "时光", content: "已读消息已读消息已读消息已读消息", unread: false,
             },
             {
