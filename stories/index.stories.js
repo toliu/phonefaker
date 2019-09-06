@@ -19,7 +19,47 @@ storiesOf("手机", module)
 
 storiesOf("微信", module)
     .add("对话", () => {
-        return <FixedChat otherUserAvatar={default_avatar1} otherUserName={"时光"} userAvatar={default_avatar1} userName={"时光"}/>
+        const messages = [
+            {
+                kind: "text", avatar: default_avatar1, user: "时光", content: "已读消息已读消息已读消息已读消息", unread: false,
+            },
+            {
+                kind: "text", avatar: default_avatar1, user: "机器", content: "已读消息已读消息已读消息已读消息", unread: false,
+            },
+            {
+                kind: "text", avatar: default_avatar1, user: "时光", content: "未读消息未读消息未读消息未读消息", unread: true,
+            },
+            {
+                kind: "text", avatar: default_avatar1, user: "机器", content: "未读消息未读消息未读消息未读消息", unread: true,
+            },
+
+            {
+                kind: "text", avatar: default_avatar1, user: "时光", content: "带表情消[kissing_heart]带表情", unread: true,
+            },
+            {
+                kind: "text", avatar: default_avatar1, user: "机器", content: "带表情消[kissing_heart]带表情", unread: true,
+            },
+
+            {
+                kind: "voice", avatar: default_avatar1, user: "时光", voice: 10, unread: false,
+            },
+            {
+                kind: "voice", avatar: default_avatar1, user: "机器", voice: 60, unread: false,
+            },
+            {
+                kind: "voice", avatar: default_avatar1, user: "时光", voice: 10, unread: true,
+            },
+            {
+                kind: "voice", avatar: default_avatar1, user: "机器", voice: 60, unread: true,
+            }
+        ];
+        return <FixedChat
+            otherUserAvatar={default_avatar1}
+            otherUserName={"机器"}
+            userAvatar={default_avatar1}
+            userName={"时光"}
+            messages={messages}
+        />
     });
 
 storiesOf("首页", module)
