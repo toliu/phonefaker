@@ -2,9 +2,10 @@
     display: block;
     width: 277px;
     padding-top: 18px;
-    height: 51px;
-    background-color: #e1e1e1;
+    height: 50px;
+    background-color: #EEEDED;
     overflow: hidden;
+    border-bottom: 1px solid #D5D5D5;
 }
 
 .header .back {
@@ -84,7 +85,7 @@
     overflow: scroll;
     height: 402px;
     transition: 200ms height;
-    background-color: #f4f4f4;
+    background-color: #EEEDED;
 }
 
 .body::-webkit-scrollbar, .body-no-input::-webkit-scrollbar {
