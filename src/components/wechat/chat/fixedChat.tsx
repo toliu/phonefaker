@@ -43,8 +43,13 @@ export const ChatHelpList: string[] = [
     "输入框内敲回车/Ctrl发送正常/拒绝接受文本信息",
     "点击Emoji往输入框追加表情包",
     "点击+号发送更多类型消息",
-    "---------语言----------",
+    "---------语音----------",
     "点击按钮切换语言已读/未读",
+    "---------更多----------",
+    "时间: 添加一条时间戳系统消息",
+    "好友: 添加一条你已添加XX的系统消息",
+    "换背景: 更换当前聊天背景",
+    "发红包: 发送一个红包信息，可以设置红包内文字内容"
 ];
 
 export class FixedChat extends React.Component<ChatProps, ChatStats> {
@@ -260,6 +265,15 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     backgroundImage={(src: string) => {
                         this.setState({
                             backgroundSrc: src
+                        })
+                    }}
+                    sendRedPackage={(title: string) => {
+                        this.sendMessage({
+                            kind: "redPackage",
+                            user: this.props.userName,
+                            avatar: this.props.userAvatar,
+                            title: title,
+                            unread: false,
                         })
                     }}
                 />;

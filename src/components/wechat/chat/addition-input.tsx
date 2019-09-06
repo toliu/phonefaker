@@ -1,13 +1,14 @@
 import {UploadChangeParam} from "antd/es/upload";
 import * as React from "react";
 import moment from "moment";
-import {DatePicker, Modal, TimePicker, Icon, Upload, message} from "antd";
+import {DatePicker, Modal, TimePicker, Icon, Input, Upload, message} from "antd";
 
 import {InputPanel} from "./bottom-panel";
 
 import timeIcon from "../../../assets/img/wechat_time_input.png";
 import alreadyFriendIcon from "../../../assets/img/already_friend_icon.png";
-import backgroudIcon from "../../../assets/img/wechat_backgroud_input.png";
+import backgroundIcon from "../../../assets/img/wechat_backgroud_input.png";
+import redPackageIcon from "../../../assets/img/wechat-red-package.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
@@ -16,6 +17,7 @@ interface AdditionInputProps {
     selectTime: (t: Date) => void;
     alreadyFriend: () => void;
     backgroundImage: (src: string) => void;
+    sendRedPackage: (title: string) => void;
 }
 
 interface AdditionInputStats {
@@ -24,6 +26,9 @@ interface AdditionInputStats {
 
     backgroundInputVisible: boolean;
     selectedBackground: string;
+
+    redPackageInputVisible: boolean;
+    inputRedPackageTitle: string;
 }
 
 
@@ -35,6 +40,8 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
             selectedTime: new Date(),
             backgroundInputVisible: false,
             selectedBackground: "",
+            redPackageInputVisible: false,
+            inputRedPackageTitle: "恭喜发财，大吉大利"
         };
     };
 
@@ -96,7 +103,7 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
 
                     <div className={styles.item} title={"更换聊天背景"}>
                         <img
-                            src={backgroudIcon} alt={"背景"} className={styles.icon}
+                            src={backgroundIcon} alt={"背景"} className={styles.icon}
                             onClick={() => this.setState({backgroundInputVisible: true})}
                         />
                         <div className={styles.label}>
@@ -134,6 +141,38 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                                         <div className="ant-upload-text">Upload</div>
                                     </div>}
                             </Upload>
+                        </Modal>
+                    </div>
+
+                    <div className={styles.item} title={"发送红包"}>
+                        <img
+                            src={redPackageIcon} alt={"红包"}
+                            className={styles.icon}
+                            onClick={() => {
+                                this.setState({redPackageInputVisible: true})
+                            }}/>
+                        <div className={styles.label}>
+                            发红包
+                        </div>
+                        <Modal title="发送红包给好友" visible={this.state.redPackageInputVisible}
+                               onOk={() => {
+                                   if (this.state.inputRedPackageTitle) {
+                                       this.props.sendRedPackage(this.state.inputRedPackageTitle)
+                                   }
+                                   this.setState({redPackageInputVisible: false})
+                               }}
+                               onCancel={() => this.setState({redPackageInputVisible: false})}
+                               okText="发送红包" cancelText="取消">
+                            <Input
+                                placeholder={this.state.inputRedPackageTitle}
+                                onChange={(e: any) => {
+                                    if (e.target) {
+                                        this.setState({
+                                            inputRedPackageTitle: e.target.value,
+                                        })
+                                    }
+                                }}
+                            />
                         </Modal>
                     </div>
 
