@@ -2,14 +2,14 @@ import * as React from "react";
 
 import {AdditionInput} from "./addition-input";
 import {EmojiInput} from "./emoji_input";
+import {VoiceInput} from "./voice_input";
 import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
 import {MineVoice, OtherVoice} from "./messages/voice";
 import {FixedPhone, PhoneHelpList} from "../../phone/fixedphone";
 
-import styles from "./assets/css/fixedchat.module.css";
+import styles from "../../../assets/css/fixedchat.module.css";
 
-import {VoiceInput} from "./voice_input";
 
 enum inputType {
     voice = "voice",

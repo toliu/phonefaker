@@ -3,7 +3,7 @@ import * as React from "react";
 import {Message} from "./msg";
 import {ParseContent} from "../../../../utils";
 
-import styles from "./assets/css/text.module.css";
+import styles from "../../../../assets/css/text.module.css";
 
 interface TextProps {
     avatarURL: string;

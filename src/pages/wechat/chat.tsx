@@ -4,10 +4,10 @@ import {FixedChat, ChatHelpList} from "../../components/wechat/chat/fixedChat";
 import {MessageType} from "../../components/wechat/chat/messages";
 import {Transport} from "../../components/transport";
 
-import default_avatar1 from "./assets/img/default_avatar1.jpg";
-import default_avatar2 from "./assets/img/default_avatar2.jpg";
+import default_avatar1 from "../../assets/img/default_avatar1.jpg";
+import default_avatar2 from "../../assets/img/default_avatar2.jpg";
 
-import styles from "./assets/css/chat.module.css";
+import styles from "../../assets/css/chat.module.css";
 
 interface ChatStats {
     userName: string;

@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import mailPicture from "./assets/img/mail.png";
-import cloudPicture from "./assets/img/cloud.png";
-import knifePicture from "./assets/img/knife.png";
-import axePicture from "./assets/img/axe.png";
+import mailPicture from "../assets/img/mail.png";
+import cloudPicture from "../assets/img/cloud.png";
+import knifePicture from "../assets/img/knife.png";
+import axePicture from "../assets/img/axe.png";
 
-import styles from "./assets/css/transport.module.css";
+import styles from "../assets/css/transport.module.css";
 
 interface TransportProps {
     toRight: boolean;

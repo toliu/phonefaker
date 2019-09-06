@@ -7,7 +7,7 @@ import {FixedPhone} from "../src/components/phone/fixedphone";
 import {FixedChat} from "../src/components/wechat/chat/fixedChat";
 import {Index} from "../src/pages";
 
-import default_avatar1 from "../src/pages/wechat/assets/img/default_avatar1.jpg";
+import default_avatar1 from "../src/assets/img/default_avatar1.jpg";
 
 storiesOf("手机", module)
     .add("空手机", () => <FixedPhone/>)

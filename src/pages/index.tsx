@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import * as React from "react";
 import {Layout, Menu, Icon} from 'antd';
 
-import styles from "./assets/css/index.module.css";
+import styles from "../assets/css/index.module.css";
 import {Developing} from "./developing";
 import {Chat} from "./wechat/chat";
 

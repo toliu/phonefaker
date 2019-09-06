@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import styles from "./assets/css/msg.module.css";
+import styles from "../../../../assets/css/msg.module.css";
 
 interface MessageProps {
     onDelete: () => void;

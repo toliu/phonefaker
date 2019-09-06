@@ -2,9 +2,9 @@ import * as React from "react";
 
 import {Message} from "./msg";
 
-import voicePicture from "./assets/img/rec-record.png";
+import voicePicture from "../../../../assets/img/rec-record.png";
 
-import styles from "./assets/css/voice.module.css";
+import styles from "../../../../assets/css/voice.module.css";
 
 interface VoiceProps {
     avatarURL: string;

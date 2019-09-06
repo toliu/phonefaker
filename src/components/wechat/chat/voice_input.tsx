@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {InputPanel} from "./bottom-panel";
 
-import styles from "./assets/css/voiceinput.module.css";
+import styles from "../../../assets/css/voiceinput.module.css";
 
 interface VoiceInputProps {
     onBack: () => void;

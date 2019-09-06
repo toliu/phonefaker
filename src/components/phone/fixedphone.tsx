@@ -1,7 +1,7 @@
 import * as React from "react";
 import html2canvas from "html2canvas";
 
-import styles from "./assets/css/fixphone.module.css";
+import styles from "../../assets/css/fixphone.module.css";
 
 export const HEADERPADDINGPX: number = 18;
 
