@@ -302,6 +302,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                             unread: !received, money: money, title: content
                         })
                     }}
+                    sendExchangeReceived={(money: number) => {
+                        this.sendMessage({
+                            kind: "exchangeReceived", user: this.props.userName, avatar: this.props.userAvatar,
+                            unread: false, money: money,
+                        })
+                    }}
                 />;
         }
     }

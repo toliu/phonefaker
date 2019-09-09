@@ -11,6 +11,7 @@ import backgroundIcon from "../../../assets/img/wechat_backgroud_input.png";
 import redPackageIcon from "../../../assets/img/wechat-red-package.png";
 import redPackageReceivedIcon from "../../../assets/img/wechat-red-package-receive.png";
 import exchangeIcon from "../../../assets/img/wechat_exchange.png";
+import exchangeReceivedIcon from "../../../assets/img/wechat_exchange_received.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
@@ -22,6 +23,7 @@ interface AdditionInputProps {
     sendRedPackage: (title: string) => void;
     receiveRedPackage: () => void;
     sendExchange: (money: number, content: string, received: boolean) => void;
+    sendExchangeReceived: (money: number) => void;
 }
 
 interface AdditionInputStats {
@@ -38,6 +40,8 @@ interface AdditionInputStats {
     inputExchangeMoney: number;
     inputExchangeContent: string;
     exchangeReceived: boolean;
+    exchangeReceivedInputVisible: boolean;
+    inputExchangeReceivedMoney: number;
 }
 
 
@@ -55,6 +59,8 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
             inputExchangeMoney: 1,
             inputExchangeContent: "拿去花",
             exchangeReceived: true,
+            exchangeReceivedInputVisible: false,
+            inputExchangeReceivedMoney: 1,
         };
     };
 
@@ -249,6 +255,39 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                                 }}
                             />
                             <br/>
+                        </Modal>
+                    </div>
+
+                    <div className={styles.item} title={"收账"}>
+                        <img
+                            src={exchangeReceivedIcon} alt={"收账"}
+                            className={styles.icon}
+                            style={{backgroundColor: "#F39A39", opacity: 0.5}}
+                            onClick={() => this.setState({exchangeReceivedInputVisible: true})}/>
+                        <div className={styles.label}>
+                            收账
+                        </div>
+                        <Modal title="收账" visible={this.state.exchangeReceivedInputVisible}
+                               onOk={() => {
+                                   if (this.state.inputExchangeReceivedMoney) {
+                                       this.props.sendExchangeReceived(this.state.inputExchangeReceivedMoney);
+                                       this.setState({exchangeReceivedInputVisible: false})
+                                   }
+                               }}
+                               onCancel={() => this.setState({exchangeReceivedInputVisible: false})}
+                               okText="收账" cancelText="取消">
+                            <label>收账金额:</label>
+                            <Input
+                                placeholder={this.state.inputExchangeReceivedMoney + ""}
+                                prefix={"￥"}
+                                suffix={"RMB"}
+                                onChange={(e) => {
+                                    const value: number = parseInt(e.target.value, 10);
+                                    if (value) {
+                                        this.setState({inputExchangeReceivedMoney: value})
+                                    }
+                                }}
+                            />
                         </Modal>
                     </div>
 
