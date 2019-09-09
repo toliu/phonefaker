@@ -1,7 +1,7 @@
 import {UploadChangeParam} from "antd/es/upload";
 import * as React from "react";
 import moment from "moment";
-import {DatePicker, Modal, TimePicker, Icon, Input, Upload, message} from "antd";
+import {DatePicker, Modal, Switch, TimePicker, Icon, Input, Upload, message} from "antd";
 
 import {InputPanel} from "./bottom-panel";
 
@@ -10,6 +10,7 @@ import alreadyFriendIcon from "../../../assets/img/already_friend_icon.png";
 import backgroundIcon from "../../../assets/img/wechat_backgroud_input.png";
 import redPackageIcon from "../../../assets/img/wechat-red-package.png";
 import redPackageReceivedIcon from "../../../assets/img/wechat-red-package-receive.png";
+import exchangeIcon from "../../../assets/img/wechat_exchange.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
@@ -20,6 +21,7 @@ interface AdditionInputProps {
     backgroundImage: (src: string) => void;
     sendRedPackage: (title: string) => void;
     receiveRedPackage: () => void;
+    sendExchange: (money: number, content: string, received: boolean) => void;
 }
 
 interface AdditionInputStats {
@@ -31,6 +33,11 @@ interface AdditionInputStats {
 
     redPackageInputVisible: boolean;
     inputRedPackageTitle: string;
+
+    exchangeInputVisible: boolean;
+    inputExchangeMoney: number;
+    inputExchangeContent: string;
+    exchangeReceived: boolean;
 }
 
 
@@ -43,7 +50,11 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
             backgroundInputVisible: false,
             selectedBackground: "",
             redPackageInputVisible: false,
-            inputRedPackageTitle: "恭喜发财，大吉大利"
+            inputRedPackageTitle: "恭喜发财，大吉大利",
+            exchangeInputVisible: false,
+            inputExchangeMoney: 1,
+            inputExchangeContent: "拿去花",
+            exchangeReceived: true,
         };
     };
 
@@ -186,6 +197,59 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                         <div className={styles.label}>
                             收红包
                         </div>
+                    </div>
+
+                    <div className={styles.item} title={"转账"}>
+                        <img
+                            src={exchangeIcon} alt={"转账"}
+                            className={styles.icon}
+                            style={{backgroundColor: "#F39A39"}}
+                            onClick={() => this.setState({exchangeInputVisible: true})}/>
+                        <div className={styles.label}>
+                            转账
+                        </div>
+                        <Modal title="转账给好友" visible={this.state.exchangeInputVisible}
+                               onOk={() => {
+                                   this.props.sendExchange(this.state.inputExchangeMoney, this.state.inputExchangeContent, this.state.exchangeReceived)
+                                   this.setState({exchangeInputVisible: false})
+                               }}
+                               onCancel={() => this.setState({exchangeInputVisible: false})}
+                               okText="转账" cancelText="取消">
+                            <label>转账金额:</label>
+                            <Input
+                                placeholder={this.state.inputExchangeMoney + ""}
+                                prefix={"￥"}
+                                suffix={"RMB"}
+                                onChange={(e) => {
+                                    const value: number = parseInt(e.target.value, 10);
+                                    if (value) {
+                                        this.setState({inputExchangeMoney: value})
+                                    }
+                                }}
+                            />
+                            <label>转账说明:</label>
+                            <Input
+                                placeholder={this.state.inputExchangeContent}
+                                onChange={(e) => {
+                                    const value: string = e.target.value;
+                                    if (value) {
+                                        this.setState({inputRedPackageTitle: value})
+                                    }
+                                }}
+                            />
+                            <label>已接收:</label>
+                            <br/>
+                            <Switch
+                                checkedChildren={<Icon type="check"/>}
+                                unCheckedChildren={<Icon type="close"/>}
+                                size="small"
+                                defaultChecked
+                                onChange={() => {
+                                    this.setState({exchangeReceived: !this.state.exchangeReceived})
+                                }}
+                            />
+                            <br/>
+                        </Modal>
                     </div>
 
                 </div>

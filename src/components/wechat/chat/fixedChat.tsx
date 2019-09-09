@@ -291,8 +291,13 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                             kind: "redPackageReceived",
                             who: this.props.userName,
                         })
-                    }
-                    }
+                    }}
+                    sendExchange={(money: number, content: string, received: boolean) => {
+                        this.sendMessage({
+                            kind: "exchange", user: this.props.userName, avatar: this.props.userAvatar,
+                            unread: !received, money: money, title: content
+                        })
+                    }}
                 />;
         }
     }
