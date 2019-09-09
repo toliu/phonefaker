@@ -29,4 +29,14 @@ type AlreadyFriendMessage = {
     who: string;
 }
 
-export type MessageType = TextMessage | VoiceMessage | DatetimeMessage | AlreadyFriendMessage | RedPackageMessage;
+type RedPackageReceived = {
+    kind: "redPackageReceived",
+    who: string;
+}
+
+export type MessageType = TextMessage |
+    VoiceMessage |
+    DatetimeMessage |
+    AlreadyFriendMessage |
+    RedPackageMessage |
+    RedPackageReceived;

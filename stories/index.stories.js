@@ -34,6 +34,9 @@ storiesOf("微信", module)
                 kind: "redPackage", avatar: default_avatar1, user: "时光", unread: false, title: "恭喜发财，大吉大利",
             },
             {
+                kind: "redPackageReceived", who: "机器",
+            },
+            {
                 kind: "redPackage", avatar: default_avatar1, user: "机器", unread: false, title: "恭喜发财，大吉大利打理打理",
             },
             {

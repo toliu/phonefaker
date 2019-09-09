@@ -5,7 +5,7 @@ import {EmojiInput} from "./emoji_input";
 import {AlreadyFriend} from "./messages/alreadyFriend";
 import {DateMessage} from "./messages/date";
 import {FriendRequire} from "./messages/friendRequire";
-import {MineRedPackage, OtherRedPackage} from "./messages/redPackage";
+import {MineRedPackage, OtherRedPackage, RedPackageReceived} from "./messages/redPackage";
 import {VoiceInput} from "./voice_input";
 import {MessageType} from "./messages";
 import {MineText, OtherText} from "./messages/text";
@@ -137,6 +137,11 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                        unread={msg.unread}
                                                        title={msg.title}
                                                        onDelete={od}/>;
+                            case "redPackageReceived":
+                                return msg.who === this.props.otherUserName ?
+                                    <RedPackageReceived odDelete={od} who={msg.who}/>
+                                    : "";
+
 
                             case "date":
                                 return <DateMessage onDelete={od} time={msg.time}/>;
@@ -276,6 +281,13 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                             unread: false,
                         })
                     }}
+                    receiveRedPackage={() => {
+                        this.sendMessage({
+                            kind: "redPackageReceived",
+                            who: this.props.userName,
+                        })
+                    }
+                    }
                 />;
         }
     }

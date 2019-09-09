@@ -9,6 +9,7 @@ import timeIcon from "../../../assets/img/wechat_time_input.png";
 import alreadyFriendIcon from "../../../assets/img/already_friend_icon.png";
 import backgroundIcon from "../../../assets/img/wechat_backgroud_input.png";
 import redPackageIcon from "../../../assets/img/wechat-red-package.png";
+import redPackageReceivedIcon from "../../../assets/img/wechat-red-package-receive.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
@@ -18,6 +19,7 @@ interface AdditionInputProps {
     alreadyFriend: () => void;
     backgroundImage: (src: string) => void;
     sendRedPackage: (title: string) => void;
+    receiveRedPackage: () => void;
 }
 
 interface AdditionInputStats {
@@ -174,6 +176,16 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                                 }}
                             />
                         </Modal>
+                    </div>
+
+                    <div className={styles.item} title={"添加收红包系统信息"}>
+                        <img
+                            src={redPackageReceivedIcon} alt={"收红包"}
+                            className={styles.icon}
+                            onClick={this.props.receiveRedPackage}/>
+                        <div className={styles.label}>
+                            收红包
+                        </div>
                     </div>
 
                 </div>
