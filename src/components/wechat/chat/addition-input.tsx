@@ -12,6 +12,7 @@ import redPackageIcon from "../../../assets/img/wechat-red-package.png";
 import redPackageReceivedIcon from "../../../assets/img/wechat-red-package-receive.png";
 import exchangeIcon from "../../../assets/img/wechat_exchange.png";
 import exchangeReceivedIcon from "../../../assets/img/wechat_exchange_received.png";
+import pictureIcon from "../../../assets/img/wechat_picture_input.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
 
@@ -24,6 +25,7 @@ interface AdditionInputProps {
     receiveRedPackage: () => void;
     sendExchange: (money: number, content: string, received: boolean) => void;
     sendExchangeReceived: (money: number) => void;
+    sendPicture: (src: string) => void;
 }
 
 interface AdditionInputStats {
@@ -42,6 +44,9 @@ interface AdditionInputStats {
     exchangeReceived: boolean;
     exchangeReceivedInputVisible: boolean;
     inputExchangeReceivedMoney: number;
+
+    sendPictureInputVisible: boolean;
+    sendPictureSrc?: string;
 }
 
 
@@ -61,6 +66,7 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
             exchangeReceived: true,
             exchangeReceivedInputVisible: false,
             inputExchangeReceivedMoney: 1,
+            sendPictureInputVisible: false,
         };
     };
 
@@ -289,6 +295,55 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                                 }}
                             />
                         </Modal>
+                    </div>
+
+                    <div className={styles.item} title={"发送图片"}>
+                        <img
+                            src={pictureIcon} alt={"发图"}
+                            className={styles.icon}
+                            onClick={() => {
+                                this.setState({sendPictureInputVisible: true})
+                            }}/>
+                        <div className={styles.label}>
+                            发图
+                        </div>
+
+                        <Modal title="发送图片" visible={this.state.sendPictureInputVisible}
+                               onOk={() => {
+                                   if (this.state.sendPictureSrc) {
+                                       this.props.sendPicture(this.state.sendPictureSrc)
+                                   }
+                                   this.setState({sendPictureInputVisible: false})
+                               }}
+                               onCancel={() => this.setState({sendPictureInputVisible: false})}
+                               okText="发送" cancelText="取消">
+                            <Upload
+                                name="background" accept={"image/*"} listType="picture-card"
+                                showUploadList={false}
+                                className={styles["background-uploader"]}
+                                beforeUpload={AdditionInput.beforeImageUpload}
+                                onChange={(info: UploadChangeParam) => {
+                                    const reader = new FileReader();
+                                    reader.addEventListener("load", () => {
+                                        this.setState({
+                                                sendPictureSrc: reader.result as string,
+                                            }
+                                        );
+                                    });
+                                    reader.readAsDataURL(info.file.originFileObj as File);
+                                }}
+                            >
+                                {
+                                    this.state.sendPictureSrc ?
+                                        <img src={this.state.sendPictureSrc} alt={"发送"} style={{width: "100%"}}/>
+                                        : <div>
+                                            <Icon type="plus"/>
+                                            <div className="ant-upload-text">Upload</div>
+                                        </div>
+                                }
+                            </Upload>
+                        </Modal>
+
                     </div>
 
                 </div>

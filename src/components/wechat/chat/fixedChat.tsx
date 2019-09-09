@@ -312,6 +312,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                             unread: false, money: money,
                         })
                     }}
+                    sendPicture={(src: string) => {
+                        this.sendMessage({
+                            kind: "image", user: this.props.userName, avatar: this.props.userAvatar,
+                            unread: false, src: src,
+                        })
+                    }}
                 />;
         }
     }
