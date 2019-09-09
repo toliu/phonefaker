@@ -19,6 +19,12 @@ type RedPackageMessage = UserMessage & {
     title: string;
 }
 
+type ExchangeMessage = UserMessage & {
+    kind: "exchange",
+    money: number,
+    title: string;
+}
+
 type DatetimeMessage = {
     kind: "date",
     time: Date;
@@ -39,4 +45,5 @@ export type MessageType = TextMessage |
     DatetimeMessage |
     AlreadyFriendMessage |
     RedPackageMessage |
-    RedPackageReceived;
+    RedPackageReceived |
+    ExchangeMessage;
