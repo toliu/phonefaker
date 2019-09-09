@@ -1,7 +1,9 @@
 import * as React from "react";
-import html2canvas from "html2canvas";
+import {message, Modal, Tabs, Icon} from "antd";
 
 import styles from "../../assets/css/fixphone.module.css";
+
+const {TabPane} = Tabs;
 
 export const HEADERPADDINGPX: number = 18;
 
@@ -34,11 +36,14 @@ interface FixedPhoneStats {
     setHours: boolean;
     setMinute: boolean;
     timeSet: boolean;
+
+    rewardVisible: boolean;
 }
 
 export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats> {
     private readonly operators: string[];
     private readonly signalTypes: string[];
+    private readonly buttonTexts: string[];
 
     private screenRef: any;
 
@@ -53,6 +58,10 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
             "中国联通",
             "中国电信"
         ];
+        this.buttonTexts = [
+            "作者加餐", "打赏作者", "优化服务",
+            "接济作者", "扶贫", "点赞作者"
+        ];
 
         this.signalTypes = [
             "wifi",
@@ -65,7 +74,6 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         this.switchOperator = this.switchOperator.bind(this);
         this.switchSignalType = this.switchSignalType.bind(this);
         this.switchBattery = this.switchBattery.bind(this);
-        this.screenSnapshot = this.screenSnapshot.bind(this);
         this.cleanTimer = this.cleanTimer.bind(this);
 
         this.setMinute = "";
@@ -81,6 +89,7 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
             setHours: false,
             setMinute: false,
             timeSet: false,
+            rewardVisible: false,
         }
     }
 
@@ -106,6 +115,17 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
             }, 30000);
         }
 
+        let buttonText: string;
+        let buttonFunc: any;
+        if (this.props.button) {
+            buttonText = this.props.button.text;
+            buttonFunc = this.props.button.onClick;
+        } else {
+            buttonText = this.buttonTexts[Math.floor(Math.random() * this.buttonTexts.length)];
+            buttonFunc = () => {
+                this.setState({rewardVisible: true})
+            };
+        }
 
         return (
             <div className={styles.phone}>
@@ -230,11 +250,95 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                 </div>
 
                 <div className={styles.bottom}>
-                    <div className={styles.button} onClick={
-                        this.props.button && this.props.button.onClick ? this.props.button.onClick : this.screenSnapshot}>
-                        {this.props.button ? this.props.button.text : "截屏"}
+                    <div className={styles.button} onClick={buttonFunc}>
+                        {buttonText}
                     </div>
                 </div>
+
+                <Modal
+                    visible={this.state.rewardVisible}
+                    onCancel={() => {
+                        message.warn("┭┮﹏┭┮");
+                        this.setState({rewardVisible: false})
+                    }}
+                    onOk={() => this.setState({rewardVisible: false})}
+                    okText={"返回"}
+                    cancelText={"饿死作者"}
+                >
+                    <p style={{fontWeight: "bold"}}>喂作者:</p>
+                    <Tabs defaultActiveKey="5">
+                        <TabPane tab="豆浆" key="5">
+                            <div className={styles.reward}>
+                                <table>
+                                    <tr>
+                                        <th><Icon type="wechat" theme="filled"/></th>
+                                        <th><Icon type="alipay-circle" theme="filled"/></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span className={styles.w5}/></td>
+                                        <td><span className={styles.a5}/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="鸡腿" key="10">
+                            <div className={styles.reward}>
+                                <table>
+                                    <tr>
+                                        <th><Icon type="wechat" theme="filled"/></th>
+                                        <th><Icon type="alipay-circle" theme="filled"/></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span className={styles.w10}/></td>
+                                        <td><span className={styles.a10}/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="咖啡" key="30">
+                            <div className={styles.reward}>
+                                <table>
+                                    <tr>
+                                        <th><Icon type="wechat" theme="filled"/></th>
+                                        <th><Icon type="alipay-circle" theme="filled"/></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span className={styles.w30}/></td>
+                                        <td><span className={styles.a30}/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="小鱼干" key="50">
+                            <div className={styles.reward}>
+                                <table>
+                                    <tr>
+                                        <th><Icon type="wechat" theme="filled"/></th>
+                                        <th><Icon type="alipay-circle" theme="filled"/></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span className={styles.w50}/></td>
+                                        <td><span className={styles.a50}/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </TabPane>
+                        <TabPane tab={<span>屎 <Icon type="frown" theme="twoTone"/></span>} key="100">
+                            <div className={styles.reward}>
+                                <table>
+                                    <tr>
+                                        <th><Icon type="wechat" theme="filled"/></th>
+                                        <th><Icon type="alipay-circle" theme="filled"/></th>
+                                    </tr>
+                                    <tr>
+                                        <td><span className={styles.w100}/></td>
+                                        <td><span className={styles.a100}/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </TabPane>
+                    </Tabs>
+                </Modal>
             </div>
         );
     }
@@ -281,26 +385,6 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         const hs: string = h > 9 ? h + "" : "0" + h;
         const ms: string = m > 9 ? m + "" : "0" + m;
         return [hs, ms].join(":");
-    }
-
-    private screenSnapshot() {
-        html2canvas(this.screenRef, {
-            scale: 2,
-            height: 493,
-            width: 277,
-            useCORS: true,
-        }).then(
-            (canvas) => {
-                const now = new Date();
-                const dlLink = document.createElement('a');
-                dlLink.download = now.getFullYear() + "" + now.getMonth() + now.getDate() + now.getHours() + now.getMinutes() + now.getSeconds() + ".png";
-                dlLink.href = canvas.toDataURL("image/png", 1).replace("image/png", "image/octet-stream");
-                dlLink.dataset.downloadurl = ["image/png", dlLink.download, dlLink.href].join(':');
-                document.body.appendChild(dlLink);
-                dlLink.click();
-                document.body.removeChild(dlLink);
-            }
-        )
     }
 
     private cleanTimer() {

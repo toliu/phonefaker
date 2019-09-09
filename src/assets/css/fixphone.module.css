@@ -44,11 +44,11 @@
     border-radius: 25px;
     text-align: center;
     overflow: hidden;
-    background-color: white;
+    background-color: #ffffff;
     cursor: pointer;
     line-height: 50px;
-    box-shadow: 0 0 1px 1px #7c7a76;
-    font-size: 16px;
+    box-shadow: 0 0 2px 2px #7c7a76;
+    font-size: 12px;
     font-weight: bold;
     color: #7069bf;
 }
@@ -218,4 +218,66 @@
     margin: 0;
 }
 
+.reward {
+    width: 500px;
+    height: 240px;
+    text-align: center;
+}
 
+.reward span {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-size: 200%;
+    height: 240px;
+    width: 200px;
+}
+
+.w5, .w10, .w30, .w50, .w100 {
+    background-position: -100px -144px;
+    margin-right: 50px;
+}
+
+.a5, .a10, .a30, .a50, .a100 {
+    background-position: -100px -220px;
+}
+
+.w5 {
+    background-image: url("../img/qcode/wechat_5.jpg");
+}
+
+.a5 {
+    background-image: url("../img/qcode/alipay_5.jpg");
+}
+
+.w10 {
+    background-image: url("../img/qcode/wechat_10.jpg");
+}
+
+.a10 {
+    background-image: url("../img/qcode/alipay_10.jpg");
+}
+
+.w30 {
+    background-image: url("../img/qcode/wechat_30.jpg");
+}
+
+.a30 {
+    background-image: url("../img/qcode/alipay_30.jpg");
+}
+
+.w50 {
+    background-image: url("../img/qcode/wechat_50.jpg");
+}
+
+.a50 {
+    background-image: url("../img/qcode/alipay_50.jpg");
+}
+
+.w100 {
+    background-image: url("../img/qcode/wechat_100.jpg");
+}
+
+.a100 {
+    background-image: url("../img/qcode/alipay_100.jpg");
+}
