@@ -76,3 +76,59 @@ export class OtherExchange extends React.Component<ExchangeProps, {}> {
         )
     }
 }
+
+interface ExchangeReceivedProps {
+    onDelete: () => void;
+    avatar: string;
+    money: number;
+}
+
+export class MineExchangeReceived extends React.Component<ExchangeReceivedProps, {}> {
+    public render(): React.ReactElement {
+        const moneyString: string = Math.floor(this.props.money * 100) + "";
+        const money: string = moneyString.slice(0, moneyString.length - 2) + "." + moneyString.slice(-2);
+        return (
+            <Message onDelete={this.props.onDelete}>
+                <div className={styles.mine}>
+                    <img src={this.props.avatar} alt={"头像"} className={styles.avatar}/>
+                    <div className={styles.exchange} style={{opacity: 0.5}}>
+                        <img src={exchangeReceivedIcon} alt={"receive"} className={styles.icon}/>
+                        <div className={styles.content}>
+                            <div className={styles.up}>
+                                <span>￥{money}</span>
+                            </div>
+                            <div className={styles.down}>
+                                已收款
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Message>
+        );
+    }
+}
+
+export class OtherExchangeReceived extends React.Component<ExchangeReceivedProps, {}> {
+    public render(): React.ReactElement {
+        const moneyString: string = Math.floor(this.props.money * 100) + "";
+        const money: string = moneyString.slice(0, moneyString.length - 2) + "." + moneyString.slice(-2);
+        return (
+            <Message onDelete={this.props.onDelete}>
+                <div className={styles.other}>
+                    <img src={this.props.avatar} alt={"头像"} className={styles.avatar}/>
+                    <div className={styles.exchange} style={{opacity: 0.5}}>
+                        <img src={exchangeReceivedIcon} alt={"receive"} className={styles.icon}/>
+                        <div className={styles.content}>
+                            <div className={styles.up}>
+                                <span>￥{money}</span>
+                            </div>
+                            <div className={styles.down}>
+                                已收款
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Message>
+        );
+    }
+}

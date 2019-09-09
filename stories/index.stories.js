@@ -76,16 +76,22 @@ storiesOf("微信", module)
                 kind: "voice", avatar: default_avatar1, user: "机器", voice: 60, unread: true,
             },
             {
+                kind: "exchange", avatar: default_avatar1, user: "时光", unread: true, money: 10, title: "不要领不要领不要领不要领不要领不要领",
+            },
+            {
                 kind: "exchange", avatar: default_avatar1, user: "时光", unread: false, money: 10, title: "不要领不要领不要领不要领不要领不要领",
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "时光", unread: true, money: 15, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchangeReceived", avatar: default_avatar1, user: "机器", unread: false, money: 10,
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "机器", unread: false, money: 21, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchange", avatar: default_avatar1, user: "机器", unread: true, money: 21, title: "不要领不要领不要领不要领不要领不要领",
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "机器", unread: true, money: 70, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchange", avatar: default_avatar1, user: "机器", unread: false, money: 70, title: "不要领不要领不要领不要领不要领不要领",
+            },
+            {
+                kind: "exchangeReceived", avatar: default_avatar1, user: "时光", unread: false, money: 70,
             },
         ];
         return <FixedChat

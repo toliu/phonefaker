@@ -4,7 +4,7 @@ import {AdditionInput} from "./addition-input";
 import {EmojiInput} from "./emoji_input";
 import {AlreadyFriend} from "./messages/alreadyFriend";
 import {DateMessage} from "./messages/date";
-import {MineExchange, OtherExchange} from "./messages/exchange";
+import {MineExchange, MineExchangeReceived, OtherExchange, OtherExchangeReceived} from "./messages/exchange";
 import {FriendRequire} from "./messages/friendRequire";
 import {MineRedPackage, OtherRedPackage, RedPackageReceived} from "./messages/redPackage";
 import {VoiceInput} from "./voice_input";
@@ -152,6 +152,10 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                 return msg.user === this.props.userName ?
                                     <MineExchange onDelete={od} avatar={msg.avatar} money={msg.money} title={msg.title} received={!msg.unread}/> :
                                     <OtherExchange onDelete={od} avatar={msg.avatar} money={msg.money} title={msg.title} received={!msg.unread}/>;
+                            case "exchangeReceived":
+                                return msg.user === this.props.userName ?
+                                    <MineExchangeReceived onDelete={od} avatar={msg.avatar} money={msg.money}/> :
+                                    <OtherExchangeReceived onDelete={od} avatar={msg.avatar} money={msg.money}/>;
                             default:
                                 return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"} unread={false}/>;
                         }
