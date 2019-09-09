@@ -30,6 +30,11 @@ type ExchangeReceivedMessage = UserMessage & {
     money: number,
 }
 
+type ImageMessage = UserMessage & {
+    kind: "image",
+    src: string,
+}
+
 type DatetimeMessage = {
     kind: "date",
     time: Date;
@@ -52,4 +57,5 @@ export type MessageType = TextMessage |
     RedPackageMessage |
     RedPackageReceived |
     ExchangeMessage |
-    ExchangeReceivedMessage;
+    ExchangeReceivedMessage |
+    ImageMessage;

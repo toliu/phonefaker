@@ -22,6 +22,12 @@ storiesOf("微信", module)
         const now = new Date();
         const messages = [
             {
+                kind: "image", avatar: default_avatar1, user: "时光", src: default_avatar1, unread: false,
+            },
+            {
+                kind: "image", avatar: default_avatar1, user: "机器", src: default_avatar1, unread: false,
+            },
+            {
                 kind: "date", time: new Date(now.getTime() - (3600 * 24 * 3) * 1000),
             },
             {

@@ -20,12 +20,12 @@ export function ParseContent(content: string): any[] {
     return Array.from(content).map((char, index) => {
         if (char === "[") {
             emojiTrack = true;
-            const rt = <span>{str}</span>;
+            const rt = <span key={index}>{str}</span>;
             str = "";
             return rt;
         } else if (char === "]") {
             emojiTrack = false;
-            const el = <InlineEmoji ID={emojiID}/>;
+            const el = <InlineEmoji key={index} ID={emojiID}/>;
             emojiID = "";
             return el;
         }
@@ -35,7 +35,7 @@ export function ParseContent(content: string): any[] {
             str += char;
         }
         if (index === content.length - 1) {
-            return <span>{str}</span>
+            return <span key={index}>{str}</span>
         }
         return "";
     })

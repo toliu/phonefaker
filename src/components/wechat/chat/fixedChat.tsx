@@ -6,6 +6,7 @@ import {AlreadyFriend} from "./messages/alreadyFriend";
 import {DateMessage} from "./messages/date";
 import {MineExchange, MineExchangeReceived, OtherExchange, OtherExchangeReceived} from "./messages/exchange";
 import {FriendRequire} from "./messages/friendRequire";
+import {MineImage, OtherImage} from "./messages/image";
 import {MineRedPackage, OtherRedPackage, RedPackageReceived} from "./messages/redPackage";
 import {VoiceInput} from "./voice_input";
 import {MessageType} from "./messages";
@@ -103,9 +104,10 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                 >
                     {this.state.messages.map((msg: MessageType, index: number) => {
                         const od = this.deleteMessage(index);
+                        const userName: string = this.props.userName;
                         switch (msg.kind) {
                             case "text":
-                                if (msg.user === this.props.userName) {
+                                if (msg.user === userName) {
                                     let msgs: any[] = [<MineText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>];
                                     if (msg.unread) {
                                         msgs.push(<FriendRequire who={this.props.otherUserName} onDelete={od} key={index + "_unread"}/>)
@@ -115,7 +117,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                     return <OtherText avatarURL={msg.avatar} key={index} onDelete={od} content={msg.content} unread={msg.unread}/>;
                                 }
                             case "voice":
-                                return msg.user === this.props.userName ?
+                                return msg.user === userName ?
                                     <MineVoice avatarURL={msg.avatar}
                                                length={msg.voice}
                                                key={index}
@@ -127,7 +129,7 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                 unread={msg.unread}
                                                 onDelete={od}/>;
                             case "redPackage":
-                                return msg.user === this.props.userName ?
+                                return msg.user === userName ?
                                     <MineRedPackage avatarURL={msg.avatar}
                                                     key={index}
                                                     unread={msg.unread}
@@ -140,22 +142,24 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                        onDelete={od}/>;
                             case "redPackageReceived":
                                 return msg.who === this.props.otherUserName ?
-                                    <RedPackageReceived odDelete={od} who={msg.who}/>
+                                    <RedPackageReceived odDelete={od} who={msg.who} key={index}/>
                                     : "";
-
-
                             case "date":
-                                return <DateMessage onDelete={od} time={msg.time}/>;
+                                return <DateMessage onDelete={od} time={msg.time} key={index}/>;
                             case "alreadyFriend":
-                                return <AlreadyFriend onDelete={od} who={this.props.otherUserName}/>;
+                                return <AlreadyFriend onDelete={od} who={this.props.otherUserName} key={index}/>;
                             case "exchange":
-                                return msg.user === this.props.userName ?
-                                    <MineExchange onDelete={od} avatar={msg.avatar} money={msg.money} title={msg.title} received={!msg.unread}/> :
-                                    <OtherExchange onDelete={od} avatar={msg.avatar} money={msg.money} title={msg.title} received={!msg.unread}/>;
+                                return msg.user === userName ?
+                                    <MineExchange key={index} onDelete={od} avatar={msg.avatar} money={msg.money} title={msg.title} received={!msg.unread}/> :
+                                    <OtherExchange key={index} onDelete={od} avatar={msg.avatar} money={msg.money} title={msg.title} received={!msg.unread}/>;
                             case "exchangeReceived":
-                                return msg.user === this.props.userName ?
-                                    <MineExchangeReceived onDelete={od} avatar={msg.avatar} money={msg.money}/> :
-                                    <OtherExchangeReceived onDelete={od} avatar={msg.avatar} money={msg.money}/>;
+                                return msg.user === userName ?
+                                    <MineExchangeReceived key={index} onDelete={od} avatar={msg.avatar} money={msg.money}/> :
+                                    <OtherExchangeReceived key={index} onDelete={od} avatar={msg.avatar} money={msg.money}/>;
+                            case "image":
+                                return userName === msg.user ?
+                                    <MineImage key={index} onDelete={od} avatarURL={msg.avatar} src={msg.src}/> :
+                                    <OtherImage key={index} onDelete={od} avatarURL={msg.avatar} src={msg.src}/>;
                             default:
                                 return <MineText avatarURL={this.props.userAvatar} onDelete={od} content={"未知类型"} unread={false}/>;
                         }

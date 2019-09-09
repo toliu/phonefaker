@@ -1,0 +1,22 @@
+.avatar {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.image {
+    display: inline-block;
+    position: relative;
+    max-height: 100px;
+    border-radius: 5px;
+}
+
+.mine .avatar, .mine .image {
+    float: right;
+}
+
+.other .avatar, .other .image {
+    float: left;
+}
