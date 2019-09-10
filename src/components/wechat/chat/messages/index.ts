@@ -17,6 +17,7 @@ type VoiceMessage = UserMessage & {
 type RedPackageMessage = UserMessage & {
     kind: "redPackage",
     title: string,
+    received: boolean,
 }
 
 type ExchangeMessage = UserMessage & {

@@ -25,12 +25,20 @@
     -webkit-transform: scale(0.7, 0.7);
 }
 
-.package .icon {
+.package .close {
+    background: url("../img/wechat-red-package.png") no-repeat;
+    background-size: 35px 35px;
     display: inline-block;
     width: 35px;
     height: 35px;
-    background: url("../img/wechat-red-package.png") no-repeat;
-    background-size: 35px 35px;
+}
+
+.package .open {
+    background: url("../img/wechat_red_package_opend.png") no-repeat;
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
 }
 
 .package .title {
@@ -45,6 +53,15 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.package .received {
+    position: relative;
+    display: inline-block;
+    color: white;
+    top: -5px;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.8, 0.8);
 }
 
 .avatar {

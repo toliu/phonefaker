@@ -21,7 +21,7 @@ interface AdditionInputProps {
     selectTime: (t: Date) => void;
     alreadyFriend: () => void;
     backgroundImage: (src: string) => void;
-    sendRedPackage: (title: string) => void;
+    sendRedPackage: (title: string, received: boolean) => void;
     receiveRedPackage: () => void;
     sendExchange: (money: number, content: string, received: boolean) => void;
     sendExchangeReceived: (money: number) => void;
@@ -37,6 +37,7 @@ interface AdditionInputStats {
 
     redPackageInputVisible: boolean;
     inputRedPackageTitle: string;
+    inputRedPackageReceived: boolean;
 
     exchangeInputVisible: boolean;
     inputExchangeMoney: number;
@@ -60,6 +61,7 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
             selectedBackground: "",
             redPackageInputVisible: false,
             inputRedPackageTitle: "恭喜发财，大吉大利",
+            inputRedPackageReceived: false,
             exchangeInputVisible: false,
             inputExchangeMoney: 1,
             inputExchangeContent: "拿去花",
@@ -182,12 +184,24 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                         <Modal title="发送红包给好友" visible={this.state.redPackageInputVisible}
                                onOk={() => {
                                    if (this.state.inputRedPackageTitle) {
-                                       this.props.sendRedPackage(this.state.inputRedPackageTitle)
+                                       this.props.sendRedPackage(this.state.inputRedPackageTitle, this.state.inputRedPackageReceived)
                                    }
                                    this.setState({redPackageInputVisible: false})
                                }}
                                onCancel={() => this.setState({redPackageInputVisible: false})}
                                okText="发送红包" cancelText="取消">
+                            <strong>
+                                红包已领取:
+                            </strong>
+
+                            <Switch
+                                checkedChildren={<Icon type="check"/>}
+                                unCheckedChildren={<Icon type="close"/>}
+                                onChange={() => {
+                                    this.setState({inputRedPackageReceived: !this.state.inputRedPackageReceived})
+                                }}
+                            />
+                            <br/>
                             <Input
                                 placeholder={this.state.inputRedPackageTitle}
                                 onChange={(e: any) => {

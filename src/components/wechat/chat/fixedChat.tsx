@@ -134,12 +134,14 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                     key={index}
                                                     unread={msg.unread}
                                                     title={msg.title}
-                                                    onDelete={od}/>
+                                                    onDelete={od}
+                                                    received={msg.received}/>
                                     : <OtherRedPackage avatarURL={msg.avatar}
                                                        key={index}
                                                        unread={msg.unread}
                                                        title={msg.title}
-                                                       onDelete={od}/>;
+                                                       onDelete={od}
+                                                       received={msg.received}/>;
                             case "redPackageReceived":
                                 return msg.sender === this.props.userName ?
                                     <RedPackageReceived odDelete={od} who={msg.receiver} mine={true} key={index}/>
@@ -285,13 +287,14 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                             backgroundSrc: src
                         })
                     }}
-                    sendRedPackage={(title: string) => {
+                    sendRedPackage={(title: string, received: boolean) => {
                         this.sendMessage({
                             kind: "redPackage",
                             user: this.props.userName,
                             avatar: this.props.userAvatar,
                             title: title,
                             unread: false,
+                            received: received,
                         })
                     }}
                     receiveRedPackage={() => {
