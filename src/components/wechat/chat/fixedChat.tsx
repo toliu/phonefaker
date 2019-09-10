@@ -75,6 +75,12 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
         }
     }
 
+    public componentWillReceiveProps(prevProps: ChatProps) {
+        if (prevProps.messages) {
+            this.setState({messages: prevProps.messages})
+        }
+    }
+
     public componentDidUpdate() {
         setTimeout(() => {
             this.bodyRef.scrollTop = this.bodyRef.scrollHeight;
@@ -216,7 +222,6 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
     }
 
     private inputText(e: any) {
-        console.log(e.keyCode);
         if (e.keyCode === 13) {
             this.textInputRef.value = "";
             const text: string = this.state.currentInputText.trim();
