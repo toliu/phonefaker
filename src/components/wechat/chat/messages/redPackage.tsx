@@ -5,8 +5,6 @@ import {Message} from "./msg";
 import styles from "../../../../assets/css/wechat_redpackage.module.css";
 import systemStyles from "../../../../assets/css/msg.module.css";
 
-import redPackageOpend from "../../../../assets/img/wechat_red_package_opend.png";
-
 interface RedPackageProps {
     onDelete: () => void;
     title: string;

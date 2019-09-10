@@ -4,10 +4,8 @@ import {storiesOf} from "@storybook/react";
 import {action} from '@storybook/addon-actions';
 
 import {FixedPhone} from "../src/components/phone/fixedphone";
-import {FixedChat} from "../src/components/wechat/chat/fixedChat";
 import {Index} from "../src/pages";
 
-import default_avatar1 from "../src/assets/img/default_avatar1.jpg";
 
 storiesOf("手机", module)
     .add("空手机", () => <FixedPhone/>)
@@ -16,98 +14,6 @@ storiesOf("手机", module)
     .add("按钮自定义", () => <FixedPhone button={{
         text: "自定义", onClick: action("button click")
     }}/>);
-
-storiesOf("微信", module)
-    .add("对话", () => {
-        const now = new Date();
-        const messages = [
-            {
-                kind: "image", avatar: default_avatar1, user: "时光", src: default_avatar1, unread: false,
-            },
-            {
-                kind: "image", avatar: default_avatar1, user: "机器", src: default_avatar1, unread: false,
-            },
-            {
-                kind: "date", time: new Date(now.getTime() - (3600 * 24 * 3) * 1000),
-            },
-            {
-                kind: "alreadyFriend", who: "机器",
-            },
-            {
-                kind: "text", avatar: default_avatar1, user: "时光", content: "已读消息已读消息已读消息已读消息", unread: false,
-            },
-            {
-                kind: "redPackage", avatar: default_avatar1, user: "时光", unread: false, title: "恭喜发财，大吉大利", received: false,
-            },
-            {
-                kind: "redPackageReceived", receiver: "机器", sender: "时光",
-            },
-            {
-                kind: "redPackage", avatar: default_avatar1, user: "机器", unread: false, title: "恭喜发财，大吉大利打理打理", received: true,
-            },
-            {
-                kind: "text", avatar: default_avatar1, user: "机器", content: "已读消息已读消息已读消息已读消息", unread: false,
-            },
-            {
-                kind: "date", time: new Date(now.getTime() - (3600 * 24 * 7) * 1000),
-            },
-            {
-                kind: "text", avatar: default_avatar1, user: "时光", content: "未读消息未读消息未读消息未读消息", unread: true,
-            },
-            {
-                kind: "date", time: new Date(now.getTime() - (3600 * 24) * 1000),
-            },
-            {
-                kind: "text", avatar: default_avatar1, user: "机器", content: "未读消息未读消息未读消息未读消息", unread: true,
-            },
-            {
-                kind: "text", avatar: default_avatar1, user: "时光", content: "带表情消[kissing_heart]带表情", unread: true,
-            },
-            {
-                kind: "text", avatar: default_avatar1, user: "机器", content: "带表情消[kissing_heart]带表情", unread: true,
-            },
-            {
-                kind: "date", time: now,
-            },
-            {
-                kind: "voice", avatar: default_avatar1, user: "时光", voice: 10, unread: false,
-            },
-            {
-                kind: "voice", avatar: default_avatar1, user: "机器", voice: 60, unread: false,
-            },
-            {
-                kind: "voice", avatar: default_avatar1, user: "时光", voice: 10, unread: true,
-            },
-            {
-                kind: "voice", avatar: default_avatar1, user: "机器", voice: 60, unread: true,
-            },
-            {
-                kind: "exchange", avatar: default_avatar1, user: "时光", unread: true, money: 10, title: "不要领不要领不要领不要领不要领不要领",
-            },
-            {
-                kind: "exchange", avatar: default_avatar1, user: "时光", unread: false, money: 10, title: "不要领不要领不要领不要领不要领不要领",
-            },
-            {
-                kind: "exchangeReceived", avatar: default_avatar1, user: "机器", unread: false, money: 10,
-            },
-            {
-                kind: "exchange", avatar: default_avatar1, user: "机器", unread: true, money: 21, title: "不要领不要领不要领不要领不要领不要领",
-            },
-            {
-                kind: "exchange", avatar: default_avatar1, user: "机器", unread: false, money: 70, title: "不要领不要领不要领不要领不要领不要领",
-            },
-            {
-                kind: "exchangeReceived", avatar: default_avatar1, user: "时光", unread: false, money: 70,
-            },
-        ];
-        return <FixedChat
-            otherUserAvatar={default_avatar1}
-            otherUserName={"机器"}
-            userAvatar={default_avatar1}
-            userName={"时光"}
-            messages={messages}
-        />
-    });
 
 storiesOf("首页", module)
     .add("page", () => <Index/>);
