@@ -5,8 +5,6 @@ import styles from "../../assets/css/fixphone.module.css";
 
 const {TabPane} = Tabs;
 
-export const HEADERPADDINGPX: number = 18;
-
 export const PhoneHelpList: string[] = [
     "点击运营商切换运营商标志",
     "点击wifi切换信号类型",
@@ -38,6 +36,11 @@ interface FixedPhoneStats {
     timeSet: boolean;
 
     rewardVisible: boolean;
+
+    button: {
+        text: string;
+        onClick: () => void;
+    }
 }
 
 export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats> {
@@ -80,6 +83,18 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
         this.setHour = "";
         this.timeInterval = null;
 
+        let buttonText: string;
+        let buttonFunc: any;
+        if (this.props.button) {
+            buttonText = this.props.button.text;
+            buttonFunc = this.props.button.onClick;
+        } else {
+            buttonText = this.buttonTexts[Math.floor(Math.random() * this.buttonTexts.length)];
+            buttonFunc = () => {
+                this.setState({rewardVisible: true})
+            };
+        }
+
         this.state = {
             operator: this.operators[0],
             signalType: this.signalTypes[0],
@@ -90,6 +105,10 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
             setMinute: false,
             timeSet: false,
             rewardVisible: false,
+            button: {
+                text: buttonText,
+                onClick: buttonFunc,
+            }
         }
     }
 
@@ -114,19 +133,6 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                 this.setState({time: this.getNow()})
             }, 30000);
         }
-
-        let buttonText: string;
-        let buttonFunc: any;
-        if (this.props.button) {
-            buttonText = this.props.button.text;
-            buttonFunc = this.props.button.onClick;
-        } else {
-            buttonText = this.buttonTexts[Math.floor(Math.random() * this.buttonTexts.length)];
-            buttonFunc = () => {
-                this.setState({rewardVisible: true})
-            };
-        }
-
         return (
             <div className={styles.phone}>
                 <div className={styles.top}>
@@ -250,8 +256,8 @@ export class FixedPhone extends React.Component<FixedPhoneProps, FixedPhoneStats
                 </div>
 
                 <div className={styles.bottom}>
-                    <div className={styles.button} onClick={buttonFunc}>
-                        {buttonText}
+                    <div className={styles.button} onClick={this.state.button.onClick}>
+                        {this.state.button.text}
                     </div>
                 </div>
 
