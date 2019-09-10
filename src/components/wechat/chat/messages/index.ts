@@ -1,28 +1,28 @@
 type UserMessage = {
-    user: string;
-    avatar: string;
-    unread: boolean;
+    user: string,
+    avatar: string,
+    unread: boolean,
 }
 
 type TextMessage = UserMessage & {
     kind: "text"
-    content: string;
+    content: string,
 }
 
 type VoiceMessage = UserMessage & {
     kind: "voice"
-    voice: number;
+    voice: number,
 }
 
 type RedPackageMessage = UserMessage & {
     kind: "redPackage",
-    title: string;
+    title: string,
 }
 
 type ExchangeMessage = UserMessage & {
     kind: "exchange",
     money: number,
-    title: string;
+    title: string,
 }
 
 type ExchangeReceivedMessage = UserMessage & {
@@ -37,17 +37,18 @@ type ImageMessage = UserMessage & {
 
 type DatetimeMessage = {
     kind: "date",
-    time: Date;
+    time: Date,
 }
 
 type AlreadyFriendMessage = {
     kind: "alreadyFriend",
-    who: string;
+    who: string,
 }
 
 type RedPackageReceived = {
     kind: "redPackageReceived",
-    who: string;
+    sender: string,
+    receiver: string,
 }
 
 export type MessageType = TextMessage |

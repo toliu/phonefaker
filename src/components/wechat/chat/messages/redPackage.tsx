@@ -15,6 +15,7 @@ interface RedPackageProps {
 interface RedPackageReceivedProps {
     odDelete: () => void;
     who: string;
+    mine?: boolean;
 }
 
 export class MineRedPackage extends React.Component<RedPackageProps, {}> {
@@ -59,11 +60,15 @@ export class OtherRedPackage extends React.Component<RedPackageProps, {}> {
 
 export class RedPackageReceived extends React.Component<RedPackageReceivedProps, {}> {
     public render(): React.ReactElement {
+        let content: string = this.props.who + "领取了你的";
+        if (this.props.mine) {
+            content = "你领取了" + this.props.who + "的"
+        }
         return (
             <Message onDelete={this.props.odDelete} isSystem={true}>
                 <span className={systemStyles["package-received"]}>
                     <span className={systemStyles.icon}/>
-                    {this.props.who}领取了你的<span style={{color: "#D1B090"}}>红包</span>
+                    {content}<span style={{color: "#D1B090"}}>红包</span>
                 </span>
             </Message>
         );

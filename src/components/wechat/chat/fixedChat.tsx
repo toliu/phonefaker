@@ -141,9 +141,9 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                                                        title={msg.title}
                                                        onDelete={od}/>;
                             case "redPackageReceived":
-                                return msg.who === this.props.otherUserName ?
-                                    <RedPackageReceived odDelete={od} who={msg.who} key={index}/>
-                                    : "";
+                                return msg.sender === this.props.userName ?
+                                    <RedPackageReceived odDelete={od} who={msg.receiver} mine={true} key={index}/>
+                                    : <RedPackageReceived odDelete={od} who={msg.sender} key={index}/>;
                             case "date":
                                 return <DateMessage onDelete={od} time={msg.time} key={index}/>;
                             case "alreadyFriend":
@@ -297,7 +297,8 @@ export class FixedChat extends React.Component<ChatProps, ChatStats> {
                     receiveRedPackage={() => {
                         this.sendMessage({
                             kind: "redPackageReceived",
-                            who: this.props.userName,
+                            sender: this.props.userName,
+                            receiver: this.props.otherUserName,
                         })
                     }}
                     sendExchange={(money: number, content: string, received: boolean) => {
