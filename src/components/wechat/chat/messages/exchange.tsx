@@ -4,8 +4,8 @@ import {Message} from "./msg";
 
 import styles from "../../../../assets/css/wechat_exchange.module.css";
 
-import exchangeNoReceivedIcon from "../../../../assets/img/wechat_exchange.png";
-import exchangeReceivedIcon from "../../../../assets/img/wechat_exchange_received.png";
+import exchangeNoReceivedIcon from "../../../../assets/img/wechat-exchange.svg";
+import exchangeReceivedIcon from "../../../../assets/img/wechat-exchange-received.svg";
 
 interface ExchangeProps {
     onDelete: () => void;

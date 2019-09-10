@@ -10,8 +10,8 @@ import alreadyFriendIcon from "../../../assets/img/already_friend_icon.png";
 import backgroundIcon from "../../../assets/img/wechat_backgroud_input.png";
 import redPackageIcon from "../../../assets/img/wechat-red-package.png";
 import redPackageReceivedIcon from "../../../assets/img/wechat-red-package-receive.png";
-import exchangeIcon from "../../../assets/img/wechat_exchange.png";
-import exchangeReceivedIcon from "../../../assets/img/wechat_exchange_received.png";
+import exchangeIcon from "../../../assets/img/wechat-exchange.svg";
+import exchangeReceivedIcon from "../../../assets/img/wechat-exchange-received.svg";
 import pictureIcon from "../../../assets/img/wechat_picture_input.png";
 
 import styles from "../../../assets/css/wechat_addition.module.css";
