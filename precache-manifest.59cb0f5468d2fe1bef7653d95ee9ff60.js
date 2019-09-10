@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9f0dab8a3c477f89503372b24472c12b",
+    "revision": "4f3efd04ff722f593a37fb8bc1eeeb29",
     "url": "/phonefaker/index.html"
   },
   {
-    "revision": "a9ffbf41f827ef58eb08",
+    "revision": "37e6401c8214f374e09b",
     "url": "/phonefaker/static/css/2.b890ce66.chunk.css"
   },
   {
-    "revision": "c916f3e3436975082511",
-    "url": "/phonefaker/static/css/main.b9cf0091.chunk.css"
+    "revision": "3270898c4c9529aa2935",
+    "url": "/phonefaker/static/css/main.d1b9a767.chunk.css"
   },
   {
-    "revision": "a9ffbf41f827ef58eb08",
-    "url": "/phonefaker/static/js/2.17337f21.chunk.js"
+    "revision": "37e6401c8214f374e09b",
+    "url": "/phonefaker/static/js/2.23de55ed.chunk.js"
   },
   {
-    "revision": "c916f3e3436975082511",
-    "url": "/phonefaker/static/js/main.4fa04a8e.chunk.js"
+    "revision": "3270898c4c9529aa2935",
+    "url": "/phonefaker/static/js/main.6e8c061c.chunk.js"
   },
   {
     "revision": "c497125b76b3617e645f",
@@ -60,6 +60,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phonefaker/static/media/signal-4.8afabdb2.svg"
   },
   {
+    "revision": "bacfacf359463223254b7016cbd1e22e",
+    "url": "/phonefaker/static/media/wechat-exchange-received.bacfacf3.svg"
+  },
+  {
+    "revision": "2ae98536eb60e4bb5579c38fff3dfca1",
+    "url": "/phonefaker/static/media/wechat-exchange.2ae98536.svg"
+  },
+  {
     "revision": "c3008595f04a6668f5bcb2e0e14b99ab",
     "url": "/phonefaker/static/media/wechat_10.c3008595.jpg"
   },
@@ -78,6 +86,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "5dc253b4aac99b2f0fc6a669bd4cf70a",
     "url": "/phonefaker/static/media/wechat_50.5dc253b4.jpg"
+  },
+  {
+    "revision": "fdbfc42f469fbe343216367352a4764b",
+    "url": "/phonefaker/static/media/wechat_chat_bus_avatar.fdbfc42f.jpg"
+  },
+  {
+    "revision": "9474ffa582047db28446a5c9cce5e8e4",
+    "url": "/phonefaker/static/media/wechat_joke_avatar1.9474ffa5.jpg"
+  },
+  {
+    "revision": "9393bfb3261f93a5eac390d967b5a4f2",
+    "url": "/phonefaker/static/media/wechat_joke_avatar2.9393bfb3.jpeg"
   },
   {
     "revision": "8f524f6302eb36289407a18ec92b893f",

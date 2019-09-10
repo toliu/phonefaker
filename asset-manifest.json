@@ -1,20 +1,25 @@
 {
   "files": {
-    "main.css": "/phonefaker/static/css/main.b9cf0091.chunk.css",
-    "main.js": "/phonefaker/static/js/main.4fa04a8e.chunk.js",
-    "main.js.map": "/phonefaker/static/js/main.4fa04a8e.chunk.js.map",
+    "main.css": "/phonefaker/static/css/main.d1b9a767.chunk.css",
+    "main.js": "/phonefaker/static/js/main.6e8c061c.chunk.js",
+    "main.js.map": "/phonefaker/static/js/main.6e8c061c.chunk.js.map",
     "runtime~main.js": "/phonefaker/static/js/runtime~main.5545ac6b.js",
     "runtime~main.js.map": "/phonefaker/static/js/runtime~main.5545ac6b.js.map",
     "static/css/2.b890ce66.chunk.css": "/phonefaker/static/css/2.b890ce66.chunk.css",
-    "static/js/2.17337f21.chunk.js": "/phonefaker/static/js/2.17337f21.chunk.js",
-    "static/js/2.17337f21.chunk.js.map": "/phonefaker/static/js/2.17337f21.chunk.js.map",
+    "static/js/2.23de55ed.chunk.js": "/phonefaker/static/js/2.23de55ed.chunk.js",
+    "static/js/2.23de55ed.chunk.js.map": "/phonefaker/static/js/2.23de55ed.chunk.js.map",
     "index.html": "/phonefaker/index.html",
-    "precache-manifest.c2043160aa03fa4ef6b32f95ab9abead.js": "/phonefaker/precache-manifest.c2043160aa03fa4ef6b32f95ab9abead.js",
+    "precache-manifest.59cb0f5468d2fe1bef7653d95ee9ff60.js": "/phonefaker/precache-manifest.59cb0f5468d2fe1bef7653d95ee9ff60.js",
     "service-worker.js": "/phonefaker/service-worker.js",
     "static/css/2.b890ce66.chunk.css.map": "/phonefaker/static/css/2.b890ce66.chunk.css.map",
-    "static/css/main.b9cf0091.chunk.css.map": "/phonefaker/static/css/main.b9cf0091.chunk.css.map",
+    "static/css/main.d1b9a767.chunk.css.map": "/phonefaker/static/css/main.d1b9a767.chunk.css.map",
     "static/media/fixphone.module.css": "/phonefaker/static/media/wifi.8f524f63.svg",
     "static/media/default_avatar1.jpg": "/phonefaker/static/media/default_avatar1.2d511b01.jpg",
-    "static/media/default_avatar2.jpg": "/phonefaker/static/media/default_avatar2.ff4149c2.jpg"
+    "static/media/default_avatar2.jpg": "/phonefaker/static/media/default_avatar2.ff4149c2.jpg",
+    "static/media/wechat-exchange-received.svg": "/phonefaker/static/media/wechat-exchange-received.bacfacf3.svg",
+    "static/media/wechat-exchange.svg": "/phonefaker/static/media/wechat-exchange.2ae98536.svg",
+    "static/media/wechat_chat_bus_avatar.jpg": "/phonefaker/static/media/wechat_chat_bus_avatar.fdbfc42f.jpg",
+    "static/media/wechat_joke_avatar1.jpg": "/phonefaker/static/media/wechat_joke_avatar1.9474ffa5.jpg",
+    "static/media/wechat_joke_avatar2.jpeg": "/phonefaker/static/media/wechat_joke_avatar2.9393bfb3.jpeg"
   }
 }
