@@ -2,7 +2,7 @@
     display: inline-block;
     position: relative;
     background-color: #F39A39;
-    width: 180px;
+    width: 165px;
     height: 45px;
     border-radius: 5px 5px 0 0;
     padding: 5px;
@@ -15,11 +15,11 @@
     font-size: 8px;
     color: #535353;
     background-color: white;
-    width: 257px;
+    width: 235px;
     height: 20px;
     border-radius: 0 0 5px 5px;
     bottom: -17px;
-    left: -39px;
+    left: -35px;
     padding-left: 12px;
     -webkit-text-size-adjust: none;
     -webkit-transform: scale(0.7, 0.7);
@@ -36,12 +36,12 @@
 .package .title {
     position: absolute;
     top: 12px;
-    margin-left: 5px;
+    margin-left: 2px;
     display: inline-block;
     text-align: left;
-    font-size: 13px;
+    font-size: 12px;
     color: white;
-    max-width: 130px;
+    max-width: 115px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
