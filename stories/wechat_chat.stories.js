@@ -97,16 +97,22 @@ storiesOf("微信对话", module)
                 kind: "redPackage", avatar: default_avatar1, user: "机器", unread: false, title: "恭喜发财，大吉大利打理打理", received: true,
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "时光", unread: true, money: 10, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchange", avatar: default_avatar1, user: "时光", unread: true, money: 1, title: "短文本",
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "时光", unread: false, money: 10, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchange", avatar: default_avatar1, user: "时光", unread: true, money: 10, title: "长文本长文本长文本长",
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "机器", unread: true, money: 21, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchange", avatar: default_avatar1, user: "时光", unread: false, money: 10, title: "长文本长文本长文本长",
             },
             {
-                kind: "exchange", avatar: default_avatar1, user: "机器", unread: false, money: 70, title: "不要领不要领不要领不要领不要领不要领",
+                kind: "exchange", avatar: default_avatar1, user: "机器", unread: true, money: 1, title: "短文本",
+            },
+            {
+                kind: "exchange", avatar: default_avatar1, user: "机器", unread: true, money: 21, title: "长文本长文本长文本长",
+            },
+            {
+                kind: "exchange", avatar: default_avatar1, user: "机器", unread: false, money: 70, title: "长文本长文本长文本长",
             },
         ];
         return <FixedChat otherUserAvatar={default_avatar1} otherUserName={"机器"} userAvatar={default_avatar1} userName={"时光"} messages={messages}/>

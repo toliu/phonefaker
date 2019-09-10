@@ -52,15 +52,21 @@
     height: 15px;
     display: block;
     text-align: left;
-    font-size: 12px;
-    font-family: 华文楷体, sans-serif;
-    -webkit-text-size-adjust: none;
-    max-width: 100px;
+    position: relative;
+    top: -5px;
     overflow: hidden;
-    top: 12px;
-    position: absolute;
+}
+
+.exchange .content .down > span {
+    position: relative;
+    display: block;
+    font-size: 12px;
+    max-width: 120px;
     white-space: nowrap;
     text-overflow: ellipsis;
+    left: -10%;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.75);
 }
 
 .exchange:after {

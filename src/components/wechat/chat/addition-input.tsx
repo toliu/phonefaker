@@ -253,13 +253,13 @@ export class AdditionInput extends React.Component<AdditionInputProps, AdditionI
                                     }
                                 }}
                             />
-                            <label>转账说明:</label>
+                            <label>转账说明(最多十个字):</label>
                             <Input
                                 placeholder={this.state.inputExchangeContent}
                                 onChange={(e) => {
                                     const value: string = e.target.value;
                                     if (value) {
-                                        this.setState({inputRedPackageTitle: value})
+                                        this.setState({inputExchangeContent: value})
                                     }
                                 }}
                             />

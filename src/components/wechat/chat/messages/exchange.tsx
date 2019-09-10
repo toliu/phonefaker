@@ -21,9 +21,15 @@ export class MineExchange extends React.Component<ExchangeProps, {}> {
         const money: string = moneyString.slice(0, moneyString.length - 2) + "." + moneyString.slice(-2);
         let picture: string = exchangeNoReceivedIcon;
         let opacity: boolean = false;
+        let maxTitleLength: number = 10;
         if (this.props.received) {
             picture = exchangeReceivedIcon;
             opacity = true;
+            maxTitleLength = 8;
+        }
+        let title: string = this.props.title;
+        if (title.length > maxTitleLength) {
+            title = title.slice(0, maxTitleLength) + "...";
         }
         return (
             <Message onDelete={this.props.onDelete}>
@@ -36,7 +42,9 @@ export class MineExchange extends React.Component<ExchangeProps, {}> {
                                 <span>￥{money}</span>
                             </div>
                             <div className={styles.down}>
-                                {this.props.received ? "已被领取-" : ""}{this.props.title}
+                                <span>
+                                    {this.props.received ? "已被领取-" : ""}{title}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -52,9 +60,15 @@ export class OtherExchange extends React.Component<ExchangeProps, {}> {
         const money: string = moneyString.slice(0, moneyString.length - 2) + "." + moneyString.slice(-2);
         let picture: string = exchangeNoReceivedIcon;
         let opacity: boolean = false;
+        let maxTitleLength: number = 10;
         if (this.props.received) {
             picture = exchangeReceivedIcon;
             opacity = true;
+            maxTitleLength = 8;
+        }
+        let title: string = this.props.title;
+        if (title.length > maxTitleLength) {
+            title = title.slice(0, maxTitleLength) + "...";
         }
         return (
             <Message onDelete={this.props.onDelete}>
@@ -67,7 +81,9 @@ export class OtherExchange extends React.Component<ExchangeProps, {}> {
                                 <span>￥{money}</span>
                             </div>
                             <div className={styles.down}>
-                                {this.props.received ? "已被领取-" : ""}{this.props.title}
+                                <span>
+                                    {this.props.received ? "已被领取-" : ""}{title}
+                                </span>
                             </div>
                         </div>
                     </div>
