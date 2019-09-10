@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Switch, Icon} from "antd";
 
 import {InputPanel} from "./bottom-panel";
 
@@ -32,15 +33,6 @@ export class VoiceInput extends React.Component<VoiceInputProps, VoiceInputStats
             <InputPanel onBack={this.props.onBack}>
                 <div className={styles.input}>
                     <p>{this.state.voice}s:</p>
-                    <input
-                        className={styles.switch + " " + styles["check-switch-anim"]}
-                        type={"checkbox"}
-                        onChange={() => {
-                            this.setState({
-                                unread: !this.state.unread,
-                            })
-                        }}
-                    />
                     <div
                         className={styles.submit}
                         onClick={() => {
@@ -49,6 +41,17 @@ export class VoiceInput extends React.Component<VoiceInputProps, VoiceInputStats
                     >
                         发送
                     </div>
+
+                    <Switch
+                        checkedChildren={<Icon type="check"/>}
+                        unCheckedChildren={<Icon type="close"/>}
+                        defaultChecked
+                        onChange={() => {
+                            this.setState({unread: !this.state.unread})
+                        }}
+                        style={{display: "block"}}
+                    />
+
                     <input type={"range"}
                            min={1}
                            max={60}
