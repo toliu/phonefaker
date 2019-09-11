@@ -11,7 +11,7 @@ import {Site, SiteKeys} from "../components/site";
 export class Index extends React.Component<{}, {}> {
     public render(): React.ReactElement {
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={"phonefaker"}>
                 <Site>
                     <Switch>
                         <Route exact={true} path={SiteKeys.Home} component={Home}/>
