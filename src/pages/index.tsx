@@ -4,6 +4,7 @@ import * as React from "react";
 import {Route, BrowserRouter, Switch, Redirect} from "react-router-dom";
 
 import {Developing} from "./developing";
+import {Home} from "./home";
 import {Chat} from "./wechat/chat";
 import {Site, SiteKeys} from "../components/site";
 
@@ -13,7 +14,7 @@ export class Index extends React.Component<{}, {}> {
             <BrowserRouter>
                 <Site>
                     <Switch>
-                        <Route exact={true} path={SiteKeys.Home} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.Home} component={Home}/>
                         <Route exact={true} path={SiteKeys.WeChatChat} component={Chat}/>
                         <Route exact={true} path={SiteKeys.WeChatFriends} component={Developing}/>
                         <Redirect to={SiteKeys.Home}/>

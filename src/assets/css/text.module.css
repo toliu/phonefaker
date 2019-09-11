@@ -13,10 +13,10 @@
 
 .content {
     position: relative;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 20px;
     border-radius: 5px;
-    padding: 5px 5px;
+    padding: 5px 10px;
     max-width: 180px;
     text-align: left;
     word-break: break-all;

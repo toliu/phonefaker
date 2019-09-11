@@ -1,0 +1,30 @@
+.home {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.home h1 {
+    color: #e5bfc1;
+    font-size: 60px;
+    font-family: 华文楷体, sans-serif;
+    text-align: center;
+}
+
+.home h6 {
+    font-size: 20px;
+    color: #8a92ff;
+    font-family: 华文楷体, sans-serif;
+    text-align: center;
+}
+
+.home .button {
+    position: relative;
+    background-color: #8a92ff;
+}
+
+.carousel {
+    height: 500px;
+    overflow: hidden;
+    margin: 0 auto;
+}

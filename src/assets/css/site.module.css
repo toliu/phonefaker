@@ -5,12 +5,14 @@
 
 .body {
     width: 100%;
-    margin: 20px 50px 0 50px;
+    padding: 20px 50px 0 50px;
     text-align: center;
 }
 
 .footer {
     text-align: center;
+    background-color: black;
+    color: white;
 }
 
 .home {
