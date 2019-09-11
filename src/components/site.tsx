@@ -4,7 +4,7 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {Layout, Menu, Icon} from "antd";
 
-import homeIcon from "../assets/img/home.png";
+import homeIcon from "../assets/img/home-icon.svg";
 
 import styles from "../assets/css/site.module.css";
 
