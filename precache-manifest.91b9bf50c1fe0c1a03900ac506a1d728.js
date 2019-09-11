@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad8d8f3d3d36fe7640bc19609c1921d4",
+    "revision": "64a33908db22c111d266b26955995420",
     "url": "/phonefaker/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phonefaker/static/css/2.b890ce66.chunk.css"
   },
   {
-    "revision": "de2169384943c211a9b5",
+    "revision": "60c7dad0642734007df2",
     "url": "/phonefaker/static/css/main.0d2c05d1.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phonefaker/static/js/2.9afb009d.chunk.js"
   },
   {
-    "revision": "de2169384943c211a9b5",
-    "url": "/phonefaker/static/js/main.ddfa244f.chunk.js"
+    "revision": "60c7dad0642734007df2",
+    "url": "/phonefaker/static/js/main.3e0687eb.chunk.js"
   },
   {
     "revision": "c497125b76b3617e645f",
