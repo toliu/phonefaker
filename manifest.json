@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "社交模拟器",
+  "name": "社交软件界面模拟器",
   "icons": [
     {
       "src": "favicon.ico",
