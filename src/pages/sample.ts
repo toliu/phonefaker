@@ -1,9 +1,9 @@
-import sampleBusAvatar from "../../assets/img/sample/wechat_chat_bus_avatar.jpg";
-import sampleUserAvatar from "../../assets/img/sample/wechat_chat_user_avatar.jpg";
-import sampleJokeAvatar1 from "../../assets/img/sample/wechat_joke_avatar1.jpg";
-import sampleJokeAvatar2 from "../../assets/img/sample/wechat_joke_avatar2.jpeg";
-import lwAvatar1 from "../../assets/img/default_avatar1.jpg";
-import lwAvatar2 from "../../assets/img/default_avatar2.jpg";
+import sampleBusAvatar from "../assets/img/sample/wechat_chat_bus_avatar.jpg";
+import sampleUserAvatar from "../assets/img/sample/wechat_chat_user_avatar.jpg";
+import sampleJokeAvatar1 from "../assets/img/sample/wechat_joke_avatar1.jpg";
+import sampleJokeAvatar2 from "../assets/img/sample/wechat_joke_avatar2.jpeg";
+import lwAvatar1 from "../assets/img/default_avatar1.jpg";
+import lwAvatar2 from "../assets/img/default_avatar2.jpg";
 
 const now = new Date();
 

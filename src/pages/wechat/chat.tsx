@@ -8,7 +8,7 @@ import {Transport} from "../../components/transport";
 import default_avatar1 from "../../assets/img/default_avatar1.jpg";
 import default_avatar2 from "../../assets/img/default_avatar2.jpg";
 
-import {SampleData} from "./sample";
+import {SampleData} from "../sample";
 
 import styles from "../../assets/css/chat.module.css";
 
