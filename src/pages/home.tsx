@@ -5,9 +5,11 @@ import {Link} from "react-router-dom";
 
 import styles from "../assets/css/home.module.css";
 
-import chatSample1 from "../assets/img/sample/wechat_chat_sample1.png";
-import chatSample2 from "../assets/img/sample/wechat_chat_sample2.png";
-import chatSample3 from "../assets/img/sample/wechat_chat_sample3.png";
+import chatSample1 from "../assets/img/sample/wechat-chat-sample1.png";
+import chatSample2 from "../assets/img/sample/wechat-chat-sample2.png";
+import chatSample3 from "../assets/img/sample/wechat-chat-sample3.png";
+import chatSample4 from "../assets/img/sample/wechat-chat-sample4.png";
+
 import {SiteKeys} from "../components/site";
 
 export class Home extends React.Component<{}, {}> {
@@ -30,7 +32,7 @@ export class Home extends React.Component<{}, {}> {
                         </Button>
                     </Col>
                     <Col span={8}>
-                        <Carousel autoplay={true} effect="fade">
+                        <Carousel autoplay={true} effect="scrollx">
                             <div>
                                 <img src={chatSample1} alt={"样例"}/>
                             </div>
@@ -39,6 +41,9 @@ export class Home extends React.Component<{}, {}> {
                             </div>
                             <div>
                                 <img src={chatSample3} alt={"样例"}/>
+                            </div>
+                            <div>
+                                <img src={chatSample4} alt={"样例"}/>
                             </div>
                         </Carousel>
                     </Col>
