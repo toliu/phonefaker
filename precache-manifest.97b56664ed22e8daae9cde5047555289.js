@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "64a33908db22c111d266b26955995420",
+    "revision": "205c6732046eb5755b0b98d5431ab525",
     "url": "/phonefaker/index.html"
   },
   {
-    "revision": "8b27268de891fdf70960",
+    "revision": "3626047375acb5ce8d70",
     "url": "/phonefaker/static/css/2.b890ce66.chunk.css"
   },
   {
-    "revision": "60c7dad0642734007df2",
+    "revision": "c98343dfbdd5f2cededc",
     "url": "/phonefaker/static/css/main.0d2c05d1.chunk.css"
   },
   {
-    "revision": "8b27268de891fdf70960",
-    "url": "/phonefaker/static/js/2.9afb009d.chunk.js"
+    "revision": "3626047375acb5ce8d70",
+    "url": "/phonefaker/static/js/2.9234e33a.chunk.js"
   },
   {
-    "revision": "60c7dad0642734007df2",
-    "url": "/phonefaker/static/js/main.3e0687eb.chunk.js"
+    "revision": "c98343dfbdd5f2cededc",
+    "url": "/phonefaker/static/js/main.435d9720.chunk.js"
   },
   {
     "revision": "c497125b76b3617e645f",
