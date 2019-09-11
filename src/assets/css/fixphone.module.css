@@ -79,6 +79,7 @@
     height: 18px;
     overflow: hidden;
     font-weight: bold;
+    z-index: 2;
 }
 
 .screen .body, .screen .body-no-controller, .screen .body-no-input {

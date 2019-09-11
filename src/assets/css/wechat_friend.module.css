@@ -1,0 +1,112 @@
+.header {
+    position: relative;
+    padding-top: 18px;
+    background-color: #EEEEEE;
+    height: 52px;
+    vertical-align: middle;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.header .back {
+    display: inline-block;
+    background: url("../img/back.png") no-repeat center;
+    background-size: 60%;
+    width: 10%;
+    height: 100%;
+}
+
+.header .title {
+    position: relative;
+    text-align: center;
+    vertical-align: center;
+    width: 80%;
+    display: inline-block;
+    color: black;
+    font-family: 微软雅黑, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    bottom: 11px;
+}
+
+.header .camera {
+    position: relative;
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    background: url("../img/wechat_friend_camera_empty.svg") no-repeat;
+    background-size: 65% 50%;
+    top: 10px;
+}
+
+.screen {
+    position: relative;
+    width: 277px;
+    overflow: scroll;
+    height: 491px;
+    top: -52px;
+    z-index: 0;
+}
+
+.screen::-webkit-scrollbar {
+    display: none;
+}
+
+.body {
+    position: relative;
+    font-family: 微软雅黑, sans-serif;
+    color: black;
+    font-size: 14px;
+    background-color: #FFFFFF;
+}
+
+.head-image {
+    position: relative;
+    width: 277px;
+    height: 240px;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.head-image .back {
+    position: absolute;
+    background: url("../img/wechat-friend-back.svg") no-repeat;
+    width: 15px;
+    height: 15px;
+    background-size: 100%;
+    top: 28px;
+    left: 6px;
+}
+
+.head-image .camera {
+    position: absolute;
+    background: url("../img/wechat-friend-camera-full.svg") no-repeat;
+    width: 15px;
+    height: 15px;
+    background-size: 100%;
+    top: 28px;
+    right: 11px;
+}
+
+.user-avatar {
+    position: absolute;
+    bottom: -15px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px #FFFFFF;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.user-name {
+    position: absolute;
+    color: white;
+    bottom: 8px;
+    right: 90px;
+    font-size: 12px;
+}
+
+.content {
+
+}
