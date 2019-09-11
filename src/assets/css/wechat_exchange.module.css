@@ -53,8 +53,9 @@
     display: block;
     text-align: left;
     position: relative;
-    top: -5px;
+    top: -3px;
     overflow: hidden;
+    font-size: 12px;
 }
 
 .exchange .content .down > span {

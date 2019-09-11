@@ -114,7 +114,9 @@ export class MineExchangeReceived extends React.Component<ExchangeReceivedProps,
                                 <span>￥{money}</span>
                             </div>
                             <div className={styles.down}>
-                                已收款
+                                <span>
+                                    已收款
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -139,7 +141,9 @@ export class OtherExchangeReceived extends React.Component<ExchangeReceivedProps
                                 <span>￥{money}</span>
                             </div>
                             <div className={styles.down}>
-                                已收款
+                                <span>
+                                    已收款
+                                </span>
                             </div>
                         </div>
                     </div>
