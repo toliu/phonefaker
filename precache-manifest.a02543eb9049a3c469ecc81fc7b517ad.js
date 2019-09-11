@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0f2e7989e99bd196887d72561e6ef461",
+    "revision": "ad8d8f3d3d36fe7640bc19609c1921d4",
     "url": "/phonefaker/index.html"
   },
   {
-    "revision": "37e6401c8214f374e09b",
+    "revision": "8b27268de891fdf70960",
     "url": "/phonefaker/static/css/2.b890ce66.chunk.css"
   },
   {
-    "revision": "3270898c4c9529aa2935",
-    "url": "/phonefaker/static/css/main.d1b9a767.chunk.css"
+    "revision": "de2169384943c211a9b5",
+    "url": "/phonefaker/static/css/main.0d2c05d1.chunk.css"
   },
   {
-    "revision": "37e6401c8214f374e09b",
-    "url": "/phonefaker/static/js/2.23de55ed.chunk.js"
+    "revision": "8b27268de891fdf70960",
+    "url": "/phonefaker/static/js/2.9afb009d.chunk.js"
   },
   {
-    "revision": "3270898c4c9529aa2935",
-    "url": "/phonefaker/static/js/main.6e8c061c.chunk.js"
+    "revision": "de2169384943c211a9b5",
+    "url": "/phonefaker/static/js/main.ddfa244f.chunk.js"
   },
   {
     "revision": "c497125b76b3617e645f",
@@ -90,6 +90,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "fdbfc42f469fbe343216367352a4764b",
     "url": "/phonefaker/static/media/wechat_chat_bus_avatar.fdbfc42f.jpg"
+  },
+  {
+    "revision": "46717e5910e190b158e91b08adbd601c",
+    "url": "/phonefaker/static/media/wechat_chat_sample1.46717e59.png"
+  },
+  {
+    "revision": "5a44a175dd513682b56db788dd946565",
+    "url": "/phonefaker/static/media/wechat_chat_sample2.5a44a175.png"
+  },
+  {
+    "revision": "5375ab03f15dc552a0cd6095c4308b38",
+    "url": "/phonefaker/static/media/wechat_chat_sample3.5375ab03.png"
   },
   {
     "revision": "9474ffa582047db28446a5c9cce5e8e4",
