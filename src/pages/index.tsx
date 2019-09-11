@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 
 import * as React from "react";
-import {Route, BrowserRouter, Switch, Redirect} from "react-router-dom";
+import {Route, HashRouter, Switch, Redirect} from "react-router-dom";
 
 import {Developing} from "./developing";
 import {Home} from "./home";
@@ -11,7 +11,7 @@ import {Site, SiteKeys} from "../components/site";
 export class Index extends React.Component<{}, {}> {
     public render(): React.ReactElement {
         return (
-            <BrowserRouter basename={"phonefaker"}>
+            <HashRouter>
                 <Site>
                     <Switch>
                         <Route exact={true} path={SiteKeys.Home} component={Home}/>
@@ -20,7 +20,7 @@ export class Index extends React.Component<{}, {}> {
                         <Redirect to={SiteKeys.Home}/>
                     </Switch>
                 </Site>
-            </BrowserRouter>
+            </HashRouter>
 
         );
     }
