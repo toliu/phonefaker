@@ -12,7 +12,7 @@
 .package:after {
     position: absolute;
     content: "微信红包";
-    font-size: 8px;
+    font-size: 12px;
     color: #535353;
     background-color: white;
     width: 235px;
