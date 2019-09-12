@@ -54,7 +54,6 @@
 
 .body {
     position: relative;
-    font-family: 微软雅黑, sans-serif;
     color: black;
     font-size: 14px;
     background-color: #FFFFFF;
@@ -107,21 +106,13 @@
 }
 
 .content {
-    font-family: "Wechat", serif;
     font-size: 13px;
-}
-
-@font-face {
-    font-family: "Wechat";
-    src: url("../ttf/PingFang-JianZhongHeiTi-2.ttf");
-    font-weight: normal;
-    font-style: normal;
 }
 
 .message {
     display: block;
     width: 277px;
-    padding: 7px;
+    padding: 7px 2px 7px 7px;
     border-bottom: 1px solid #f3f3f3;
 }
 
@@ -135,15 +126,97 @@
 .container {
     display: inline-block;
     vertical-align: top;
-    width: 220px;
+    width: 225px;
     margin-left: 7px;
 }
 
 .container .name {
     display: block;
-    color: #586C95;
-    font-weight: bold;
+    color: #5B6E97;
+    margin-bottom: 3px;
 }
 
 .content .message-body {
+    line-height: 17px;
 }
+
+.content .time {
+    display: block;
+    color: #c0c0c0;
+    text-align: left;
+    width: 270px;
+    font-size: 12px;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.8);
+    position: relative;
+    left: -28px;
+}
+
+.content .time .dot {
+    position: absolute;
+    height: 18px;
+    width: 30px;
+    background-color: #F8F7F7;
+    border-radius: 5px;
+    right: 0;
+    top: 0;
+    -webkit-transform: scale(0.65);
+}
+
+.content .time .dot:after {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #5B6E97;
+    border-radius: 3px;
+    right: 6px;
+    top: 6px;
+}
+
+.content .time .dot:before {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: #5B6E97;
+    border-radius: 3px;
+    left: 6px;
+    top: 6px;
+}
+
+.content .like {
+    position: relative;
+    font-size: 12px;
+    color: #5B6E97;
+    width: 220px;
+    word-break: break-word;
+    background-color: #F4F3F6;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 2px 0 2px 18px;
+}
+
+.content .like:before {
+    content: "";
+    position: absolute;
+    background: url("../img/wechat-friend-circle-like.svg") no-repeat;
+    background-size: 100%;
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    top: 5px;
+}
+
+.content .comment {
+    width: 220px;
+    padding: 2px 5px;
+    background-color: #F4F3F6;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.content .comment .name {
+    display: inline;
+    color: #5B6E97;
+}
+

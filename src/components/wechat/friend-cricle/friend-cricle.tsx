@@ -101,6 +101,25 @@ interface MessageParseProps {
 
 class MessageParse extends React.Component<MessageParseProps, {}> {
     public render(): React.ReactElement {
+        let timeLabel: string;
+        const now: Date = new Date();
+        const time: Date = this.props.message.timestamp;
+        const diff: number = (now.getTime() - time.getTime()) / 1000;
+        const dayDiff: number = Math.floor(diff / 3600 / 24);
+        if (diff < 60) {
+            timeLabel = "刚刚";
+        } else if (diff < 3600) {
+            timeLabel = Math.floor(diff / 60) + "分钟前";
+        } else if (diff < 24 * 3600) {
+            timeLabel = Math.floor(diff / 3600) + "小时前";
+        } else if (dayDiff < 2) {
+            timeLabel = "昨天";
+        } else if (dayDiff < 8) {
+            timeLabel = dayDiff + "天前";
+        } else {
+            timeLabel = time.getFullYear() + "年" + time.getMonth() + "月" + time.getDate() + "日";
+        }
+
         return (
             <div className={styles.message}>
                 <img src={this.props.message.userAvatar} alt={"头像"} className={styles.avatar}/>
@@ -110,6 +129,26 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                     </div>
                     <div className={styles["message-body"]}>
                         {this.props.message.message}
+                    </div>
+                    <div className={styles.time}>
+                        {timeLabel}
+                        <div className={styles.dot}>
+                        </div>
+                    </div>
+                    <div className={styles.like} style={{display: this.props.message.like.length === 0 ? "none" : "block"}}>
+                        {this.props.message.like.join(", ")}
+                    </div>
+                    <div className={styles.comment} style={{display: this.props.message.comments.length === 0 ? "none" : "block"}}>
+                        {this.props.message.comments.map((cmt, index) => {
+                            return (
+                                <div key={index}>
+                                    <span className={styles.name}>{cmt.by}</span>
+                                    <span>{cmt.to ? "回复" : ""}</span>
+                                    <span className={styles.name}>{cmt.to ? cmt.to + ":" : ":"}</span>
+                                    <span>{cmt.content}</span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

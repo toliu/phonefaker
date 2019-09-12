@@ -18,7 +18,7 @@ type LocationMessage = {
 
 type CommentMessage = {
     by: string;
-    to: string,
+    to?: string,
     content: string,
 }
 
