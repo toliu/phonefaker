@@ -12,10 +12,6 @@ type PictureMessage = {
 type AdditionMessage = ForwardMessage |
     PictureMessage;
 
-type LocationMessage = {
-    elements: string[],
-}
-
 type CommentMessage = {
     by: string;
     to?: string,
@@ -29,6 +25,6 @@ export type FriendCircleMessage = {
     like: string[],
     comments: CommentMessage[],
     addition?: AdditionMessage,
-    location?: LocationMessage,
+    location?: string[],
     timestamp: Date,
 }

@@ -9,7 +9,7 @@ import picture1 from "../src/assets/img/sample/wechat-chat-sample1.png";
 import picture2 from "../src/assets/img/sample/wechat-chat-sample2.png";
 
 storiesOf("朋友圈", module)
-    .add("文本朋友圈", () => {
+    .add("纯文本", () => {
         const now = new Date();
         const messages = [
             {
@@ -51,7 +51,7 @@ storiesOf("朋友圈", module)
         ];
         return <FriendCircle messages={messages}/>
     })
-    .add("图文朋友圈", () => {
+    .add("图文", () => {
         const now = new Date();
         const messages = [
             {
@@ -115,7 +115,7 @@ storiesOf("朋友圈", module)
         ];
         return <FriendCircle messages={messages}/>
     })
-    .add("图片朋友圈", () => {
+    .add("纯图片", () => {
         const now = new Date();
         const messages = [
             {
@@ -159,6 +159,34 @@ storiesOf("朋友圈", module)
                     }
                 ],
                 timestamp: new Date(now.getTime() - 3600000 * 24 * 7),
+            },
+        ];
+        return <FriendCircle messages={messages}/>;
+    })
+    .add("定位信息", () => {
+        const now = new Date();
+        const messages = [
+            {
+                userName: "琳琳",
+                userAvatar: defaultAvatar,
+                addition: {
+                    kind: "pictures",
+                    pictures: [defaultAvatar],
+                },
+                like: ["鲁建辉", "大舅娘", "梁云", "时光", "姨娘", "琳", "琳琳"],
+                comments: [
+                    {
+                        by: "朋友A",
+                        content: "有时，动画播放过程中，会突然停止。这时，默认行为是跳回到动画的开始状态。",
+                    },
+                    {
+                        by: "琳琳",
+                        to: "朋友A",
+                        content: "上面的代码指定，没有鼠标没有悬停时，动画状态是暂停；一旦悬停，动画状态改为继续播放。效果如下。",
+                    }
+                ],
+                location: ["成都", "时光餐厅", "总店"],
+                timestamp: new Date(now.getTime() - 3600000 * 24 * 8),
             },
         ];
         return <FriendCircle messages={messages}/>;

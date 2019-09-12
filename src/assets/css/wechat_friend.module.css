@@ -153,6 +153,20 @@
     padding: 2px;
 }
 
+.content .location {
+    position: relative;
+    left: -10px;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 180px;
+    color: #5B6E97;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.9);
+}
+
 .content .time {
     display: block;
     color: #c0c0c0;

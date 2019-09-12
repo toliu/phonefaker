@@ -140,6 +140,9 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                     <div className={styles.addition} style={{display: addition ? "block" : "none"}}>
                         {this.parseAdditionElement()}
                     </div>
+                    <div className={styles.location}>
+                        {this.props.message.location ? this.props.message.location.join("・") : ""}
+                    </div>
                     <div className={styles.time}>
                         {timeLabel}
                         <div className={styles.dot}>
