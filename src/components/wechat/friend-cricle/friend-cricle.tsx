@@ -6,18 +6,20 @@ import defaultBackgroundPicture from "../../../assets/img/wechat-friend-default-
 import defaultAvatar from "../../../assets/img/default_avatar1.jpg";
 
 import styles from "../../../assets/css/wechat_friend.module.css";
+import {FriendCircleMessage} from "./messages";
 
 interface FriendCircleProps {
     backgroundImage?: string;
     userName?: string;
     userAvatar?: string;
+    messages: FriendCircleMessage[];
 }
 
-interface FriendCrirleStats {
+interface FriendCircleStats {
     headerOpacity: number;
 }
 
-export class FriendCircle extends React.Component <FriendCircleProps, FriendCrirleStats> {
+export class FriendCircle extends React.Component <FriendCircleProps, FriendCircleStats> {
     private readonly screenRef: React.RefObject<HTMLDivElement>;
 
     constructor(props: FriendCircleProps) {
@@ -61,6 +63,7 @@ export class FriendCircle extends React.Component <FriendCircleProps, FriendCrir
                         </div>
 
                         <div className={styles.content}>
+                            {this.props.messages.map((msg, index) => <MessageParse message={msg} key={index}/>)}
                         </div>
                     </div>
                 </div>
@@ -89,5 +92,27 @@ export class FriendCircle extends React.Component <FriendCircleProps, FriendCrir
             return;
         }
         this.setState({headerOpacity: 1 - ((220 - scrollTop) / 50)});
+    }
+}
+
+interface MessageParseProps {
+    message: FriendCircleMessage,
+}
+
+class MessageParse extends React.Component<MessageParseProps, {}> {
+    public render(): React.ReactElement {
+        return (
+            <div className={styles.message}>
+                <img src={this.props.message.userAvatar} alt={"头像"} className={styles.avatar}/>
+                <div className={styles.container}>
+                    <div className={styles.name}>
+                        {this.props.message.userName}
+                    </div>
+                    <div className={styles["message-body"]}>
+                        {this.props.message.message}
+                    </div>
+                </div>
+            </div>
+        );
     }
 }

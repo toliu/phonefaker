@@ -24,7 +24,6 @@
     max-width: 210px;
     text-align: left;
     border-radius: 5px;
-    font-weight: lighter;
 }
 
 .system span .send {
@@ -39,7 +38,7 @@
     border-radius: 5px;
     font-size: 12px;
     -webkit-text-size-adjust: none;
-    -webkit-transform: scale(0.8);
+    -webkit-transform: scale(0.9);
 }
 
 .system span .already {

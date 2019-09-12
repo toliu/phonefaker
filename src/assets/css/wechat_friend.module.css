@@ -107,6 +107,43 @@
 }
 
 .content {
-    font-family: STHeiti, serif;
+    font-family: "Wechat", serif;
     font-size: 13px;
+}
+
+@font-face {
+    font-family: "Wechat";
+    src: url("../ttf/PingFang-JianZhongHeiTi-2.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.message {
+    display: block;
+    width: 277px;
+    padding: 7px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.message .avatar {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.container {
+    display: inline-block;
+    vertical-align: top;
+    width: 220px;
+    margin-left: 7px;
+}
+
+.container .name {
+    display: block;
+    color: #586C95;
+    font-weight: bold;
+}
+
+.content .message-body {
 }

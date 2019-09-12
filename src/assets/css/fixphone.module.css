@@ -24,7 +24,7 @@
 
 @font-face {
     font-family: "iPhone";
-    src: url("../ttf/PingFang-SC-Regular.ttf");
+    src: url("../ttf/PingFang-JianZhongHeiTi-2.ttf");
     font-weight: normal;
     font-style: normal;
 }
@@ -78,7 +78,6 @@
     display: block;
     height: 18px;
     overflow: hidden;
-    font-weight: bold;
     z-index: 2;
 }
 
