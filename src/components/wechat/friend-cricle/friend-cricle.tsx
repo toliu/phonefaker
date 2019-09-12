@@ -100,6 +100,11 @@ interface MessageParseProps {
 }
 
 class MessageParse extends React.Component<MessageParseProps, {}> {
+    constructor(props: MessageParseProps) {
+        super(props);
+        this.parseAdditionElement = this.parseAdditionElement.bind(this);
+    }
+
     public render(): React.ReactElement {
         let timeLabel: string;
         const now: Date = new Date();
@@ -120,6 +125,8 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
             timeLabel = time.getFullYear() + "年" + time.getMonth() + "月" + time.getDate() + "日";
         }
 
+        const addition = this.props.message.addition;
+
         return (
             <div className={styles.message}>
                 <img src={this.props.message.userAvatar} alt={"头像"} className={styles.avatar}/>
@@ -130,16 +137,19 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                     <div className={styles["message-body"]}>
                         {this.props.message.message}
                     </div>
+                    <div className={styles.addition} style={{display: addition ? "block" : "none"}}>
+                        {this.parseAdditionElement()}
+                    </div>
                     <div className={styles.time}>
                         {timeLabel}
                         <div className={styles.dot}>
                         </div>
                     </div>
-                    <div className={styles.like} style={{display: this.props.message.like.length === 0 ? "none" : "block"}}>
-                        {this.props.message.like.join(", ")}
+                    <div className={styles.like} style={{display: this.props.message.like ? "block" : "none"}}>
+                        {this.props.message.like ? this.props.message.like.join(", ") : ""}
                     </div>
-                    <div className={styles.comment} style={{display: this.props.message.comments.length === 0 ? "none" : "block"}}>
-                        {this.props.message.comments.map((cmt, index) => {
+                    <div className={styles.comment} style={{display: this.props.message.comments ? "block" : "none"}}>
+                        {this.props.message.comments ? this.props.message.comments.map((cmt, index) => {
                             return (
                                 <div key={index}>
                                     <span className={styles.name}>{cmt.by}</span>
@@ -148,9 +158,39 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                                     <span>{cmt.content}</span>
                                 </div>
                             );
-                        })}
+                        }) : ""}
                     </div>
                 </div>
+            </div>
+        );
+    }
+
+    private parseAdditionElement(): any {
+        const addition = this.props.message.addition;
+        if (!addition) {
+            return (<div style={{display: "none"}}>
+            </div>)
+        }
+        switch (addition.kind) {
+            case "pictures":
+                const pictures: string[] = addition.pictures;
+                if (pictures.length === 1) {
+                    return <img src={pictures[0]} alt={"图片"} style={{
+                        maxWidth: 150,
+                        maxHeight: 210,
+                    }}/>
+                }
+                return addition.pictures.map((pic, index) => {
+                    if (index > 8) {
+                        return "";
+                    }
+                    return <img key={index} src={pic} className={styles.picture} alt={"图片"}/>;
+                });
+
+        }
+        return (
+            <div>
+                addition
             </div>
         );
     }

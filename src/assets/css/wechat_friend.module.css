@@ -140,6 +140,19 @@
     line-height: 17px;
 }
 
+.content .addition {
+    display: block;
+    width: 220px;
+}
+
+.content .addition .picture {
+    display: inline-block;
+    width: 65px;
+    height: auto;
+    max-height: 65px;
+    padding: 2px;
+}
+
 .content .time {
     display: block;
     color: #c0c0c0;
