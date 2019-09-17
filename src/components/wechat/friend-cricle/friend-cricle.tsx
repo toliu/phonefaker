@@ -36,6 +36,12 @@ export class FriendCircle extends React.Component <FriendCircleProps, FriendCirc
         }
     }
 
+    public componentDidUpdate() {
+        if (this.screenRef.current) {
+            this.screenRef.current.scrollTop = this.screenRef.current.scrollHeight;
+        }
+    }
+
     public render(): React.ReactElement {
         return (
             <FixedPhone>
@@ -149,16 +155,16 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                         <div className={styles.dot}>
                         </div>
                     </div>
-                    <div className={styles.like} style={{display: this.props.message.like ? "block" : "none"}}>
-                        {this.props.message.like ? this.props.message.like.map((lk, index) => {
+                    <div className={styles.like} style={{display: this.props.message.like && this.props.message.like.length > 0 ? "block" : "none"}}>
+                        {this.props.message.like && this.props.message.like.length > 0 ? this.props.message.like.map((lk, index) => {
                             if (index === this.props.message.like.length - 1) {
                                 return <span>{ParseContent(lk)}</span>
                             }
                             return <span>{ParseContent(lk + ", ")}</span>
                         }) : ""}
                     </div>
-                    <div className={styles.comment} style={{display: this.props.message.comments ? "block" : "none"}}>
-                        {this.props.message.comments ? this.props.message.comments.map((cmt, index) => {
+                    <div className={styles.comment} style={{display: this.props.message.comments && this.props.message.comments.length > 0 ? "block" : "none"}}>
+                        {this.props.message.comments && this.props.message.comments.length > 0 ? this.props.message.comments.map((cmt, index) => {
                             return (
                                 <div key={index}>
                                     <span className={styles.name}>{ParseContent(cmt.by)}</span>
