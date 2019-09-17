@@ -13,19 +13,19 @@ storiesOf("朋友圈", module)
         const now = new Date();
         const messages = [
             {
-                userName: "琳琳",
+                userName: "[kissing_heart]琳琳[kissing_heart]",
                 userAvatar: defaultAvatar,
-                message: "知秋凤凰新派中式婚礼展示秀《旖旎》知秋凤凰：你身边婚礼庆典的策划执行专家",
-                like: ["鲁建辉", "大舅娘", "梁云", "时光", "姨娘", "琳", "琳琳"],
+                message: "知秋凤凰新派中式婚礼展示秀《旖旎》知秋凤凰：你身边婚礼庆典的策划执行专家[kissing_heart][kissing_heart][kissing_heart][kissing_heart]",
+                like: ["鲁建辉", "大舅娘", "梁云", "时光", "姨娘", "琳", "[kissing_heart]琳琳[kissing_heart]"],
                 comments: [
                     {
                         by: "朋友A",
-                        content: "有时，动画播放过程中，会突然停止。这时，默认行为是跳回到动画的开始状态。",
+                        content: "有时，动画播放过程中，会突然停止。这时[kissing_heart]，默认行为是跳回到动画的开始状态。",
                     },
                     {
-                        by: "琳琳",
+                        by: "[kissing_heart]琳琳[kissing_heart]",
                         to: "朋友A",
-                        content: "上面的代码指定，没有鼠标没有悬停时，动画状态是暂停；一旦悬停，动画状态改为继续播放。效果如下。",
+                        content: "[kissing_heart]上面的代码指定，没有鼠标没有悬停时，动画状态是暂停；一旦悬停，动画状态改为继续播放。效果如下。",
                     }
                 ],
                 timestamp: new Date(now.getTime() - 3600000 * 24),

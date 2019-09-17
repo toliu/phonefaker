@@ -1,12 +1,13 @@
 import * as React from "react";
 
 import {FixedPhone} from "../../phone/fixedphone";
+import {ParseContent} from "../../../utils";
+import {FriendCircleMessage} from "./messages";
 
 import defaultBackgroundPicture from "../../../assets/img/wechat-friend-default-background.jpg";
 import defaultAvatar from "../../../assets/img/default_avatar1.jpg";
 
 import styles from "../../../assets/css/wechat_friend.module.css";
-import {FriendCircleMessage} from "./messages";
 
 interface FriendCircleProps {
     backgroundImage?: string;
@@ -59,7 +60,7 @@ export class FriendCircle extends React.Component <FriendCircleProps, FriendCirc
                             <div className={styles.camera}>
                             </div>
                             <img src={this.getUserInfo().avatar} alt={"头像"} className={styles["user-avatar"]}/>
-                            <span className={styles["user-name"]}>{this.getUserInfo().name}</span>
+                            <span className={styles["user-name"]}>{ParseContent(this.getUserInfo().name)}</span>
                         </div>
 
                         <div className={styles.content}>
@@ -132,10 +133,10 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                 <img src={this.props.message.userAvatar} alt={"头像"} className={styles.avatar}/>
                 <div className={styles.container}>
                     <div className={styles.name}>
-                        {this.props.message.userName}
+                        {ParseContent(this.props.message.userName)}
                     </div>
                     <div className={styles["message-body"]}>
-                        {this.props.message.message}
+                        {ParseContent(this.props.message.message || "")}
                     </div>
                     <div className={styles.addition} style={{display: addition ? "block" : "none"}}>
                         {this.parseAdditionElement()}
@@ -149,16 +150,24 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                         </div>
                     </div>
                     <div className={styles.like} style={{display: this.props.message.like ? "block" : "none"}}>
-                        {this.props.message.like ? this.props.message.like.join(", ") : ""}
+                        {this.props.message.like ? this.props.message.like.map((lk, index) => {
+                            if (index === this.props.message.like.length - 1) {
+                                return <span>{ParseContent(lk)}</span>
+                            }
+                            return <span>{ParseContent(lk + ", ")}</span>
+                        }) : ""}
                     </div>
                     <div className={styles.comment} style={{display: this.props.message.comments ? "block" : "none"}}>
                         {this.props.message.comments ? this.props.message.comments.map((cmt, index) => {
                             return (
                                 <div key={index}>
-                                    <span className={styles.name}>{cmt.by}</span>
+                                    <span className={styles.name}>{ParseContent(cmt.by)}</span>
                                     <span>{cmt.to ? "回复" : ""}</span>
-                                    <span className={styles.name}>{cmt.to ? cmt.to + ":" : ":"}</span>
-                                    <span>{cmt.content}</span>
+                                    <span className={styles.name} style={{display: cmt.to ? "inline-block" : "none"}}>
+                                        {ParseContent(cmt.to || "")}
+                                        </span>
+                                    <span>:</span>
+                                    <span>{ParseContent(cmt.content)}</span>
                                 </div>
                             );
                         }) : ""}

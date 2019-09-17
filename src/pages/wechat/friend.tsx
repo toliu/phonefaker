@@ -1,5 +1,6 @@
+import {Picker} from "emoji-mart";
 import * as React from "react";
-import {Row, Col, Upload, Divider, Input, Icon, Tooltip, Button} from "antd";
+import {Row, Col, Upload, Divider, Input, Icon, Tooltip, Button, Popover} from "antd";
 
 import {FriendCircle} from "../../components/wechat/friend-cricle/friend-cricle";
 import {FriendCircleMessage} from "../../components/wechat/friend-cricle/messages";
@@ -8,6 +9,7 @@ import defaultBackgroundPicture from "../../assets/img/wechat-friend-default-bac
 import defaultUserAvatar from "../../assets/img/default_avatar1.jpg";
 
 import styles from "../../assets/css/site-friend-circle.module.css";
+import {EmojiPicker} from "../../utils";
 
 interface FriendStats {
     userName: string;
@@ -49,9 +51,14 @@ export class Friend extends React.Component<{}, FriendStats> {
                                     placeholder={this.state.userName}
                                     prefix={<Icon type={"user"} style={{color: 'rgba(0,0,0,.25)'}}/>}
                                     suffix={
-                                        <Tooltip title="用户名">
-                                            <Icon type="info-circle" style={{color: 'rgba(0,0,0,.45)'}}/>
-                                        </Tooltip>
+                                        <Popover
+                                            trigger={"click"}
+                                            content={<EmojiPicker onSelect={(emoji: string) => {
+                                                this.setState({userName: this.state.userName + emoji})
+                                            }}/>}
+                                            placement={"bottom"}>
+                                            <Icon type="frown" style={{color: "rgba(0,0,0,.45)"}}/>
+                                        </Popover>
                                     }
                                     onChange={(e: any) => {
                                         this.setState({userName: e.target.value})
