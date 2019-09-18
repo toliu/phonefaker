@@ -20,9 +20,11 @@ interface FriendStats {
     currentInputMessage: FriendCircleMessage,
     currentLikeUser: string;
     currentInputComment: CommentMessage;
+    currentInputPictureList: any[];
 
     appendLikeVisible: boolean;
     appendCommentVisible: boolean;
+    appendAdditionPictureVisible: boolean;
 }
 
 export class Friend extends React.Component<{}, FriendStats> {
@@ -42,6 +44,7 @@ export class Friend extends React.Component<{}, FriendStats> {
                 to: this.defaultUserName,
                 content: "",
             },
+            currentInputPictureList: [],
             currentInputMessage: {
                 userName: this.defaultUserName,
                 message: "",
@@ -53,13 +56,14 @@ export class Friend extends React.Component<{}, FriendStats> {
 
             appendLikeVisible: false,
             appendCommentVisible: false,
+            appendAdditionPictureVisible: false,
         };
     }
 
     public render(): React.ReactElement {
 
         return (
-            <React.Fragment>
+            <div className={styles.main}>
                 <Row align={"middle"}>
                     <Col span={8} offset={4}>
                         <FriendCircle
@@ -226,6 +230,47 @@ export class Friend extends React.Component<{}, FriendStats> {
                                         placement={"right"}>
                                         <Icon type="frown" style={{color: "rgba(0,0,0,.45)"}}/>
                                     </Popover>
+                                </Col>
+                            </Row>
+
+                            <Divider dashed={true}/>
+
+                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                <Col span={4}>
+                                    <strong>配图:</strong>
+                                </Col>
+                                <Col span={15}>
+                                    <div className="clearfix">
+                                        <Upload
+                                            listType="picture-card"
+                                            fileList={this.state.currentInputPictureList}
+                                            onChange={async ({fileList}) => {
+                                                let fileSrcs: string[] = [];
+                                                for (let uploadFile of fileList) {
+                                                    const fbase64: string = await Friend.fileBase64(uploadFile.originFileObj as File);
+                                                    fileSrcs.push(fbase64);
+                                                }
+                                                const message: FriendCircleMessage = Object.assign({}, this.state.currentInputMessage);
+                                                message.addition = {
+                                                    kind: "pictures",
+                                                    pictures: fileSrcs,
+                                                };
+
+                                                this.setState({
+                                                    currentInputPictureList: fileList,
+                                                    currentInputMessage: message,
+                                                })
+                                            }}
+                                        >
+                                            {this.state.currentInputPictureList.length >= 9 ?
+                                                null :
+                                                <div>
+                                                    <Icon type="plus"/>
+                                                    <div className="ant-upload-text">上传</div>
+                                                </div>
+                                            }
+                                        </Upload>
+                                    </div>
                                 </Col>
                             </Row>
 
@@ -496,8 +541,16 @@ export class Friend extends React.Component<{}, FriendStats> {
                         </div>
                     </Col>
                 </Row>
-            </React.Fragment>
-        )
-            ;
+            </div>
+        );
+    }
+
+    private static fileBase64(file: File): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result as string);
+            reader.onerror = error => reject(error);
+        });
     }
 }
