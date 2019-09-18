@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "442175292b2cfd95980ec2e1c32a535f",
+    "revision": "4e3451aa2aa178c21de53b6f1f8b98dd",
     "url": "/phonefaker/index.html"
   },
   {
-    "revision": "7d8fae44f98a39515bd3",
-    "url": "/phonefaker/static/css/2.b890ce66.chunk.css"
+    "revision": "e91f9a649008c5ce4196",
+    "url": "/phonefaker/static/css/2.3795f1f3.chunk.css"
   },
   {
-    "revision": "e9a928527aaf34769ca8",
-    "url": "/phonefaker/static/css/main.44e167cc.chunk.css"
+    "revision": "f0698cfaa0824d54ef39",
+    "url": "/phonefaker/static/css/main.278e83c9.chunk.css"
   },
   {
-    "revision": "7d8fae44f98a39515bd3",
-    "url": "/phonefaker/static/js/2.e325459f.chunk.js"
+    "revision": "e91f9a649008c5ce4196",
+    "url": "/phonefaker/static/js/2.fd7253b5.chunk.js"
   },
   {
-    "revision": "e9a928527aaf34769ca8",
-    "url": "/phonefaker/static/js/main.682faba2.chunk.js"
+    "revision": "f0698cfaa0824d54ef39",
+    "url": "/phonefaker/static/js/main.70254e4a.chunk.js"
   },
   {
     "revision": "c497125b76b3617e645f",
@@ -56,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phonefaker/static/media/default_avatar2.ff4149c2.jpg"
   },
   {
-    "revision": "adf548c6bd318adabd4b0776477f4151",
-    "url": "/phonefaker/static/media/home-icon.adf548c6.svg"
+    "revision": "cfed2388309f4799549c5a1c0b6a60a2",
+    "url": "/phonefaker/static/media/home-icon.cfed2388.svg"
   },
   {
     "revision": "8afabdb24374806baa7d9dcae65969a3",
@@ -98,6 +98,18 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "386331b9837fa03b59c13eb2eee31e6e",
     "url": "/phonefaker/static/media/wechat-friend-circle-like.386331b9.svg"
+  },
+  {
+    "revision": "56c6cbe83cd456f114a4f5127128ed62",
+    "url": "/phonefaker/static/media/wechat-friend-circle-sample1.56c6cbe8.png"
+  },
+  {
+    "revision": "dbcd725a0f6a99e4f03b90a5da87fb56",
+    "url": "/phonefaker/static/media/wechat-friend-circle-sample2.dbcd725a.png"
+  },
+  {
+    "revision": "6c52bb4ff4179b8832cb9d164108fde7",
+    "url": "/phonefaker/static/media/wechat-friend-circle-sample3.6c52bb4f.png"
   },
   {
     "revision": "99f11d105cf20d9ea2fa56d48966522a",
