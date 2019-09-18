@@ -520,6 +520,27 @@ export class Friend extends React.Component<{}, FriendStats> {
                             <Divider dashed={true}/>
 
                             <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                <Col span={4}>
+                                    <strong>定位:</strong>
+                                </Col>
+                                <Col span={18}>
+                                    <Input
+                                        placeholder={"多级地面使用空格分开"}
+                                        onChange={(e: any) => {
+                                            const message: FriendCircleMessage = Object.assign({}, this.state.currentInputMessage);
+                                            message.location = e.target.value.split(" ");
+
+                                            this.setState({
+                                                currentInputMessage: message,
+                                            })
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+
+                            <Divider dashed={true}/>
+
+                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
                                 <Col offset={18} span={6}>
                                     <Button
                                         type="primary"
