@@ -1,5 +1,6 @@
+import * as moment from "moment";
 import * as React from "react";
-import {Row, Col, Upload, Divider, Input, Icon, Popover, Tag, Modal, Button, message} from "antd";
+import {Row, Col, Upload, Divider, Input, Icon, Popover, Tag, Modal, Button, message, DatePicker, TimePicker} from "antd";
 
 import {FriendCircle} from "../../components/wechat/friend-cricle/friend-cricle";
 import {CommentMessage, FriendCircleMessage} from "../../components/wechat/friend-cricle/messages";
@@ -389,7 +390,7 @@ export class Friend extends React.Component<{}, FriendStats> {
                                                 const comment: CommentMessage = Object.assign({}, this.state.currentInputComment);
                                                 if (comment.content && comment.by) {
                                                     const currentComments = this.state.currentInputMessage.comments.slice(0);
-                                                    if (comment.to === this.state.userName) {
+                                                    if (comment.to === this.state.currentInputMessage.userName) {
                                                         comment.to = "";
                                                     }
                                                     currentComments.push(comment);
@@ -533,6 +534,40 @@ export class Friend extends React.Component<{}, FriendStats> {
                                             this.setState({
                                                 currentInputMessage: message,
                                             })
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+
+                            <Divider dashed={true}/>
+
+                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                <Col span={4}>
+                                    <strong>时间:</strong>
+                                </Col>
+                                <Col span={10}>
+                                    <DatePicker
+                                        onChange={(date: moment.Moment | null, dateString: string) => {
+                                            if (!date) {
+                                                return;
+                                            }
+                                            const message: FriendCircleMessage = Object.assign({}, this.state.currentInputMessage);
+                                            const ts: Date = new Date(message.timestamp.valueOf());
+                                            ts.setFullYear(date.year(), date.month(), date.date());
+                                            message.timestamp = ts;
+                                            this.setState({currentInputMessage: message})
+                                        }}
+                                    />
+                                </Col>
+                                <Col span={10}>
+                                    <TimePicker
+                                        onChange={(time: moment.Moment, timeString: string) => {
+                                            const message: FriendCircleMessage = Object.assign({}, this.state.currentInputMessage);
+                                            const ts: Date = new Date(message.timestamp.valueOf());
+                                            ts.setHours(time.hours(), time.minutes(), time.seconds(), time.milliseconds());
+                                            message.timestamp = ts;
+                                            console.log(message.timestamp);
+                                            this.setState({currentInputMessage: message})
                                         }}
                                     />
                                 </Col>
