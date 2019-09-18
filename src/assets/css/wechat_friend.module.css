@@ -148,9 +148,12 @@
 .content .addition .picture {
     display: inline-block;
     width: 65px;
-    height: auto;
-    max-height: 65px;
+    height: 65px;
     padding: 2px;
+    overflow: hidden;
+    vertical-align: middle;
+    background: no-repeat center;
+    background-size: 100% auto;
 }
 
 .content .location {

@@ -196,7 +196,16 @@ class MessageParse extends React.Component<MessageParseProps, {}> {
                     if (index > 8) {
                         return "";
                     }
-                    return <img key={index} src={pic} className={styles.picture} alt={"图片"}/>;
+                    return (
+                        <div
+                            className={styles.picture}
+                            style={{
+                                backgroundImage: "url(" + pic + ")",
+                            }}
+                        />
+                        //     <img key={index} src={pic} alt={"图片"}/>
+                        // </div>
+                    );
                 });
 
         }
