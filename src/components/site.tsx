@@ -45,9 +45,11 @@ export class Site extends React.Component<{}, SiteStats> {
                         className={styles.menu}
                         onClick={(e: any) => this.setState({key: e.key})}
                     >
-                        <Link to={SiteKeys.Home}>
-                            <span className={styles.home}>首页</span>
-                        </Link>
+                        <Menu.Item>
+                            <Link to={SiteKeys.Home}>
+                                <span className={styles.home}>首页</span>
+                            </Link>
+                        </Menu.Item>
                         <SubMenu title={<span><Icon type="wechat"/>微信</span>}>
                             <Menu.Item key={SiteKeys.WeChatChat}>
                                 <Link to={SiteKeys.WeChatChat}>聊天</Link>

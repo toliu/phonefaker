@@ -10760,6 +10760,13 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-particles-js@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.npm.taobao.org/react-particles-js/download/react-particles-js-2.7.0.tgz#1b13a85d948e63016cb2b400f734758b0a985727"
+  integrity sha1-GxOoXZSOYwFssrQA9zR1iwqYVyc=
+  dependencies:
+    lodash "^4.17.11"
+
 react-popper-tooltip@^2.8.3:
   version "2.8.3"
   resolved "https://registry.npm.taobao.org/react-popper-tooltip/download/react-popper-tooltip-2.8.3.tgz#1c63e7473a96362bd93be6c94fa404470a265197"

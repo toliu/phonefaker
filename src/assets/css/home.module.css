@@ -1,3 +1,9 @@
+.particles {
+    position: fixed;
+    top: 65px;
+    left: 0;
+}
+
 .home {
     margin-top: 100px;
     margin-bottom: 20px;
@@ -5,22 +11,25 @@
 }
 
 .home h1 {
-    color: #e5bfc1;
+    color: #acacac;
     font-size: 60px;
     font-family: 华文楷体, sans-serif;
     text-align: center;
 }
 
-.home h6 {
-    font-size: 20px;
-    color: #8a92ff;
+.home ul li {
+    list-style-type: none;
+    font-size: 2em;
+    color: #000000;
     font-family: 华文楷体, sans-serif;
-    text-align: center;
+    text-align: left;
 }
 
 .home .button {
     position: relative;
-    background-color: #8a92ff;
+    font-size: 1em;
+    color: #6c6cd7;
+    text-decoration: underline;
 }
 
 .carousel {
