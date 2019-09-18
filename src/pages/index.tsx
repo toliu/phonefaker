@@ -18,6 +18,13 @@ export class Index extends React.Component<{}, {}> {
                         <Route exact={true} path={SiteKeys.Home} component={Home}/>
                         <Route exact={true} path={SiteKeys.WeChatChat} component={Chat}/>
                         <Route exact={true} path={SiteKeys.WeChatFriends} component={Friend}/>
+                        <Route exact={true} path={SiteKeys.WeiboChat} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.WeiboNews} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.QQChat} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.QQZone} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.ZhiHu} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.Twitter} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.FaceBook} component={Developing}/>
                         <Redirect to={SiteKeys.Home}/>
                     </Switch>
                 </Site>
