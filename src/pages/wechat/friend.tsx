@@ -1,8 +1,8 @@
 import * as React from "react";
-import {Row, Col, Upload, Divider, Input, Icon, Popover, Form, Popconfirm, Tag, Modal, Button} from "antd";
+import {Row, Col, Upload, Divider, Input, Icon, Popover, Tag, Modal, Button, message} from "antd";
 
 import {FriendCircle} from "../../components/wechat/friend-cricle/friend-cricle";
-import {FriendCircleMessage} from "../../components/wechat/friend-cricle/messages";
+import {CommentMessage, FriendCircleMessage} from "../../components/wechat/friend-cricle/messages";
 import {EmojiPicker} from "../../utils";
 
 import defaultBackgroundPicture from "../../assets/img/wechat-friend-default-background.jpg";
@@ -18,28 +18,41 @@ interface FriendStats {
     backgroundPicture: string;
     messages: FriendCircleMessage[];
     currentInputMessage: FriendCircleMessage,
-    appendLikeVisible: boolean;
     currentLikeUser: string;
+    currentInputComment: CommentMessage;
+
+    appendLikeVisible: boolean;
+    appendCommentVisible: boolean;
 }
 
 export class Friend extends React.Component<{}, FriendStats> {
+    private readonly defaultUserName: string;
+
     constructor(props: any) {
         super(props);
+        this.defaultUserName = "时光";
         this.state = {
             messages: [],
             backgroundPicture: defaultBackgroundPicture,
             userAvatar: defaultUserAvatar,
-            userName: "时光",
-            appendLikeVisible: false,
+            userName: this.defaultUserName,
             currentLikeUser: "",
+            currentInputComment: {
+                by: "",
+                to: this.defaultUserName,
+                content: "",
+            },
             currentInputMessage: {
-                userName: "时光",
+                userName: this.defaultUserName,
                 message: "",
                 userAvatar: defaultUserAvatar,
                 like: [],
                 comments: [],
                 timestamp: new Date(),
             },
+
+            appendLikeVisible: false,
+            appendCommentVisible: false,
         };
     }
 
@@ -298,12 +311,180 @@ export class Friend extends React.Component<{}, FriendStats> {
                             <Divider dashed={true}/>
 
                             <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                <Col span={4}>
+                                    <strong>评论:</strong>
+                                </Col>
+                                <Col span={18}>
+                                    <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                        {this.state.currentInputMessage.comments.map((cmt, index) => {
+                                            return (
+                                                <Tag
+                                                    key={index}
+                                                    closable={true}
+                                                    onClose={(e: any) => {
+                                                        e.preventDefault();
+                                                        const currentComments = this.state.currentInputMessage.comments.slice(0);
+                                                        currentComments.splice(index, 1);
+                                                        const cmg = this.state.currentInputMessage;
+                                                        cmg.comments = currentComments;
+                                                        this.setState({currentInputMessage: cmg});
+                                                    }}
+                                                >
+                                                    {cmt.by} -> {cmt.to} : {cmt.content}
+                                                </Tag>
+                                            );
+                                        })}
+                                        <Icon type="plus" onClick={() => this.setState({appendCommentVisible: true})}/>
+                                        <Modal
+                                            title={"添加评论"}
+                                            okText={"评论"}
+                                            cancelText={"取消"}
+                                            onCancel={() => this.setState({appendCommentVisible: false})}
+                                            onOk={() => {
+                                                const comment: CommentMessage = Object.assign({}, this.state.currentInputComment);
+                                                if (comment.content && comment.by) {
+                                                    const currentComments = this.state.currentInputMessage.comments.slice(0);
+                                                    if (comment.to === this.state.userName) {
+                                                        comment.to = "";
+                                                    }
+                                                    currentComments.push(comment);
+                                                    const cmg = Object.assign({}, this.state.currentInputMessage);
+                                                    cmg.comments = currentComments;
+                                                    this.setState({
+                                                        currentInputComment: {
+                                                            by: "",
+                                                            to: this.state.userName,
+                                                            content: "",
+                                                        },
+                                                        currentInputMessage: cmg,
+                                                        appendCommentVisible: false,
+                                                    })
+                                                } else {
+                                                    this.setState({
+                                                        appendCommentVisible: false,
+                                                    })
+                                                }
+                                            }}
+                                            visible={this.state.appendCommentVisible}
+                                        >
+                                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                                <Col span={4}>
+                                                    <strong>来自：</strong>
+                                                </Col>
+                                                <Col span={12}>
+                                                    <Input
+                                                        autoFocus={true}
+                                                        placeholder={this.state.currentInputComment.by}
+                                                        onChange={(e: any) => {
+                                                            const ccmt: CommentMessage = Object.assign({}, this.state.currentInputComment);
+                                                            ccmt.by = e.target.value;
+                                                            this.setState({currentInputComment: ccmt})
+                                                        }}
+                                                        value={this.state.currentInputComment.by}
+                                                        prefix={<Icon type={"user"}/>}
+                                                        suffix={
+                                                            <Popover
+                                                                trigger={"click"}
+                                                                content={
+                                                                    <EmojiPicker
+                                                                        onSelect={(emoji: string) => {
+                                                                            let comment: CommentMessage = Object.assign({}, this.state.currentInputComment);
+                                                                            comment.by += emoji;
+                                                                            this.setState({currentInputComment: comment});
+                                                                        }}
+                                                                    />
+                                                                }
+                                                                placement={"bottom"}>
+                                                                <Icon type="frown" style={{color: "rgba(0,0,0,.45)"}}/>
+                                                            </Popover>
+                                                        }
+                                                    />
+                                                </Col>
+                                            </Row>
+
+                                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                                <Col span={4}>
+                                                    <strong>评论给：</strong>
+                                                </Col>
+                                                <Col span={12}>
+                                                    <Input
+                                                        placeholder={this.state.userName}
+                                                        onChange={(e: any) => {
+                                                            const ccmt: CommentMessage = Object.assign({}, this.state.currentInputComment);
+                                                            ccmt.to = e.target.value;
+                                                            this.setState({currentInputComment: ccmt})
+                                                        }}
+                                                        value={this.state.currentInputComment.to}
+                                                        prefix={<Icon type={"user"}/>}
+                                                        suffix={
+                                                            <Popover
+                                                                trigger={"click"}
+                                                                content={
+                                                                    <EmojiPicker
+                                                                        onSelect={(emoji: string) => {
+                                                                            let comment: CommentMessage = Object.assign({}, this.state.currentInputComment);
+                                                                            comment.to += emoji;
+                                                                            this.setState({currentInputComment: comment});
+                                                                        }}
+                                                                    />
+                                                                }
+                                                                placement={"bottom"}>
+                                                                <Icon type="frown" style={{color: "rgba(0,0,0,.45)"}}/>
+                                                            </Popover>
+                                                        }
+                                                    />
+                                                </Col>
+                                            </Row>
+                                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
+                                                <Col span={4}>
+                                                    <strong>内容:</strong>
+                                                </Col>
+                                                <Col span={15}>
+                                                    <TextArea
+                                                        onChange={(e: any) => {
+                                                            const comment = Object.assign({}, this.state.currentInputComment);
+                                                            comment.content = e.target.value;
+                                                            this.setState({currentInputComment: comment});
+                                                        }}
+                                                        value={this.state.currentInputComment.content}
+                                                    />
+                                                </Col>
+                                                <Col span={1}>
+                                                    <Popover
+                                                        trigger={"click"}
+                                                        content={
+                                                            <EmojiPicker
+                                                                onSelect={(emoji: string) => {
+                                                                    const comment = Object.assign({}, this.state.currentInputComment);
+                                                                    comment.content += emoji;
+                                                                    this.setState({currentInputComment: comment});
+                                                                }}
+                                                            />
+                                                        }
+                                                        placement={"right"}>
+                                                        <Icon type="frown" style={{color: "rgba(0,0,0,.45)"}}/>
+                                                    </Popover>
+                                                </Col>
+                                            </Row>
+
+                                        </Modal>
+                                    </Row>
+                                </Col>
+                            </Row>
+
+                            <Divider dashed={true}/>
+
+                            <Row type={"flex"} justify={"start"} align={"middle"} gutter={24}>
                                 <Col offset={18} span={6}>
                                     <Button
                                         type="primary"
                                         onClick={() => {
                                             let msgs: FriendCircleMessage[] = this.state.messages;
                                             const cmsg: FriendCircleMessage = Object.assign({}, this.state.currentInputMessage);
+                                            if (cmsg.message === "" && !cmsg.addition) {
+                                                message.error("需要朋友圈内容");
+                                                return;
+                                            }
                                             msgs.push(cmsg);
                                             this.setState({messages: msgs});
                                         }}

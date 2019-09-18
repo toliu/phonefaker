@@ -12,7 +12,7 @@ type PictureMessage = {
 type AdditionMessage = ForwardMessage |
     PictureMessage;
 
-type CommentMessage = {
+export type CommentMessage = {
     by: string;
     to?: string,
     content: string,

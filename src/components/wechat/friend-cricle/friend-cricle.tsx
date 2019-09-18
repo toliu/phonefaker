@@ -36,12 +36,6 @@ export class FriendCircle extends React.Component <FriendCircleProps, FriendCirc
         }
     }
 
-    public componentDidUpdate() {
-        if (this.screenRef.current) {
-            this.screenRef.current.scrollTop = this.screenRef.current.scrollHeight;
-        }
-    }
-
     public render(): React.ReactElement {
         return (
             <FixedPhone>
