@@ -1,0 +1,146 @@
+.iphone {
+    position: relative;
+    display: inline-block;
+    width: 311px;
+    height: 643px;
+    background: url("../img/iphone.png") no-repeat;
+    background-size: 311px 643px;
+    font-family: "PingFang SC", "iphone", serif;
+}
+
+@font-face {
+    font-family: "iphone";
+    src: url("../ttf/PingFang-JianZhongHeiTi-2.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.iphone *[datatype="clickable"]:hover {
+    cursor: pointer;
+    background-color: #cccccc;
+}
+
+.iphone > .button {
+    position: absolute;
+    left: 132px;
+    bottom: 17px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    border: 1px solid #cccccc;
+    background-color: #e4e4e4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.iphone > .button:active {
+    background-color: #CCC;
+    left: 135px;
+    bottom: 20px;
+    width: 42px;
+    height: 42px;
+    box-shadow: 0 0 2px 2px #494949;
+}
+
+.iphone > .screen {
+    margin-top: 76px;
+    margin-left: 16px;
+    width: 278px;
+    height: 492px;
+    overflow: scroll;
+    box-shadow: 0 0 2px 2px #cccccc;
+}
+
+.iphone > .screen::-webkit-scrollbar {
+    display: none;
+}
+
+.header {
+    display: flex;
+    position: absolute;
+    height: 11px;
+    font-size: 12px;
+    width: 278px;
+    padding: 0 1%;
+}
+
+.header p {
+    display: inline-block;
+    font-weight: bolder;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.8);
+}
+
+.header > div {
+    display: inline-flex;
+    justify-content: left;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.header .signal {
+    width: 5%;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.header .signal .bar {
+    width: 20%;
+    min-height: 25%;
+    display: inline-block;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.header .operator {
+    width: 18%;
+}
+
+.header .type {
+    width: 7%;
+}
+
+.header .type > .wifi {
+    width: 100%;
+    height: 100%;
+    background: url("../img/wifi.svg") no-repeat left center;
+    background-size: 55%;
+}
+
+.header .timer {
+    width: 38%;
+    justify-content: center;
+}
+
+.header .electricity {
+    justify-content: flex-end;
+}
+
+.header .battery {
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2px;
+    width: 7%;
+    background: url("../img/battery.png") no-repeat center;
+    background-size: 100%;
+}
+
+.header .battery .value {
+    min-width: 1px;
+    border-radius: 1px;
+    height: 50%;
+    transition: 0.5s;
+}
+
+.header .lightning {
+    background: url("../img/lightning.png") no-repeat center center;
+    background-size: 8px;
+    width: 3%;
+}
