@@ -208,3 +208,8 @@
 .reward .alipay100 {
     background: url("../img/qcode/alipay-reward-qcode.png") no-repeat right;
 }
+
+.screen .body {
+    width: 100%;
+    height: 100%;
+}

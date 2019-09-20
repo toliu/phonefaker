@@ -99,6 +99,9 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                         </div>
                         <div className={styles.lightning} style={{display: this.state.batteryStatus.currentValue() === "charge" ? "inline-flex" : "none"}}/>
                     </div>
+                    <div className={styles.body}>
+                        {this.props.children}
+                    </div>
                 </div>
                 <div className={styles.button} datatype={"clickable"} onClick={() => this.setState({rewardModalVisible: true})}>
                     {this.buttonText}
