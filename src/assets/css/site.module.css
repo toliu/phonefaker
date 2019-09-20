@@ -29,3 +29,16 @@
     background-size: 30px;
     text-align: left;
 }
+
+.emoji {
+    position: relative;
+    top: 2px;
+    display: inline;
+    height: 14px;
+    width: 14px;
+    overflow: hidden;
+}
+
+.emoji > span {
+    height: 14px !important;
+}

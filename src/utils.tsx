@@ -3,6 +3,8 @@ import "emoji-mart/css/emoji-mart.css";
 import {Emoji, Picker} from "emoji-mart";
 import * as React from "react";
 
+import styles from "./assets/css/site.module.css";
+
 interface EmojiTextProps {
     content: string;
     emojiSize?: 14 | 16;
@@ -12,8 +14,9 @@ export class EmojiText extends React.Component<EmojiTextProps, {}> {
 
     public render(): React.ReactElement {
         const contentList: string[] = this.props.content.split(/[[|\]]/);
+
         return (
-            <span style={{display: "flex", alignItems: "center"}}>
+            <span>
                 {contentList.map((item: string, index: number) => {
                     if (!item) {
                         return null;
@@ -23,12 +26,16 @@ export class EmojiText extends React.Component<EmojiTextProps, {}> {
                         item = item.replace(" ", "&nbsp;");
                         return <span key={index} dangerouslySetInnerHTML={{__html: item}}/>
                     }
-                    return <Emoji
-                        key={index}
-                        size={this.props.emojiSize ? this.props.emojiSize : 14}
-                        forceSize={true}
-                        emoji={`:${item}:`}
-                    />
+                    return (
+                        <span className={styles.emoji}>
+                            <Emoji
+                                key={index}
+                                size={this.props.emojiSize ? this.props.emojiSize : 14}
+                                forceSize={true}
+                                emoji={`:${item}:`}
+                            />
+                        </span>
+                    );
                 })}
             </span>
         )
