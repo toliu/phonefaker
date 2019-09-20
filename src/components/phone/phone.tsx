@@ -1,3 +1,5 @@
+import "antd/dist/antd.css";
+
 import * as moment from "moment";
 import * as React from "react";
 import {message, Modal, Tabs, TimePicker, Icon} from "antd";

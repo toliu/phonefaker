@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 
 import * as React from "react";
 import {Link} from "react-router-dom";
