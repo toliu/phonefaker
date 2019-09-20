@@ -42,7 +42,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
             electricity: 64,
             batteryStatus: new ArrayLoops(["normal", "charge", "saving"]),
             timerSetVisible: false,
-            rewardModalVisible: true,
+            rewardModalVisible: false,
         };
     }
 
@@ -151,6 +151,12 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                                         <div className={styles.wechat5}/>
                                     </div>
                                 </div>
+                                <div>
+                                    <p datatype={"title"}><Icon type="alipay-circle" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.alipay5}/>
+                                    </div>
+                                </div>
                             </div>
                         </TabPane>
                         <TabPane tab="鸡腿" key="10">
@@ -159,6 +165,12 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                                     <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
                                     <div datatype={"qcode"}>
                                         <div className={styles.wechat10}/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p datatype={"title"}><Icon type="alipay-circle" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.alipay10}/>
                                     </div>
                                 </div>
                             </div>
@@ -171,14 +183,26 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                                         <div className={styles.wechat30}/>
                                     </div>
                                 </div>
+                                <div>
+                                    <p datatype={"title"}><Icon type="alipay-circle" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.alipay30}/>
+                                    </div>
+                                </div>
                             </div>
                         </TabPane>
-                        <TabPane tab="猪肉" key="50">
+                        <TabPane tab="鲈鱼" key="50">
                             <div className={styles.reward}>
                                 <div>
                                     <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
                                     <div datatype={"qcode"}>
                                         <div className={styles.wechat50}/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p datatype={"title"}><Icon type="alipay-circle" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.alipay50}/>
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +213,13 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                                     <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
                                     <div datatype={"qcode"}>
                                         <div className={styles.wechat100}/>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p datatype={"title"}><Icon type="alipay-circle" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.alipay100}/>
                                     </div>
                                 </div>
                             </div>

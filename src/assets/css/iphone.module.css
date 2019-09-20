@@ -188,3 +188,23 @@
 .reward .wechat100 {
     background: url("../img/qcode/wechat-reward-qcode.png") no-repeat right;
 }
+
+.reward .alipay5 {
+    background: url("../img/qcode/alipay-reward-qcode.png") no-repeat left;
+}
+
+.reward .alipay10 {
+    background: url("../img/qcode/alipay-reward-qcode.png") no-repeat -210px;
+}
+
+.reward .alipay30 {
+    background: url("../img/qcode/alipay-reward-qcode.png") no-repeat -430px;
+}
+
+.reward .alipay50 {
+    background: url("../img/qcode/alipay-reward-qcode.png") no-repeat -640px;
+}
+
+.reward .alipay100 {
+    background: url("../img/qcode/alipay-reward-qcode.png") no-repeat right;
+}
