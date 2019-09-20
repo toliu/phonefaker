@@ -91,33 +91,6 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                         <div className={styles.timer} datatype={"clickable"} onClick={() => this.setState({timerSetVisible: true})}>
                             <p>{this.nowTimeString()}</p>
                         </div>
-                        <Modal
-                            title={"设置时间"}
-                            visible={this.state.timerSetVisible}
-                            okText={"设置"}
-                            cancelText={"复位"}
-                            onCancel={() => {
-                                this.timer = setInterval(() => {
-                                    this.setState({timer: new Date()})
-                                }, 30000);
-                                this.setState({
-                                    timer: new Date(),
-                                    timerSetVisible: false,
-                                })
-                            }}
-                            onOk={() => {
-                                clearInterval(this.timer);
-                                this.setState({timerSetVisible: false})
-                            }}
-                        >
-                            <TimePicker
-                                onChange={(time: moment.Moment, timeString: string) => {
-                                    const tm: Date = new Date(this.state.timer.valueOf());
-                                    tm.setHours(time.hours(), time.minutes());
-                                    this.setState({timer: tm});
-                                }}
-                            />
-                        </Modal>
                         <div style={{width: this.state.batteryStatus.currentValue() === "charge" ? "22%" : "25%"}} className={styles.electricity} datatype={"clickable"} onClick={this.modifyElectricity(true)} onContextMenu={this.modifyElectricity()}>
                             <p>{electricity}%</p>
                         </div>
@@ -131,6 +104,33 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                     {this.buttonText}
                 </div>
 
+                <Modal
+                    title={"设置时间"}
+                    visible={this.state.timerSetVisible}
+                    okText={"设置"}
+                    cancelText={"复位"}
+                    onCancel={() => {
+                        this.timer = setInterval(() => {
+                            this.setState({timer: new Date()})
+                        }, 30000);
+                        this.setState({
+                            timer: new Date(),
+                            timerSetVisible: false,
+                        })
+                    }}
+                    onOk={() => {
+                        clearInterval(this.timer);
+                        this.setState({timerSetVisible: false})
+                    }}
+                >
+                    <TimePicker
+                        onChange={(time: moment.Moment, timeString: string) => {
+                            const tm: Date = new Date(this.state.timer.valueOf());
+                            tm.setHours(time.hours(), time.minutes());
+                            this.setState({timer: tm});
+                        }}
+                    />
+                </Modal>
                 <Modal
                     visible={this.state.rewardModalVisible}
                     onCancel={() => {
