@@ -5,6 +5,12 @@ import {storiesOf} from "@storybook/react";
 import {FixedChat} from "../src/components/wechat/chat/fixedChat";
 
 import default_avatar1 from "../src/assets/img/default_avatar1.jpg";
+import {WechatChat} from "../src/components/wechat/chat/chat";
+
+storiesOf("微信聊天", module)
+    .add("文本与语音", () => {
+        return <WechatChat title={"[kiss] 汤圆。"}/>
+    });
 
 storiesOf("微信对话", module)
     .add("文本和语音", () => {

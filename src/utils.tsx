@@ -43,6 +43,35 @@ export function ParseContent(content: string): any[] {
     })
 }
 
+export class EmojiText extends React.Component<{
+    content: string;
+    emojiSize?: 14 | 16;
+}, {}> {
+
+    public render(): React.ReactElement {
+        const contentList: string[] = this.props.content.split(/[\[|\]]/);
+        return (
+            <span style={{display: "flex", alignItems: "center"}}>
+                {contentList.map((item: string, index: number) => {
+                    if (!item) {
+                        return null;
+                    }
+                    const odd: boolean = index % 2 === 0;
+                    if (odd) {
+                        item = item.replace(" ", "&nbsp;");
+                        return <span key={index} dangerouslySetInnerHTML={{__html: item}}/>
+                    }
+                    return <Emoji
+                        key={index}
+                        size={this.props.emojiSize ? this.props.emojiSize : 14}
+                        forceSize={true}
+                        emoji={`:${item}:`}
+                    />
+                })}
+            </span>
+        )
+    }
+}
 
 export class EmojiPicker extends React.Component<{
     onSelect: (emoji: string) => void;
