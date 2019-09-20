@@ -1,10 +1,11 @@
 import * as moment from "moment";
 import * as React from "react";
-import {Modal, TimePicker} from "antd";
+import {message, Modal, Tabs, TimePicker, Icon} from "antd";
 
 import styles from "../../assets/css/iphone.module.css";
 import {ArrayLoops} from "../../utils";
 
+const {TabPane} = Tabs;
 const buttonTexts: ArrayLoops = new ArrayLoops(["扶贫", "加餐", "打赏", "点赞"]);
 
 interface IPhoneStats {
@@ -16,6 +17,7 @@ interface IPhoneStats {
     batteryStatus: ArrayLoops,
 
     timerSetVisible: boolean;
+    rewardModalVisible: boolean;
 }
 
 export class IPhone extends React.Component<{}, IPhoneStats> {
@@ -40,6 +42,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
             electricity: 64,
             batteryStatus: new ArrayLoops(["normal", "charge", "saving"]),
             timerSetVisible: false,
+            rewardModalVisible: true,
         };
     }
 
@@ -124,9 +127,74 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                         <div className={styles.lightning} style={{display: this.state.batteryStatus.currentValue() === "charge" ? "inline-flex" : "none"}}/>
                     </div>
                 </div>
-                <div className={styles.button} datatype={"clickable"}>
+                <div className={styles.button} datatype={"clickable"} onClick={() => this.setState({rewardModalVisible: true})}>
                     {this.buttonText}
                 </div>
+
+                <Modal
+                    visible={this.state.rewardModalVisible}
+                    onCancel={() => {
+                        message.warn("┭┮﹏┭┮");
+                        this.setState({rewardModalVisible: false})
+                    }}
+                    onOk={() => this.setState({rewardModalVisible: false})}
+                    okText={"返回"}
+                    cancelText={"饿死作者"}
+                >
+                    <p style={{fontWeight: "bold"}}>喂作者:</p>
+                    <Tabs defaultActiveKey="5">
+                        <TabPane tab="豆浆" key="5">
+                            <div className={styles.reward}>
+                                <div>
+                                    <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.wechat5}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="鸡腿" key="10">
+                            <div className={styles.reward}>
+                                <div>
+                                    <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.wechat10}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="咖啡" key="30">
+                            <div className={styles.reward}>
+                                <div>
+                                    <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.wechat30}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="猪肉" key="50">
+                            <div className={styles.reward}>
+                                <div>
+                                    <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.wechat50}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="大餐" key="100">
+                            <div className={styles.reward}>
+                                <div>
+                                    <p datatype={"title"}><Icon type="wechat" theme="filled"/></p>
+                                    <div datatype={"qcode"}>
+                                        <div className={styles.wechat100}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </TabPane>
+                    </Tabs>
+                </Modal>
             </div>
         );
     }
