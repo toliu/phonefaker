@@ -3,19 +3,17 @@ import * as React from "react";
 import {Modal, TimePicker} from "antd";
 
 import styles from "../../assets/css/iphone.module.css";
+import {ArrayLoops} from "../../utils";
 
-const buttonTexts: string[] = ["扶贫", "加餐", "打赏", "点赞"];
-const operators: string[] = ["中国移动", "中国联通", "中国电信"];
-const signalTypes: string[] = ["wifi", "3G", "4G", "5G", "6G"];
-const batteryStatuses: string[] = ["normal", "charge", "saving"];
+const buttonTexts: ArrayLoops = new ArrayLoops(["扶贫", "加餐", "打赏", "点赞"]);
 
 interface IPhoneStats {
-    signalCount: number;
-    operator: string;
-    signalType: string;
+    signalCount: ArrayLoops;
+    operator: ArrayLoops;
+    signalType: ArrayLoops;
     timer: Date;
     electricity: number;
-    batteryStatus: string,
+    batteryStatus: ArrayLoops,
 
     timerSetVisible: boolean;
 }
@@ -29,18 +27,18 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
         this.nowTimeString = this.nowTimeString.bind(this);
         this.modifyElectricity = this.modifyElectricity.bind(this);
 
-        this.buttonText = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+        this.buttonText = buttonTexts.random();
         this.timer = setInterval(() => {
             this.setState({timer: new Date()})
         }, 30000);
 
         this.state = {
-            signalCount: 3,
-            operator: operators[0],
-            signalType: signalTypes[0],
+            signalCount: new ArrayLoops([1, 2, 3, 4], 2),
+            operator: new ArrayLoops(["中国移动", "中国联通", "中国电信"]),
+            signalType: new ArrayLoops(["wifi", "3G", "4G", "5G", "6G"]),
             timer: new Date(),
             electricity: 64,
-            batteryStatus: batteryStatuses[0],
+            batteryStatus: new ArrayLoops(["normal", "charge", "saving"]),
             timerSetVisible: false,
         };
     }
@@ -49,7 +47,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
 
         const electricity: number = this.state.electricity;
         let batteryValueStyles: any = {width: electricity / 100 * 80 + "%"};
-        switch (this.state.batteryStatus) {
+        switch (this.state.batteryStatus.currentValue()) {
             case ("normal"):
                 if (electricity <= 20) {
                     batteryValueStyles["backgroundColor"] = "red";
@@ -61,7 +59,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                 batteryValueStyles["backgroundColor"] = "#56EB2C";
                 break;
             default:
-                batteryValueStyles["backgroundColor"] = "#ebb988";
+                batteryValueStyles["backgroundColor"] = "#FFCC0C";
         }
 
         return (
@@ -70,23 +68,22 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                     <div className={styles.header}>
                         <div datatype={"clickable"} className={styles.signal}
                              onClick={() => {
-                                 const sc: number = this.state.signalCount % 5 + 1;
-                                 this.setState({signalCount: sc === 0 ? 1 : sc})
+                                 this.setState({signalCount: this.state.signalCount.next()})
                              }}>
                             {Array.from({length: 4}).map((_, index) => {
-                                return <div className={styles.bar} style={{height: (index + 1) / 4 * 50 + 20 + "%", visibility: (index + 1) > this.state.signalCount ? "hidden" : "visible"}}/>;
+                                return <div className={styles.bar} style={{height: (index + 1) / 4 * 50 + 20 + "%", visibility: (index + 1) > this.state.signalCount.currentValue() ? "hidden" : "visible"}}/>;
                             })}
                         </div>
                         <div className={styles.operator} datatype={"clickable"} onClick={() => {
-                            this.setState({operator: IPhone.loop(operators, this.state.operator)})
+                            this.setState({operator: this.state.operator.next()})
                         }}>
-                            <p>{this.state.operator}</p>
+                            <p>{this.state.operator.currentValue()}</p>
                         </div>
                         <div className={styles.type} datatype={"clickable"} onClick={() => {
-                            this.setState({signalType: IPhone.loop(signalTypes, this.state.signalType)})
+                            this.setState({signalType: this.state.signalType.next()})
                         }}>
-                            <p style={{display: this.state.signalType !== "wifi" ? "inline-block" : "none"}}>{this.state.signalType}</p>
-                            <div style={{display: this.state.signalType === "wifi" ? "inline-block" : "none"}} className={styles.wifi}/>
+                            <p style={{display: this.state.signalType.currentValue() !== "wifi" ? "inline-block" : "none"}}>{this.state.signalType.currentValue()}</p>
+                            <div style={{display: this.state.signalType.currentValue() === "wifi" ? "inline-block" : "none"}} className={styles.wifi}/>
                         </div>
                         <div className={styles.timer} datatype={"clickable"} onClick={() => this.setState({timerSetVisible: true})}>
                             <p>{this.nowTimeString()}</p>
@@ -118,13 +115,13 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                                 }}
                             />
                         </Modal>
-                        <div style={{width: this.state.batteryStatus === "charge" ? "22%" : "25%"}} className={styles.electricity} datatype={"clickable"} onClick={this.modifyElectricity(true)} onContextMenu={this.modifyElectricity()}>
+                        <div style={{width: this.state.batteryStatus.currentValue() === "charge" ? "22%" : "25%"}} className={styles.electricity} datatype={"clickable"} onClick={this.modifyElectricity(true)} onContextMenu={this.modifyElectricity()}>
                             <p>{electricity}%</p>
                         </div>
-                        <div className={styles.battery} datatype={"clickable"} onClick={() => this.setState({batteryStatus: IPhone.loop(batteryStatuses, this.state.batteryStatus)})}>
+                        <div className={styles.battery} datatype={"clickable"} onClick={() => this.setState({batteryStatus: this.state.batteryStatus.next()})}>
                             <div className={styles.value} style={batteryValueStyles}/>
                         </div>
-                        <div className={styles.lightning} style={{display: this.state.batteryStatus === "charge" ? "inline-flex" : "none"}}/>
+                        <div className={styles.lightning} style={{display: this.state.batteryStatus.currentValue() === "charge" ? "inline-flex" : "none"}}/>
                     </div>
                 </div>
                 <div className={styles.button} datatype={"clickable"}>
@@ -158,13 +155,5 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
             }
             that.setState({electricity: newElectricity})
         }
-    }
-
-    private static loop(array: string[], item: string): string {
-        const index: number = array.indexOf(item);
-        if (index === -1 || index + 1 >= array.length) {
-            return array[0];
-        }
-        return array[index + 1];
     }
 }

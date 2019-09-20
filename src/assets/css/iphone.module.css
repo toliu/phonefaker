@@ -124,18 +124,18 @@
 }
 
 .header .battery {
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-start;
-    padding-left: 2px;
     width: 7%;
-    background: url("../img/battery.png") no-repeat center;
+    padding: 0 0 1px 1px;
+    background: url("../img/battery.png") no-repeat bottom;
     background-size: 100%;
 }
 
 .header .battery .value {
     min-width: 1px;
     border-radius: 1px;
-    height: 50%;
+    height: 70%;
     transition: 0.5s;
 }
 

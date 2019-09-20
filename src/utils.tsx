@@ -76,3 +76,36 @@ export class EmojiPicker extends React.Component<{
         );
     }
 }
+
+export class ArrayLoops {
+    private readonly values: any[];
+
+    private currentIndex: number;
+
+    constructor(values: any[], initialIndex?: number) {
+        this.next = this.next.bind(this);
+        this.random = this.random.bind(this);
+        this.currentValue = this.currentValue.bind(this);
+
+        this.values = values;
+        this.currentIndex = initialIndex ? initialIndex : 0;
+    }
+
+    public currentValue(): any {
+        return this.values[this.currentIndex];
+    }
+
+    public next(): any {
+        const ni: number = this.currentIndex + 1;
+        if (ni >= this.values.length) {
+            this.currentIndex = 0;
+        } else {
+            this.currentIndex = ni;
+        }
+        return this;
+    }
+
+    public random(): any {
+        return this.values[Math.floor(Math.random() * this.values.length)];
+    }
+}
