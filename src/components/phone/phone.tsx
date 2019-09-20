@@ -8,6 +8,10 @@ import {ArrayLoops} from "../../utils";
 const {TabPane} = Tabs;
 const buttonTexts: ArrayLoops = new ArrayLoops(["扶贫", "加餐", "打赏", "点赞"]);
 
+interface IPhoneProps {
+    headerInverted?: boolean;
+}
+
 interface IPhoneStats {
     signalCount: ArrayLoops;
     operator: ArrayLoops;
@@ -20,7 +24,7 @@ interface IPhoneStats {
     rewardModalVisible: boolean;
 }
 
-export class IPhone extends React.Component<{}, IPhoneStats> {
+export class IPhone extends React.Component<IPhoneProps, IPhoneStats> {
     private readonly buttonText: string;
     private timer: any;
 
@@ -37,7 +41,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
         this.state = {
             signalCount: new ArrayLoops([1, 2, 3, 4], 2),
             operator: new ArrayLoops(["中国移动", "中国联通", "中国电信"]),
-            signalType: new ArrayLoops(["wifi", "3G", "4G", "5G", "6G"]),
+            signalType: new ArrayLoops(["3G", "4G", "5G", "6G", "wifi"]),
             timer: new Date(),
             electricity: 64,
             batteryStatus: new ArrayLoops(["normal", "charge", "saving"]),
@@ -56,7 +60,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                     batteryValueStyles["backgroundColor"] = "red";
                     break;
                 }
-                batteryValueStyles["backgroundColor"] = "black";
+                batteryValueStyles["backgroundColor"] = this.props.headerInverted ? "rgba(255,255,255,0.7)" : "black";
                 break;
             case ("charge"):
                 batteryValueStyles["backgroundColor"] = "#56EB2C";
@@ -68,13 +72,20 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
         return (
             <div className={styles.iphone}>
                 <div className={styles.screen}>
-                    <div className={styles.header}>
+                    <div className={styles.header} style={{color: this.props.headerInverted ? "rgba(255,255,255,0.7)" : "rgba(0, 0, 0, 0.7)"}}>
                         <div datatype={"clickable"} className={styles.signal}
                              onClick={() => {
                                  this.setState({signalCount: this.state.signalCount.next()})
                              }}>
                             {Array.from({length: 4}).map((_, index) => {
-                                return <div className={styles.bar} style={{height: (index + 1) / 4 * 50 + 20 + "%", visibility: (index + 1) > this.state.signalCount.currentValue() ? "hidden" : "visible"}}/>;
+                                return <div
+                                    className={styles.bar}
+                                    style={{
+                                        backgroundColor: this.props.headerInverted ? "white" : "black",
+                                        height: (index + 1) / 4 * 50 + 20 + "%",
+                                        visibility: (index + 1) > this.state.signalCount.currentValue() ? "hidden" : "visible"
+                                    }}
+                                />;
                             })}
                         </div>
                         <div className={styles.operator} datatype={"clickable"} onClick={() => {
@@ -86,7 +97,7 @@ export class IPhone extends React.Component<{}, IPhoneStats> {
                             this.setState({signalType: this.state.signalType.next()})
                         }}>
                             <p style={{display: this.state.signalType.currentValue() !== "wifi" ? "inline-block" : "none"}}>{this.state.signalType.currentValue()}</p>
-                            <div style={{display: this.state.signalType.currentValue() === "wifi" ? "inline-block" : "none"}} className={styles.wifi}/>
+                            <div style={{display: this.state.signalType.currentValue() === "wifi" ? "inline-block" : "none"}} className={this.props.headerInverted ? styles.white : styles.wifi}/>
                         </div>
                         <div className={styles.timer} datatype={"clickable"} onClick={() => this.setState({timerSetVisible: true})}>
                             <p>{this.nowTimeString()}</p>
