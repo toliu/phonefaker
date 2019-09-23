@@ -1,4 +1,5 @@
 import * as React from "react";
+import {AlreadyFriend} from "./already-friend";
 import {Datetime} from "./datetime";
 
 import {Exchange} from "./exchange";
@@ -43,6 +44,8 @@ export class Messages extends React.Component<MessagesProps, {}> {
                                 return null;
                             }
                             return <Reject msg={msg} key={index}/>;
+                        case "friend":
+                            return <AlreadyFriend msg={msg} key={index}/>
                     }
                     return <span key={index}>message</span>
                 })}

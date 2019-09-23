@@ -43,8 +43,11 @@ export type RejectMessage = {
     rejectBy: string,
 }
 
-export type AreadyFriendMessage = {
+export type AlreadyFriendMessage = {
     kind: "friend",
+    sender: string,
+    user: string,
+    friend: string,
 }
 
 export type MessageTypes = TextMessage |
@@ -53,4 +56,5 @@ export type MessageTypes = TextMessage |
     ExchangeMessage |
     ImageMessage |
     DateTimeMessage |
-    RejectMessage;
+    RejectMessage |
+    AlreadyFriendMessage;

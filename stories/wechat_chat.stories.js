@@ -143,6 +143,12 @@ storiesOf("微信聊天", module)
                 user: "时光",
                 rejectBy: "[kiss] 汤圆。",
             },
+            {
+                kind: "friend",
+                sender: "时光",
+                user: "时光",
+                friend: "[kiss] 汤圆。",
+            },
         ];
         return <WechatChat
             userName={"时光"}
