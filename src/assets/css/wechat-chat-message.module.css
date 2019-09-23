@@ -62,7 +62,72 @@
     border-radius: 3px;
 }
 
-.message .mine:after, .message .chatter:after {
+.message .package {
+    width: 67%;
+    height: 50px;
+    background-color: #fa9d3b;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 10px;
+}
+
+.message .package div[datatype="icon"] {
+    height: 100%;
+    width: 16%;
+    background-size: auto 100%;
+    margin-right: 7px;
+}
+
+.message .package .open {
+    background: url("../img/wechat-red-package-icon.png") no-repeat;
+}
+
+.message .package .close {
+    background: url("../img/wechat-red-package-icon.png") no-repeat right;
+}
+
+.message .package .content {
+    height: 100%;
+    width: 78%;
+    font-size: 13px;
+    color: white;
+    font-family: serif;
+    font-weight: normal;
+}
+
+.message .package .content .received {
+    position: relative;
+    font-size: 12px;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.85);
+    left: -10px;
+    bottom: -5px;
+    font-weight: lighter;
+}
+
+.message .package .label {
+    position: absolute;
+    background-color: white;
+    height: 12px;
+    border-radius: 0 0 4px 4px;
+    width: 100%;
+    font-size: 12px;
+    bottom: -12px;
+    left: 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.message .package .label > p {
+    position: relative;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.75);
+    left: -15px;
+    bottom: 1px;
+}
+
+.message .mine, .message .chatter {
     position: absolute;
     display: block;
     top: 11px;
@@ -73,14 +138,14 @@
     border-radius: 1px;
 }
 
-.message .mine:after {
+.message .mine {
     right: -2px;
-    background-color: #95EC69;
+    background-color: inherit;
 }
 
-.message .chatter:after {
+.message .chatter {
     left: -2px;
-    background-color: #FFF;
+    background-color: inherit;
 }
 
 .message > *[datatype="message"] > .reject {

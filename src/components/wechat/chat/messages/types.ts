@@ -16,4 +16,11 @@ export type VoiceMessage = UserMessage & {
     voice: number,
 }
 
-export type MessageTypes = TextMessage | VoiceMessage;
+export type RedPackageMessage = UserMessage & {
+    kind: "redPackage",
+    title: string,
+}
+
+export type MessageTypes = TextMessage |
+    VoiceMessage |
+    RedPackageMessage;
