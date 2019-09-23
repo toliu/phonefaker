@@ -32,8 +32,14 @@ export type ImageMessage = UserMessage & {
     src: string,
 }
 
+export type DateTimeMessage = {
+    kind: "datetime",
+    datetime: Date,
+}
+
 export type MessageTypes = TextMessage |
     VoiceMessage |
     RedPackageMessage |
     ExchangeMessage |
-    ImageMessage;
+    ImageMessage |
+    DateTimeMessage;

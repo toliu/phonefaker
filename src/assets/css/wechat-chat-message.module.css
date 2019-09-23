@@ -25,6 +25,16 @@
     margin: 0 6px;
 }
 
+.message > *[datatype="system"] {
+    width: 90%;
+    padding-left: 5%;
+}
+
+.message > *[datatype="system"] > p {
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.75);
+}
+
 .message .text {
     word-break: break-word;
     font-size: 13px;
@@ -147,6 +157,12 @@
     height: auto;
     min-height: 100px;
     border-radius: 10px;
+}
+
+.message .datetime {
+    color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
 }
 
 .message .mine, .message .chatter {

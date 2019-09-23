@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Datetime} from "./datetime";
 
 import {Exchange} from "./exchange";
 import {Image} from "./image";
@@ -33,7 +34,9 @@ export class Messages extends React.Component<MessagesProps, {}> {
                             return <Exchange msg={msg} key={index}/>;
                         case "image":
                             msg.mine = msg.name === this.props.user;
-                            return <Image msg={msg} key={index}/>
+                            return <Image msg={msg} key={index}/>;
+                        case "datetime":
+                            return <Datetime msg={msg} key={index}/>
                     }
                     return <span key={index}>message</span>
                 })}

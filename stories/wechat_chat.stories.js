@@ -118,4 +118,21 @@ storiesOf("微信聊天", module)
             chatterAvatar={avatar2}
             messages={messages}
         />
+    })
+    .add("系统时间", () => {
+        const now = new Date();
+        const messages = [];
+        for (let index = 0; index <= 15; index++) {
+            messages.push({
+                kind: "datetime",
+                datetime: new Date(now.getTime() - index * 3600000 * 24 * 2),
+            })
+        }
+        return <WechatChat
+            userName={"时光"}
+            userAvatar={avatar1}
+            chatterName={"[kiss] 汤圆。"}
+            chatterAvatar={avatar2}
+            messages={messages}
+        />
     });
