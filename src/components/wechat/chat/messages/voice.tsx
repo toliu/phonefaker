@@ -8,6 +8,9 @@ export class Voice extends React.Component<{
     msg: VoiceMessage;
 }, {}> {
     public render(): React.ReactElement {
+        if (this.props.msg.rejected && !this.props.msg.mine) {
+            return <span/>;
+        }
         let voiceLength: number = this.props.msg.voice;
         if (voiceLength > 60) {
             voiceLength = 60;
@@ -35,9 +38,12 @@ export class Voice extends React.Component<{
                     <div className={styles.unread} style={{
                         left: this.props.msg.mine ? -15 : undefined,
                         right: this.props.msg.mine ? undefined : -15,
-                        display: this.props.msg.unread ? "block" : "none",
+                        display: this.props.msg.rejected ? "none" : this.props.msg.unread ? "block" : "none",
                     }}/>
                     <div className={this.props.msg.mine ? styles.mine : styles.chatter}/>
+                    <div className={styles.reject} style={{
+                        display: this.props.msg.rejected ? "block" : "none",
+                    }}/>
                 </div>
             </div>
         );
