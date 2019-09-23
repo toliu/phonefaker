@@ -8,6 +8,9 @@ export class Exchange extends React.Component<{
     msg: ExchangeMessage;
 }, {}> {
     public render(): React.ReactElement {
+        if (this.props.msg.rejected && !this.props.msg.mine) {
+            return <span/>;
+        }
         let money: string = (Math.floor(this.props.msg.money * 100) + "");
         money = money.slice(0, money.length - 2) + "." + money.slice(money.length - 2, 3);
         let postscript: string = this.props.msg.postscript;
@@ -44,6 +47,9 @@ export class Exchange extends React.Component<{
                         <p>微信转账</p>
                     </div>
                     <div className={this.props.msg.mine ? styles.mine : styles.chatter}/>
+                    <div className={styles.reject} style={{
+                        display: this.props.msg.rejected ? "block" : "none",
+                    }}/>
                 </div>
             </div>
         );

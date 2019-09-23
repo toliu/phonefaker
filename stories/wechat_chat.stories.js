@@ -58,7 +58,7 @@ storiesOf("微信聊天", module)
                 kind: "redPackage",
                 name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
                 avatar: index % 2 === 0 ? avatar1 : avatar2,
-                rejected: index % 3 === 0,
+                rejected: index % 2 === 0,
                 unread: index % 3,
                 title: title.slice(0, index),
             })
@@ -79,7 +79,7 @@ storiesOf("微信聊天", module)
                 kind: "exchange",
                 name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
                 avatar: index % 2 === 0 ? avatar1 : avatar2,
-                rejected: index % 3 === 0,
+                rejected: index % 2 === 0,
                 unread: index % 3,
                 money: index,
                 postscript: title.slice(0, index),

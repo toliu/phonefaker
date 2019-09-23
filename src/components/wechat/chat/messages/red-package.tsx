@@ -8,6 +8,9 @@ export class RedPackage extends React.Component <{
     msg: RedPackageMessage,
 }, {}> {
     public render(): React.ReactElement {
+        if (this.props.msg.rejected && !this.props.msg.mine) {
+            return <span/>;
+        }
         let title: string = this.props.msg.title;
         if (title.length > 9) {
             title = title.slice(0, 8) + "..."
@@ -38,6 +41,9 @@ export class RedPackage extends React.Component <{
                         <p>微信红包</p>
                     </div>
                     <div className={this.props.msg.mine ? styles.mine : styles.chatter}/>
+                    <div className={styles.reject} style={{
+                        display: this.props.msg.rejected ? "block" : "none",
+                    }}/>
                 </div>
             </div>
         );
