@@ -135,4 +135,20 @@ storiesOf("微信聊天", module)
             chatterAvatar={avatar2}
             messages={messages}
         />
+    })
+    .add("系统消息", () => {
+        const messages = [
+            {
+                kind: "reject",
+                user: "时光",
+                rejectBy: "[kiss] 汤圆。",
+            },
+        ];
+        return <WechatChat
+            userName={"时光"}
+            userAvatar={avatar1}
+            chatterName={"[kiss] 汤圆。"}
+            chatterAvatar={avatar2}
+            messages={messages}
+        />
     });

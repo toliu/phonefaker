@@ -27,7 +27,7 @@ export class Datetime extends React.Component<{
         } else if (secondDiff < day) {
             //    nothing todo
         } else if (secondDiff < 2 * day) {
-            timeString = "昨天" + " " + timeString;
+            timeString = "昨天 " + timeString;
         } else if (secondDiff < 7 * day) {
             timeString = weekdays[time.getDay()] + " " + timeString;
         } else if (secondDiff < 14 * day) {

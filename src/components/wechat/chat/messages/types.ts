@@ -37,9 +37,20 @@ export type DateTimeMessage = {
     datetime: Date,
 }
 
+export type RejectMessage = {
+    kind: "reject",
+    user: string,
+    rejectBy: string,
+}
+
+export type AreadyFriendMessage = {
+    kind: "friend",
+}
+
 export type MessageTypes = TextMessage |
     VoiceMessage |
     RedPackageMessage |
     ExchangeMessage |
     ImageMessage |
-    DateTimeMessage;
+    DateTimeMessage |
+    RejectMessage;

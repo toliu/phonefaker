@@ -26,8 +26,7 @@
 }
 
 .message > *[datatype="system"] {
-    width: 90%;
-    padding-left: 5%;
+    width: 100%;
 }
 
 .message > *[datatype="system"] > p {
@@ -163,6 +162,13 @@
     color: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: center;
+}
+
+.message .reject {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .message .mine, .message .chatter {

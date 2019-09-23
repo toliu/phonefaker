@@ -4,10 +4,11 @@ import {Datetime} from "./datetime";
 import {Exchange} from "./exchange";
 import {Image} from "./image";
 import {RedPackage} from "./red-package";
+import {Reject} from "./reject";
 import {Text} from "./text";
+import {Voice} from "./voice";
 
 import {MessageTypes} from "./types";
-import {Voice} from "./voice";
 
 interface MessagesProps {
     user: string;
@@ -36,7 +37,12 @@ export class Messages extends React.Component<MessagesProps, {}> {
                             msg.mine = msg.name === this.props.user;
                             return <Image msg={msg} key={index}/>;
                         case "datetime":
-                            return <Datetime msg={msg} key={index}/>
+                            return <Datetime msg={msg} key={index}/>;
+                        case "reject":
+                            if (msg.user !== this.props.user) {
+                                return null;
+                            }
+                            return <Reject msg={msg} key={index}/>;
                     }
                     return <span key={index}>message</span>
                 })}
