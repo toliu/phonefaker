@@ -32,6 +32,11 @@ export class Voice extends React.Component<{
                     <p style={{display: this.props.msg.mine ? "inline-block" : "none"}}>{voiceLength}''</p>
                     <div className={styles.icon} style={{transform: this.props.msg.mine ? "rotate(180deg)" : undefined}}/>
                     <p style={{display: this.props.msg.mine ? "none" : "inline-block"}}>{voiceLength}''</p>
+                    <div className={styles.unread} style={{
+                        left: this.props.msg.mine ? -15 : undefined,
+                        right: this.props.msg.mine ? undefined : -15,
+                        display: this.props.msg.unread ? "block" : "none",
+                    }}/>
                     <div className={this.props.msg.mine ? styles.mine : styles.chatter}/>
                 </div>
             </div>

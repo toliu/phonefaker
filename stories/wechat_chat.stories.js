@@ -16,7 +16,7 @@ storiesOf("微信聊天", module)
                 name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
                 avatar: index % 2 === 0 ? avatar1 : avatar2,
                 rejected: false,
-                unread: false,
+                unread: index % 5 === 0,
                 voice: index,
             })
         }
