@@ -137,6 +137,18 @@
     bottom: 1px;
 }
 
+.message .image {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.message .image > img {
+    width: 100px;
+    height: auto;
+    min-height: 100px;
+    border-radius: 10px;
+}
+
 .message .mine, .message .chatter {
     position: absolute;
     display: block;

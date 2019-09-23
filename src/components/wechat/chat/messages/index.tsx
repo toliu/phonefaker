@@ -1,5 +1,7 @@
 import * as React from "react";
+
 import {Exchange} from "./exchange";
+import {Image} from "./image";
 import {RedPackage} from "./red-package";
 import {Text} from "./text";
 
@@ -29,6 +31,9 @@ export class Messages extends React.Component<MessagesProps, {}> {
                         case "exchange":
                             msg.mine = msg.name === this.props.user;
                             return <Exchange msg={msg} key={index}/>;
+                        case "image":
+                            msg.mine = msg.name === this.props.user;
+                            return <Image msg={msg} key={index}/>
                     }
                     return <span key={index}>message</span>
                 })}

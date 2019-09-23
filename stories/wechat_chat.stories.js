@@ -7,6 +7,11 @@ import {WechatChat} from "../src/components/wechat/chat/chat";
 import avatar1 from "../src/assets/img/wechat-default-avatar1.jpg"
 import avatar2 from "../src/assets/img/wechat-default-avatar2.jpg"
 
+import pic1 from "./picture1.png";
+import pic2 from "./picture2.png";
+import pic3 from "./picture3.jpg";
+import pic4 from "./picture4.jpg";
+
 storiesOf("微信聊天", module)
     .add("文本对话", () => {
         const textMessages = [];
@@ -83,6 +88,27 @@ storiesOf("微信聊天", module)
                 unread: index % 3,
                 money: index,
                 postscript: title.slice(0, index),
+            })
+        }
+        return <WechatChat
+            userName={"时光"}
+            userAvatar={avatar1}
+            chatterName={"[kiss] 汤圆。"}
+            chatterAvatar={avatar2}
+            messages={messages}
+        />
+    })
+    .add("图片消息", () => {
+        const messages = [];
+        const pictures = [pic1, pic2, pic3, pic4];
+        for (let index = 1; index <= 15; index++) {
+            messages.push({
+                kind: "image",
+                name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
+                avatar: index % 2 === 0 ? avatar1 : avatar2,
+                rejected: index % 6 === 0,
+                unread: index % 5 === 0,
+                src: pictures[index % pictures.length],
             })
         }
         return <WechatChat

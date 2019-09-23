@@ -27,7 +27,13 @@ export type ExchangeMessage = UserMessage & {
     postscript: string,
 }
 
+export type ImageMessage = UserMessage & {
+    kind: "image",
+    src: string,
+}
+
 export type MessageTypes = TextMessage |
     VoiceMessage |
     RedPackageMessage |
-    ExchangeMessage;
+    ExchangeMessage |
+    ImageMessage;
