@@ -9,39 +9,20 @@ import avatar2 from "../src/assets/img/wechat-default-avatar2.jpg"
 
 storiesOf("微信聊天", module)
     .add("文本与语音", () => {
+        const voiceMessages = [];
+        for (let index = -1; index <= 90; index++) {
+            voiceMessages.push({
+                kind: "voice",
+                name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
+                avatar: index % 2 === 0 ? avatar1 : avatar2,
+                rejected: false,
+                unread: false,
+                voice: index,
+            })
+        }
+
         const messages = [
-            {
-                kind: "voice",
-                name: "[kiss] 汤圆。",
-                avatar: avatar2,
-                rejected: false,
-                unread: false,
-                voice: 10,
-            },
-            {
-                kind: "voice",
-                name: "时光",
-                avatar: avatar1,
-                rejected: false,
-                unread: false,
-                voice: 10,
-            },
-            {
-                kind: "voice",
-                name: "[kiss] 汤圆。",
-                avatar: avatar2,
-                rejected: false,
-                unread: false,
-                voice: 60,
-            },
-            {
-                kind: "voice",
-                name: "时光",
-                avatar: avatar1,
-                rejected: false,
-                unread: false,
-                voice: 60,
-            },
+            ...voiceMessages,
             {
                 kind: "text",
                 name: "时光",

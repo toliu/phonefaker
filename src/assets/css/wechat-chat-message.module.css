@@ -31,11 +31,30 @@
 }
 
 .message .voice {
+    display: block;
+    height: 30px;
+    min-width: 52px;
+    max-width: 60%;
+}
 
+.message .voice p {
+    position: relative;
+    -webkit-text-size-adjust: none;
+    -webkit-transform: scale(0.8);
+    bottom: 3px;
+}
+
+.message .voice .icon {
+    display: inline-block;
+    height: 100%;
+    width: 15px;
+    background: url("../img/wechat-voice-message-icon.png") no-repeat center center;
+    background-size: 10px;
 }
 
 .message .mine:after, .message .chatter:after {
     position: absolute;
+    display: block;
     top: 11px;
     content: "";
     width: 6px;
