@@ -21,6 +21,13 @@ export type RedPackageMessage = UserMessage & {
     title: string,
 }
 
+export type ExchangeMessage = UserMessage & {
+    kind: "exchange",
+    money: number,
+    postscript: string,
+}
+
 export type MessageTypes = TextMessage |
     VoiceMessage |
-    RedPackageMessage;
+    RedPackageMessage |
+    ExchangeMessage;

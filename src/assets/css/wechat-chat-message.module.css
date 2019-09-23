@@ -88,6 +88,16 @@
     background: url("../img/wechat-red-package-icon.png") no-repeat right;
 }
 
+.message .package .exchange {
+    width: 20% !important;
+    background: url("../img/wechat-exchange-icon.png") no-repeat right;
+}
+
+.message .package .ereceived {
+    width: 20% !important;
+    background: url("../img/wechat-exchange-icon.png") no-repeat left;
+}
+
 .message .package .content {
     height: 100%;
     width: 78%;

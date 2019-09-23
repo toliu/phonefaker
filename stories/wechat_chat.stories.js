@@ -59,8 +59,30 @@ storiesOf("微信聊天", module)
                 name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
                 avatar: index % 2 === 0 ? avatar1 : avatar2,
                 rejected: index % 3 === 0,
-                unread: index % 4,
+                unread: index % 3,
                 title: title.slice(0, index),
+            })
+        }
+        return <WechatChat
+            userName={"时光"}
+            userAvatar={avatar1}
+            chatterName={"[kiss] 汤圆。"}
+            chatterAvatar={avatar2}
+            messages={messages}
+        />
+    })
+    .add("转账消息", () => {
+        let messages = [];
+        const title = "下季度房租+物业费";
+        for (let index = 1; index <= title.length; index++) {
+            messages.push({
+                kind: "exchange",
+                name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
+                avatar: index % 2 === 0 ? avatar1 : avatar2,
+                rejected: index % 3 === 0,
+                unread: index % 3,
+                money: index,
+                postscript: title.slice(0, index),
             })
         }
         return <WechatChat

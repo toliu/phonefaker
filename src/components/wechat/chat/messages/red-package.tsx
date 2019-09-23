@@ -2,7 +2,6 @@ import * as React from "react";
 
 import {RedPackageMessage} from "./types";
 
-
 import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
 export class RedPackage extends React.Component <{

@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Exchange} from "./exchange";
 import {RedPackage} from "./red-package";
 import {Text} from "./text";
 
@@ -24,7 +25,10 @@ export class Messages extends React.Component<MessagesProps, {}> {
                             return <Voice msg={msg} key={index}/>;
                         case "redPackage":
                             msg.mine = msg.name === this.props.user;
-                            return <RedPackage msg={msg} key={index}/>
+                            return <RedPackage msg={msg} key={index}/>;
+                        case "exchange":
+                            msg.mine = msg.name === this.props.user;
+                            return <Exchange msg={msg} key={index}/>;
                     }
                     return <span key={index}>message</span>
                 })}
