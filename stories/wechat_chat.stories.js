@@ -13,6 +13,29 @@ import pic3 from "./picture3.jpg";
 import pic4 from "./picture4.jpg";
 
 storiesOf("微信聊天", module)
+    .add("聊天背景", () => {
+        const textMessages = [];
+        const shortContent = "可以[kiss]简便";
+        const longContent = "[kiss]可以简便、完整、响应式地实现各种页面布局。目前[kiss]，它已经得到了所有[kiss]浏览器的支持，这意味着，现在就能很安全地使用这项功能。[kiss]";
+        for (let index = 0; index <= 10; index++) {
+            textMessages.push({
+                kind: "text",
+                name: index % 2 === 0 ? "时光" : "[kiss] 汤圆。",
+                avatar: index % 2 === 0 ? avatar1 : avatar2,
+                rejected: index % 3 === 0,
+                unread: false,
+                content: index % 3 === 0 ? shortContent : longContent + index,
+            })
+        }
+        return <WechatChat
+            userName={"时光"}
+            userAvatar={avatar1}
+            chatterName={"[kiss] 汤圆。"}
+            chatterAvatar={avatar2}
+            messages={textMessages}
+            background={pic3}
+        />
+    })
     .add("文本对话", () => {
         const textMessages = [];
         const shortContent = "可以[kiss]简便";

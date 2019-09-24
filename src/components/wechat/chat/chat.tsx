@@ -13,7 +13,8 @@ interface WechatChatProps {
     chatterAvatar: string;
     userName: string;
     userAvatar: string;
-    messages: MessageTypes[]
+    messages: MessageTypes[];
+    background?: string;
 }
 
 export class WechatChat extends React.Component<WechatChatProps, {}> {
@@ -27,7 +28,7 @@ export class WechatChat extends React.Component<WechatChatProps, {}> {
                     </div>
                     <div className={styles.dot}/>
                 </div>
-                <div className={styles.body}>
+                <div className={styles.body} style={{backgroundImage: this.props.background ? "url(" + this.props.background + ")" : undefined}}>
                     <Messages user={this.props.userName} messages={this.props.messages}/>
                 </div>
                 <div className={styles.bottom}>

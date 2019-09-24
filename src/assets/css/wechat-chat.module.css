@@ -32,7 +32,8 @@
     height: 81%;
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: #EEEDED;
+    background: no-repeat #EEEDED center center;
+    background-size: 100% auto;
 }
 
 .body::-webkit-scrollbar {
