@@ -172,6 +172,12 @@ storiesOf("微信聊天", module)
                 user: "时光",
                 friend: "[kiss] 汤圆。",
             },
+            {
+                kind: "package-received",
+                sender: "时光",
+                user: "时光",
+                friend: "[kiss] 汤圆。",
+            },
         ];
         return <WechatChat
             userName={"时光"}
@@ -258,6 +264,12 @@ storiesOf("微信聊天", module)
                 rejected: false,
                 unread: false,
                 title: "拿去花吧",
+            },
+            {
+                kind: "package-received",
+                sender: "时光",
+                user: "时光",
+                friend: "[kiss] 汤圆。",
             },
             {
                 kind: "voice",

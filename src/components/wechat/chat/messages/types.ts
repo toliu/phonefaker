@@ -50,6 +50,13 @@ export type AlreadyFriendMessage = {
     friend: string,
 }
 
+export type RedPackageReceivedMessage = {
+    kind: "package-received",
+    sender: string,
+    user: string,
+    friend: string,
+}
+
 export type MessageTypes = TextMessage |
     VoiceMessage |
     RedPackageMessage |
@@ -57,4 +64,5 @@ export type MessageTypes = TextMessage |
     ImageMessage |
     DateTimeMessage |
     RejectMessage |
-    AlreadyFriendMessage;
+    AlreadyFriendMessage |
+    RedPackageReceivedMessage;

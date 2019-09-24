@@ -4,6 +4,7 @@ import {Datetime} from "./datetime";
 
 import {Exchange} from "./exchange";
 import {Image} from "./image";
+import {RedPackageReceived} from "./package-received";
 import {RedPackage} from "./red-package";
 import {Reject} from "./reject";
 import {Text} from "./text";
@@ -45,7 +46,9 @@ export class Messages extends React.Component<MessagesProps, {}> {
                             }
                             return <Reject msg={msg} key={index}/>;
                         case "friend":
-                            return <AlreadyFriend msg={msg} key={index}/>
+                            return <AlreadyFriend msg={msg} key={index}/>;
+                        case "package-received":
+                            return <RedPackageReceived msg={msg} key={index}/>
                     }
                     return <span key={index}>message</span>
                 })}
