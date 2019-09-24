@@ -109,3 +109,7 @@ export class ArrayLoops {
         return this.values[Math.floor(Math.random() * this.values.length)];
     }
 }
+
+export function BuildHTMLTitle(title: string[]): string {
+    return title.join(" | ")
+}

@@ -7,6 +7,8 @@ import {Developing} from "./developing";
 import {Home} from "./home";
 import {Site, SiteKeys} from "../components/site";
 
+import {WechatChatPage} from "./wechat/chat";
+
 export class Index extends React.Component<{}, {}> {
     public render(): React.ReactElement {
         return (
@@ -14,7 +16,7 @@ export class Index extends React.Component<{}, {}> {
                 <Site>
                     <Switch>
                         <Route exact={true} path={SiteKeys.Home} component={Home}/>
-                        <Route exact={true} path={SiteKeys.WeChatChat} component={Developing}/>
+                        <Route exact={true} path={SiteKeys.WeChatChat} component={WechatChatPage}/>
                         <Route exact={true} path={SiteKeys.WeChatFriends} component={Developing}/>
                         <Route exact={true} path={SiteKeys.WeiboChat} component={Developing}/>
                         <Route exact={true} path={SiteKeys.WeiboNews} component={Developing}/>
