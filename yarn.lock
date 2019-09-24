@@ -811,7 +811,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@7.5.5", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5":
+"@babel/runtime@7.5.5", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.0":
   version "7.5.5"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
   integrity sha1-dPulbTXvvspEQJHHhQzNSU/S8TI=
@@ -886,28 +886,6 @@
     "@emotion/utils" "0.11.2"
     "@emotion/weak-memoize" "0.2.3"
 
-"@emotion/cache@^10.0.17":
-  version "10.0.17"
-  resolved "https://registry.npm.taobao.org/@emotion/cache/download/@emotion/cache-10.0.17.tgz#3491a035f62f276620d586677bfc3d4fad0b8472"
-  integrity sha1-NJGgNfYvJ2Yg1YZne/w9T60LhHI=
-  dependencies:
-    "@emotion/sheet" "0.9.3"
-    "@emotion/stylis" "0.8.4"
-    "@emotion/utils" "0.11.2"
-    "@emotion/weak-memoize" "0.2.3"
-
-"@emotion/core@^10.0.15":
-  version "10.0.17"
-  resolved "https://registry.npm.taobao.org/@emotion/core/download/@emotion/core-10.0.17.tgz#3367376709721f4ee2068cff54ba581d362789d8"
-  integrity sha1-M2c3ZwlyH07iBoz/VLpYHTYnidg=
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    "@emotion/cache" "^10.0.17"
-    "@emotion/css" "^10.0.14"
-    "@emotion/serialize" "^0.11.10"
-    "@emotion/sheet" "0.9.3"
-    "@emotion/utils" "0.11.2"
-
 "@emotion/core@^10.0.9":
   version "10.0.16"
   resolved "https://registry.npm.taobao.org/@emotion/core/download/@emotion/core-10.0.16.tgz?cache=0&sync_timestamp=1565922040521&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40emotion%2Fcore%2Fdownload%2F%40emotion%2Fcore-10.0.16.tgz#e43630b65c84e31e81f34db3286eab584b08cfaa"
@@ -945,17 +923,6 @@
   version "0.7.2"
   resolved "https://registry.npm.taobao.org/@emotion/memoize/download/@emotion/memoize-0.7.2.tgz#7f4c71b7654068dfcccad29553520f984cc66b30"
   integrity sha1-f0xxt2VAaN/MytKVU1IPmEzGazA=
-
-"@emotion/serialize@^0.11.10":
-  version "0.11.10"
-  resolved "https://registry.npm.taobao.org/@emotion/serialize/download/@emotion/serialize-0.11.10.tgz#53207dba7e28bd96928fc2a37e20b31b712bf9a2"
-  integrity sha1-UyB9un4ovZaSj8KjfiCzG3Er+aI=
-  dependencies:
-    "@emotion/hash" "0.7.2"
-    "@emotion/memoize" "0.7.2"
-    "@emotion/unitless" "0.7.4"
-    "@emotion/utils" "0.11.2"
-    csstype "^2.5.7"
 
 "@emotion/serialize@^0.11.8", "@emotion/serialize@^0.11.9":
   version "0.11.9"
@@ -10898,13 +10865,6 @@ react-slick@~0.25.2:
     json2mq "^0.2.0"
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
-
-react-spinners@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.npm.taobao.org/react-spinners/download/react-spinners-0.6.1.tgz#c4f31a1d0e4c85cdb1785a8bdbe17311cf269b0a"
-  integrity sha1-xPMaHQ5Mhc2xeFqL2+FzEc8mmwo=
-  dependencies:
-    "@emotion/core" "^10.0.15"
 
 react-syntax-highlighter@^8.0.1:
   version "8.1.0"

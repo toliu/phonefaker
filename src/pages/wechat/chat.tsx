@@ -14,5 +14,4 @@ export class WechatChatPage extends React.Component<{}, {}> {
             </div>
         );
     }
-
 }
