@@ -1,4 +1,4 @@
-import {Button, Form, Icon, Input, Popover} from "antd";
+import {Avatar, Button, Form, Icon, Input, Popover, Upload} from "antd";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -153,6 +153,24 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                     order: this.props.formOrder,
                 }}>
                     <Form layout={"horizontal"}>
+                        <Form.Item label="头像" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <Upload
+                                style={{cursor: "pointer"}}
+                                accept={"image/*"}
+                                fileList={[]}
+                                onChange={(info) => {
+                                    const file: File = info.file.originFileObj as File;
+                                    const reader = new FileReader();
+                                    reader.addEventListener("load", () => {
+                                        const ui: UserInfo = this.props.user;
+                                        ui.avatar = reader.result as string;
+                                        this.props.setUser(ui);
+                                    });
+                                    reader.readAsDataURL(file);
+                                }}>
+                                <Avatar shape="square" size={"large"} src={this.props.user.avatar}/>
+                            </Upload>
+                        </Form.Item>
                         <Form.Item label="昵称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
                             <Input
                                 placeholder={this.props.user.name}
