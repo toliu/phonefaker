@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.controller {
+    display: flex;
+    justify-content: space-between;
+}
