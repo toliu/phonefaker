@@ -1,8 +1,9 @@
+import {Button, Form, Icon, Input, Popover} from "antd";
 import * as React from "react";
+
 import {WechatChat} from "../../components/wechat/chat/chat";
 import {MessageTypes} from "../../components/wechat/chat/messages/types";
-
-import {BuildHTMLTitle} from "../../utils";
+import {BuildHTMLTitle, EmojiPicker} from "../../utils";
 
 import styles from "../../assets/css/wechat-chat-page.module.css";
 
@@ -55,7 +56,6 @@ export class WechatChatPage extends React.Component<{}, PageStats> {
                     user={this.state.user}
                     chatter={this.state.chatter}
                     setUser={this.setUser}
-                    setChatter={this.setChatter}
                 />
                 <ChatController
                     formOrder={2}
@@ -65,7 +65,6 @@ export class WechatChatPage extends React.Component<{}, PageStats> {
                     user={this.state.chatter}
                     chatter={this.state.user}
                     setUser={this.setChatter}
-                    setChatter={this.setUser}
                 />
             </div>
         );
@@ -132,24 +131,54 @@ interface ChatControllerProps {
     user: UserInfo;
     chatter: UserInfo;
     setUser: (ui: UserInfo) => void;
-    setChatter: (ui: UserInfo) => void;
 }
 
 interface ChatControllerStats {
+    inputUserName: string;
     background?: string;
 }
 
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
     constructor(props: ChatControllerProps) {
         super(props);
-        this.state = {};
+        this.state = {
+            inputUserName: "",
+        };
     }
 
     public render(): React.ReactElement {
         return (
             <div className={styles.controller}>
-                <div style={{order: this.props.formOrder}}>
-                    form
+                <div className={styles.form} style={{
+                    order: this.props.formOrder,
+                }}>
+                    <Form layout={"horizontal"}>
+                        <Form.Item label="昵称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <Input
+                                placeholder={this.props.user.name}
+                                value={this.state.inputUserName}
+                                onChange={(e: any) => this.setState({inputUserName: e.target.value})}
+                                prefix={<Icon type={"user"}/>}
+                                suffix={
+                                    <Popover content={<EmojiPicker onSelect={(emoji: string) => {
+                                        this.setState({inputUserName: this.state.inputUserName + emoji})
+                                    }}/>} trigger={"click"} placement={"bottom"}>
+                                        <Icon type={"smile"}/>
+                                    </Popover>}
+                                addonAfter={
+                                    <Button type={"dashed"} size={"small"} onClick={() => {
+                                        if (this.state.inputUserName) {
+                                            const ui: UserInfo = this.props.user;
+                                            ui.name = this.state.inputUserName;
+                                            this.props.setUser(ui);
+                                            this.setState({inputUserName: ""})
+                                        }
+                                    }}> 提交 </Button>
+                                }
+                            />
+
+                        </Form.Item>
+                    </Form>
                 </div>
                 <div style={{order: 1}}>
                     <WechatChat chatterName={this.props.chatter.name} chatterAvatar={this.props.chatter.avatar} userName={this.props.user.name} userAvatar={this.props.user.avatar} messages={this.props.messages} background={this.state.background} onDelete={this.props.onDelete}/>
