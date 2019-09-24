@@ -135,14 +135,18 @@ interface ChatControllerProps {
 
 interface ChatControllerStats {
     inputUserName: string;
+    inputTextMessage: string;
     background?: string;
 }
+
+const {TextArea} = Input;
 
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
     constructor(props: ChatControllerProps) {
         super(props);
         this.state = {
             inputUserName: "",
+            inputTextMessage: "",
         };
     }
 
@@ -213,6 +217,34 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                             </Upload>
                         </Form.Item>
                         <Divider/>
+                        <Form.Item label="新消息" labelCol={{span: 5}} wrapperCol={{span: 19}}>
+                            <Input
+                                value={this.state.inputTextMessage}
+                                onChange={(e: any) => this.setState({inputTextMessage: e.target.value})}
+                                suffix={
+                                    <Popover content={<EmojiPicker onSelect={(emoji: string) => {
+                                        this.setState({inputTextMessage: this.state.inputTextMessage + emoji})
+                                    }}/>} trigger={"click"} placement={"bottom"}>
+                                        <Icon type={"smile"}/>
+                                    </Popover>}
+                                addonAfter={
+                                    <Button type={"primary"} size={"small"} onClick={() => {
+                                        if (this.state.inputTextMessage) {
+                                            const msg: MessageTypes = {
+                                                kind: "text",
+                                                name: this.props.user.name,
+                                                avatar: this.props.user.avatar,
+                                                rejected: false,
+                                                unread: false,
+                                                content: this.state.inputTextMessage,
+                                            };
+                                            this.props.newMessageSender(msg);
+                                            this.setState({inputTextMessage: ""})
+                                        }
+                                    }}> 发送 </Button>
+                                }
+                            />
+                        </Form.Item>
                     </Form>
                 </div>
                 <div style={{order: 1}}>
