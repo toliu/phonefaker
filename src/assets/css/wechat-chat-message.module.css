@@ -176,7 +176,7 @@
 }
 
 .message .package-received {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.08);
     border-radius: 3px;
     color: rgba(0, 0, 0, 0.4);
     display: flex;

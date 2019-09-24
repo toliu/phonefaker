@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {RedPackageMessage} from "./types";
+import {MessageWrap} from "./wrap";
 
 import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
@@ -16,7 +17,7 @@ export class RedPackage extends React.Component <{
             title = title.slice(0, 8) + "..."
         }
         return (
-            <div className={styles.message} style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
+            <MessageWrap style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
                 <div className={styles.avatar}>
                     <img src={this.props.msg.avatar} alt={"avatar"}/>
                 </div>
@@ -45,7 +46,7 @@ export class RedPackage extends React.Component <{
                         display: this.props.msg.rejected ? "block" : "none",
                     }}/>
                 </div>
-            </div>
+            </MessageWrap>
         );
     }
 }

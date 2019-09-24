@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {DateTimeMessage} from "./types";
+import {MessageWrap} from "./wrap";
 
 import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
@@ -36,11 +37,11 @@ export class Datetime extends React.Component<{
             timeString = time.getFullYear() + "年" + time.getMonth() + "月" + time.getDate() + "日 " + timeString;
         }
         return (
-            <div className={styles.message}>
+            <MessageWrap>
                 <div datatype={"system"} className={styles.datetime}>
                     <p>{timeString}</p>
                 </div>
-            </div>
+            </MessageWrap>
         );
     }
 

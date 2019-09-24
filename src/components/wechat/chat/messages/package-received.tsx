@@ -4,6 +4,7 @@ import {EmojiText} from "../../../../utils";
 import {RedPackageReceivedMessage} from "./types";
 
 import styles from "../../../../assets/css/wechat-chat-message.module.css";
+import {MessageWrap} from "./wrap";
 
 export class RedPackageReceived extends React.Component <{
     msg: RedPackageReceivedMessage,
@@ -15,14 +16,14 @@ export class RedPackageReceived extends React.Component <{
         }
 
         return (
-            <div className={styles.message}>
+            <MessageWrap>
                 <div datatype={"system"} style={{display: "flex", justifyContent: "center"}}>
                     <p className={styles["package-received"]}>
                         <span datatype={"icon"}/>
                         <span><EmojiText content={content}/><span style={{color: "rgba(255,36,0, 0.9)"}}>红包</span></span>
                     </p>
                 </div>
-            </div>
+            </MessageWrap>
         );
     }
 

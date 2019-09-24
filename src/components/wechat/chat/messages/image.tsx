@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {ImageMessage} from "./types";
+import {MessageWrap} from "./wrap";
 
 import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
@@ -12,7 +13,7 @@ export class Image extends React.Component<{
             return <span/>;
         }
         return (
-            <div className={styles.message} style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
+            <MessageWrap style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
                 <div className={styles.avatar}>
                     <img src={this.props.msg.avatar} alt={"avatar"}/>
                 </div>
@@ -20,7 +21,7 @@ export class Image extends React.Component<{
                     <img src={this.props.msg.src} alt={"图片"}/>
                     <div className={styles.reject} style={{display: this.props.msg.rejected ? "block" : "none"}}/>
                 </div>
-            </div>
+            </MessageWrap>
         );
     }
 }
