@@ -7,6 +7,7 @@ import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
 export class Datetime extends React.Component<{
     msg: DateTimeMessage;
+    OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
         const weekdays: string[] = [
@@ -37,7 +38,7 @@ export class Datetime extends React.Component<{
             timeString = time.getFullYear() + "年" + time.getMonth() + "月" + time.getDate() + "日 " + timeString;
         }
         return (
-            <MessageWrap>
+            <MessageWrap OnDelete={this.props.OnDelete}>
                 <div datatype={"system"} className={styles.datetime}>
                     <p>{timeString}</p>
                 </div>

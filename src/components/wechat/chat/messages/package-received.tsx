@@ -2,12 +2,13 @@ import * as React from "react";
 import {EmojiText} from "../../../../utils";
 
 import {RedPackageReceivedMessage} from "./types";
+import {MessageWrap} from "./wrap";
 
 import styles from "../../../../assets/css/wechat-chat-message.module.css";
-import {MessageWrap} from "./wrap";
 
 export class RedPackageReceived extends React.Component <{
     msg: RedPackageReceivedMessage,
+    OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
         let content: string = "你领取了" + this.props.msg.sender + "的";
@@ -16,7 +17,7 @@ export class RedPackageReceived extends React.Component <{
         }
 
         return (
-            <MessageWrap>
+            <MessageWrap OnDelete={this.props.OnDelete}>
                 <div datatype={"system"} style={{display: "flex", justifyContent: "center"}}>
                     <p className={styles["package-received"]}>
                         <span datatype={"icon"}/>

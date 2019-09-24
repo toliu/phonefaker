@@ -3,6 +3,11 @@
     margin: 15px 10px;
 }
 
+.deletable:hover {
+    cursor: pointer;
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
 .message .avatar {
     order: 1;
     height: 30px;

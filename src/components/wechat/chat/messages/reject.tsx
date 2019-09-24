@@ -8,10 +8,11 @@ import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
 export class Reject extends React.Component<{
     msg: RejectMessage,
+    OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
         return (
-            <MessageWrap>
+            <MessageWrap OnDelete={this.props.OnDelete}>
                 <div datatype={"system"}>
                     <p className={styles.reject}>
                         <EmojiText content={this.props.msg.rejectBy}/>

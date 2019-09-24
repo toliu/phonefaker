@@ -7,6 +7,7 @@ import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
 export class Voice extends React.Component<{
     msg: VoiceMessage;
+    OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
         if (this.props.msg.rejected && !this.props.msg.mine) {
@@ -23,7 +24,7 @@ export class Voice extends React.Component<{
         const length: string = Math.sin(((voiceLength / 60) * 90 * Math.PI) / 180) * 60 + "%";
 
         return (
-            <MessageWrap style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
+            <MessageWrap OnDelete={this.props.OnDelete} style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
                 <div className={styles.avatar}>
                     <img src={this.props.msg.avatar} alt={"avatar"}/>
                 </div>

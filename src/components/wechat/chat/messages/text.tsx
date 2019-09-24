@@ -8,13 +8,14 @@ import styles from "../../../../assets/css/wechat-chat-message.module.css";
 
 export class Text extends React.Component<{
     msg: TextMessage;
+    OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
         if (this.props.msg.rejected && !this.props.msg.mine) {
             return <span/>;
         }
         return (
-            <MessageWrap style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
+            <MessageWrap style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}} OnDelete={this.props.OnDelete}>
                 <div className={styles.avatar}>
                     <img src={this.props.msg.avatar} alt={"avatar"}/>
                 </div>
