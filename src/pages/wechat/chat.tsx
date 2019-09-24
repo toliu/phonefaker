@@ -1,4 +1,4 @@
-import {Avatar, Button, Form, Icon, Input, Popover, Upload} from "antd";
+import {Avatar, Button, Divider, Form, Icon, Input, Popover, Upload} from "antd";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -196,6 +196,23 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                             />
 
                         </Form.Item>
+                        <Form.Item label="聊天背景" labelCol={{span: 6}} wrapperCol={{span: 18}}>
+                            <Upload
+                                style={{cursor: "pointer"}}
+                                accept={"image/*"}
+                                fileList={[]}
+                                onChange={(info) => {
+                                    const file: File = info.file.originFileObj as File;
+                                    const reader = new FileReader();
+                                    reader.addEventListener("load", () => {
+                                        this.setState({background: reader.result as string})
+                                    });
+                                    reader.readAsDataURL(file);
+                                }}>
+                                <Avatar shape="square" size={"large"} icon={"plus"}/>
+                            </Upload>
+                        </Form.Item>
+                        <Divider/>
                     </Form>
                 </div>
                 <div style={{order: 1}}>
