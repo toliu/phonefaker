@@ -147,14 +147,14 @@
 }
 
 .message .image {
-    max-height: 120px;
+    padding: 0 !important;
 }
 
 .message .image > img {
     width: 70px;
     height: auto;
     min-height: 50px;
-    border-radius: 10px;
+    border-radius: 5px;
     max-height: 120px;
 }
 
