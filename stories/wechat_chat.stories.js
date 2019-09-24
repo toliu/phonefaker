@@ -180,4 +180,104 @@ storiesOf("微信聊天", module)
             chatterAvatar={avatar2}
             messages={messages}
         />
+    })
+    .add("常规聊天", () => {
+        const now = new Date();
+        const minutes = 60 * 1000;
+        const messages = [
+            {
+                kind: "datetime",
+                datetime: new Date(now.getTime() - 10 * minutes),
+            },
+            {
+                kind: "friend",
+                sender: "时光",
+                user: "时光",
+                friend: "[kiss] 汤圆。",
+            },
+            {
+                kind: "datetime",
+                datetime: new Date(now.getTime() - 7 * minutes),
+            },
+            {
+                kind: "text",
+                name: "时光",
+                avatar: avatar1,
+                rejected: false,
+                unread: false,
+                content: "你好",
+            },
+            {
+                kind: "text",
+                name: "[kiss] 汤圆。",
+                avatar: avatar2,
+                rejected: false,
+                unread: false,
+                content: "是的，你好",
+            },
+            {
+                kind: "image",
+                name: "时光",
+                avatar: avatar1,
+                rejected: false,
+                unread: false,
+                src: pic1,
+            },
+            {
+                kind: "text",
+                name: "时光",
+                avatar: avatar1,
+                rejected: false,
+                unread: false,
+                content: "你觉得怎么样[kiss],你觉得怎么样[kiss],你觉得怎么样[kiss],你觉得怎么样[kiss],你觉得怎么样[kiss]。",
+            },
+            {
+                kind: "voice",
+                name: "[kiss] 汤圆。",
+                avatar: avatar2,
+                rejected: false,
+                unread: false,
+                voice: 20,
+            },
+            {
+                kind: "voice",
+                name: "[kiss] 汤圆。",
+                avatar: avatar2,
+                rejected: false,
+                unread: true,
+                voice: 25,
+            },
+            {
+                kind: "datetime",
+                datetime: new Date(now.getTime() - 3 * minutes),
+            },
+            {
+                kind: "redPackage",
+                name: "时光",
+                avatar: avatar1,
+                rejected: false,
+                unread: false,
+                title: "拿去花吧",
+            },
+            {
+                kind: "voice",
+                name: "时光",
+                avatar: avatar1,
+                rejected: true,
+                unread: false,
+                voice: 21,
+            },
+            {
+                kind: "reject",
+                user: "时光",
+                rejectBy: "[kiss] 汤圆。",
+            },
+        ];
+        return <WechatChat
+            userName={"时光"}
+            userAvatar={avatar1}
+            chatterName={"[kiss] 汤圆。"}
+            chatterAvatar={avatar2}
+            messages={messages}
+        />
     });
