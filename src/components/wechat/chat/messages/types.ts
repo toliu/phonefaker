@@ -48,6 +48,7 @@ export type AlreadyFriendMessage = {
     sender: string,
     user: string,
     friend: string,
+    mine?: boolean,
 }
 
 export type RedPackageReceivedMessage = {

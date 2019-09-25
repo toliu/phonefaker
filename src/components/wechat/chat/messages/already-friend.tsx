@@ -11,14 +11,15 @@ export class AlreadyFriend extends React.Component <{
     OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
-        if (this.props.msg.sender === this.props.msg.friend) {
-            return <span/>;
+        let name: string = this.props.msg.friend;
+        if (!this.props.msg.mine) {
+            name = this.props.msg.sender;
         }
         return (
             <MessageWrap OnDelete={this.props.OnDelete}>
                 <div datatype={"system"} className={styles.datetime}>
                     <p>
-                        你已添加了<EmojiText content={this.props.msg.friend}/>，现在可以开始聊天了。
+                        你已添加了<EmojiText content={name}/>，现在可以开始聊天了。
                     </p>
                 </div>
             </MessageWrap>

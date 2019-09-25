@@ -54,6 +54,7 @@ export class Messages extends React.Component<MessagesProps, {}> {
                             }
                             return <Reject msg={msg} key={index} OnDelete={deleteHandler}/>;
                         case "friend":
+                            msg.mine = this.props.user === msg.sender;
                             return <AlreadyFriend msg={msg} key={index} OnDelete={deleteHandler}/>;
                         case "package-received":
                             return <RedPackageReceived msg={msg} key={index} OnDelete={deleteHandler}/>;
