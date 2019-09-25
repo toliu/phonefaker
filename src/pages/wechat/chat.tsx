@@ -344,6 +344,17 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                 <Avatar shape="square" size={"large"} icon={"money-collect"} style={{backgroundColor: "rgba(250,157,59,0.7)"}}/>
                                 <p>红包</p>
                             </div>
+                            <div className={styles.icon} onClick={() => {
+                                this.props.newMessageSender({
+                                    kind: "package-received",
+                                    sender: this.props.user.name,
+                                    user: this.props.user.name,
+                                    friend: this.props.chatter.name,
+                                })
+                            }}>
+                                <Avatar shape="square" size={"large"} icon={"money-collect"} style={{backgroundColor: "rgba(250,157,59,0.4)"}}/>
+                                <p>收红包</p>
+                            </div>
                             <div className={styles.icon} onClick={() => this.setState({exchangeModalVisible: true})}>
                                 <Avatar shape="square" size={"large"} icon={"swap"} style={{backgroundColor: "rgba(250,157,59,0.8)"}}/>
                                 <p>转账</p>

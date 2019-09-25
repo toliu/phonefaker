@@ -53,6 +53,7 @@ export type AlreadyFriendMessage = {
 
 export type RedPackageReceivedMessage = {
     kind: "package-received",
+    mine?: boolean,
     sender: string,
     user: string,
     friend: string,

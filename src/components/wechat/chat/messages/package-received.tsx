@@ -12,7 +12,7 @@ export class RedPackageReceived extends React.Component <{
 }, {}> {
     public render(): React.ReactElement {
         let content: string = "你领取了" + this.props.msg.sender + "的";
-        if (this.props.msg.sender === this.props.msg.user) {
+        if (this.props.msg.mine) {
             content = this.props.msg.friend + "领取了你的";
         }
 
