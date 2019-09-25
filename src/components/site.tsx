@@ -46,7 +46,6 @@ export class Site extends React.Component<{}, SiteStats> {
             <Layout>
                 <Header className={styles.header}>
                     <Link to={SiteKeys.Home} className={styles.home}/>
-
                     <Menu theme="light" mode="horizontal" className={styles.menu}>
                         <SubMenu title={<span><Icon type="wechat"/>微信</span>}>
                             <Menu.Item>

@@ -210,7 +210,7 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                         <Icon type={"smile"}/>
                                     </Popover>}
                                 addonAfter={
-                                    <Button type={"dashed"} size={"small"} onClick={() => {
+                                    <Button type={"link"} size={"small"} onClick={() => {
                                         if (this.state.inputUserName) {
                                             const ui: UserInfo = this.props.user;
                                             ui.name = this.state.inputUserName;
@@ -220,7 +220,6 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                     }}> 提交 </Button>
                                 }
                             />
-
                         </Form.Item>
                         <Form.Item label="聊天背景" labelCol={{span: 6}} wrapperCol={{span: 18}}>
                             <Upload
@@ -274,7 +273,7 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                         <Icon type={"smile"}/>
                                     </Popover>}
                                 addonAfter={
-                                    <Button type={"primary"} size={"small"} onClick={() => {
+                                    <Button type={"link"} size={"small"} onClick={() => {
                                         if (this.state.inputTextMessage) {
                                             const msg: MessageTypes = {
                                                 kind: "text",
