@@ -139,8 +139,6 @@ interface ChatControllerStats {
     background?: string;
 }
 
-const {TextArea} = Input;
-
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
     constructor(props: ChatControllerProps) {
         super(props);
@@ -213,7 +211,7 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                     });
                                     reader.readAsDataURL(file);
                                 }}>
-                                <Avatar shape="square" size={"large"} icon={"plus"}/>
+                                <Avatar shape="square" size={"large"} icon={"picture"}/>
                             </Upload>
                         </Form.Item>
                         <Divider/>
