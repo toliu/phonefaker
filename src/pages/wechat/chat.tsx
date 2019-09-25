@@ -1,4 +1,4 @@
-import {Avatar, Button, Col, Divider, Form, Icon, Input, Modal, Popover, Row, Slider, Switch, Upload} from "antd";
+import {Avatar, Button, Col, Divider, Form, Icon, Input, InputNumber, Modal, Popover, Row, Slider, Switch, Upload} from "antd";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -143,6 +143,10 @@ interface ChatControllerStats {
 
     redPackageModalVisible: boolean;
     redPackageTitle: string;
+
+    exchangeModalVisible: boolean;
+    exchangeMoney: number;
+    exchangePostscript: string;
 }
 
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
@@ -156,6 +160,9 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
             messageRejected: false,
             redPackageModalVisible: false,
             redPackageTitle: "恭喜发财，大吉大利",
+            exchangeModalVisible: false,
+            exchangeMoney: 1,
+            exchangePostscript: "转账给" + this.props.chatter.name,
         };
     }
 
@@ -328,8 +335,12 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                         </Form.Item>
                         <div className={styles.addition}>
                             <div className={styles.icon} onClick={() => this.setState({redPackageModalVisible: true})}>
-                                <Avatar shape="square" size={"large"} icon={"money-collect"} style={{backgroundColor: "rgba(255,0,0,0.7)"}}/>
+                                <Avatar shape="square" size={"large"} icon={"money-collect"} style={{backgroundColor: "rgba(250,157,59,0.7)"}}/>
                                 <p>红包</p>
+                            </div>
+                            <div className={styles.icon} onClick={() => this.setState({exchangeModalVisible: true})}>
+                                <Avatar shape="square" size={"large"} icon={"swap"} style={{backgroundColor: "rgba(250,157,59,0.8)"}}/>
+                                <p>转账</p>
                             </div>
                         </div>
                     </Form>
@@ -357,6 +368,36 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                     <Form>
                         <Form.Item label="昵称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
                             <Input placeholder={this.state.redPackageTitle} value={this.state.redPackageTitle} onChange={(e: any) => this.setState({redPackageTitle: e.target.value})}/>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+                <Modal title={"转账"} okText={"转账"} cancelText={"取消"} visible={this.state.exchangeModalVisible}
+                       onCancel={() => {
+                           this.setState({exchangeModalVisible: false})
+                       }}
+                       onOk={() => {
+                           let postScript: string = this.state.exchangePostscript;
+                           if (!postScript) {
+                               postScript = "转账给" + this.props.chatter.name;
+                           }
+                           this.props.newMessageSender({
+                               kind: "exchange",
+                               name: this.props.user.name,
+                               avatar: this.props.user.avatar,
+                               rejected: this.state.messageRejected,
+                               unread: this.state.messageRejected ? true : this.state.messageUnread,
+                               money: this.state.exchangeMoney,
+                               postscript: postScript,
+                           });
+                           this.setState({exchangeModalVisible: false, exchangePostscript: postScript})
+                       }}
+                >
+                    <Form>
+                        <Form.Item label="金额" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <InputNumber defaultValue={1} formatter={value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} parser={value => value ? value.replace(/￥\s?|(,*)/g, '') : ""} onChange={value => value && this.setState({exchangeMoney: value.valueOf()})}/>
+                        </Form.Item>
+                        <Form.Item label="备注" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <Input placeholder={this.state.exchangePostscript} value={this.state.exchangePostscript} onChange={(e: any) => this.setState({exchangePostscript: e.target.value})}/>
                         </Form.Item>
                     </Form>
                 </Modal>
