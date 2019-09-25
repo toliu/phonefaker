@@ -221,24 +221,30 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                             </Upload>
                         </Form.Item>
                         <Divider/>
-                        <Form.Item label="标记未读" labelCol={{span: 6}} wrapperCol={{span: 15}}>
-                            <Switch
-                                checkedChildren={<Icon type="check"/>}
-                                unCheckedChildren={<Icon type="close"/>}
-                                defaultChecked={this.state.messageUnread}
-                                onChange={() => this.setState({messageUnread: !this.state.messageUnread})}
-                                title={"标记消息为未读状态，如语言、红包、转账"}
-                            />
-                        </Form.Item>
-                        <Form.Item label="标记拒收" labelCol={{span: 6}} wrapperCol={{span: 15}}>
-                            <Switch
-                                checkedChildren={<Icon type="check"/>}
-                                unCheckedChildren={<Icon type="close"/>}
-                                defaultChecked={this.state.messageRejected}
-                                onChange={() => this.setState({messageRejected: !this.state.messageRejected})}
-                                title={"标记消息为对方拒绝接收状态，如非好友、黑名单"}
-                            />
-                        </Form.Item>
+                        <Row gutter={24} align={"middle"} justify={"start"} type={"flex"}>
+                            <Col span={12}>
+                                <Form.Item label="标记未读" labelCol={{span: 12}} wrapperCol={{span: 12}}>
+                                    <Switch
+                                        checkedChildren={<Icon type="check"/>}
+                                        unCheckedChildren={<Icon type="close"/>}
+                                        defaultChecked={this.state.messageUnread}
+                                        onChange={() => this.setState({messageUnread: !this.state.messageUnread})}
+                                        title={"标记消息为未读状态，如语言、红包、转账"}
+                                    />
+                                </Form.Item>
+                            </Col>
+                            <Col span={12}>
+                                <Form.Item label="标记拒收" labelCol={{span: 12}} wrapperCol={{span: 12}}>
+                                    <Switch
+                                        checkedChildren={<Icon type="check"/>}
+                                        unCheckedChildren={<Icon type="close"/>}
+                                        defaultChecked={this.state.messageRejected}
+                                        onChange={() => this.setState({messageRejected: !this.state.messageRejected})}
+                                        title={"标记消息为对方拒绝接收状态，如非好友、黑名单"}
+                                    />
+                                </Form.Item>
+                            </Col>
+                        </Row>
                         <Form.Item label="新消息" labelCol={{span: 5}} wrapperCol={{span: 19}}>
                             <Input
                                 value={this.state.inputTextMessage}
@@ -291,6 +297,29 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                     </Button>
                                 </Col>
                             </Row>
+                        </Form.Item>
+                        <Form.Item label="图片" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <Upload
+                                style={{cursor: "pointer"}}
+                                accept={"image/*"}
+                                fileList={[]}
+                                onChange={(info) => {
+                                    const file: File = info.file.originFileObj as File;
+                                    const reader = new FileReader();
+                                    reader.addEventListener("load", () => {
+                                        this.props.newMessageSender({
+                                            kind: "image",
+                                            name: this.props.user.name,
+                                            avatar: this.props.user.avatar,
+                                            rejected: this.state.messageRejected,
+                                            unread: this.state.messageUnread,
+                                            src: reader.result as string,
+                                        })
+                                    });
+                                    reader.readAsDataURL(file);
+                                }}>
+                                <Avatar shape="square" size={"large"} icon={"plus"}/>
+                            </Upload>
                         </Form.Item>
                     </Form>
                 </div>
