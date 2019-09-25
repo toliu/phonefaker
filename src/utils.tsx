@@ -7,7 +7,7 @@ import styles from "./assets/css/site.module.css";
 
 interface EmojiTextProps {
     content: string;
-    emojiSize?: 14 | 16;
+    emojiSize?: 12 |14 | 16;
 }
 
 export class EmojiText extends React.Component<EmojiTextProps, {}> {

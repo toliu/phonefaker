@@ -11,9 +11,9 @@ export class RedPackageReceived extends React.Component <{
     OnDelete?: () => void;
 }, {}> {
     public render(): React.ReactElement {
-        let content: string = "你领取了" + this.props.msg.sender + "的";
+        let content: string = this.props.msg.sender + "领取了你的";
         if (this.props.msg.mine) {
-            content = this.props.msg.friend + "领取了你的";
+            content = "你领取了" + this.props.msg.friend + "的";
         }
 
         return (
@@ -27,5 +27,4 @@ export class RedPackageReceived extends React.Component <{
             </MessageWrap>
         );
     }
-
 }

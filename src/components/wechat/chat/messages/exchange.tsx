@@ -1,4 +1,5 @@
 import * as React from "react";
+import {EmojiText} from "../../../../utils";
 
 import {ExchangeMessage} from "./types";
 import {MessageWrap} from "./wrap";
@@ -23,9 +24,22 @@ export class Exchange extends React.Component<{
                 postscript = "已收款"
             }
         }
-        if (postscript.length > 11) {
-            postscript = postscript.slice(0, 10) + "...";
-        }
+        let length: number = 0;
+        postscript = postscript.split(/[[|\]]/).map((each: string, index) => {
+            if (index % 2 === 0) {
+                length += each.length;
+                if (length > 11) {
+                    return each.slice(0, 10 - length) + "...";
+                } else if (length === 11) {
+                    return "...";
+                } else {
+                    return each;
+                }
+            } else if (length < 11) {
+                length += 1;
+                return "[" + each + "]";
+            }
+        }).join("");
 
         return (
             <MessageWrap OnDelete={this.props.OnDelete} style={{justifyContent: this.props.msg.mine ? "flex-end" : "flex-start"}}>
@@ -42,7 +56,7 @@ export class Exchange extends React.Component<{
                             ￥{money}
                         </div>
                         <div className={styles.received} style={{bottom: 0}}>
-                            <p style={{fontFamily: "serif", color: "rgba(255,255,255,0.7)", width: "130%"}}>{postscript}</p>
+                            <p style={{fontFamily: "serif", color: "rgba(255,255,255,0.7)", width: "130%"}}><EmojiText content={postscript} emojiSize={12}/></p>
                         </div>
                     </div>
                     <div className={styles.label}>
