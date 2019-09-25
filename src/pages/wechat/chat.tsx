@@ -352,6 +352,16 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                 <Avatar shape="square" size={"large"} icon={"history"}/>
                                 <p>时间戳</p>
                             </div>
+                            <div className={styles.icon} onClick={() => {
+                                this.props.newMessageSender({
+                                    kind: "reject",
+                                    user: this.props.user.name,
+                                    rejectBy: this.props.chatter.name,
+                                })
+                            }}>
+                                <Avatar shape="square" size={"large"} icon={"exclamation"} style={{backgroundColor: "rgba(255,0,0,0.8)"}}/>
+                                <p>拒收</p>
+                            </div>
                         </div>
                     </Form>
                 </div>
