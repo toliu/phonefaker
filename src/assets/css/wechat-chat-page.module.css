@@ -37,3 +37,30 @@
     text-align: center;
     cursor: pointer;
 }
+
+.sample {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.sample .panel {
+    display: flex;
+    justify-content: space-around;
+    height: 110px;
+}
+
+.sample .panel .item {
+    cursor: pointer;
+    display: flex;
+    box-shadow: 0 0 2px 2px #cccccc;
+    border-radius: 5px;
+    height: 100px;
+    width: 70px;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: bolder;
+}

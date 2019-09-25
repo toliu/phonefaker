@@ -1,4 +1,4 @@
-import {Avatar, Button, Col, DatePicker, Divider, Form, Icon, Input, InputNumber, Modal, Popover, Row, Slider, Switch, TimePicker, Upload} from "antd";
+import {Avatar, Button, Col, DatePicker, Divider, Form, Icon, Input, InputNumber, Modal, Popover, Row, Slider, Switch, Tabs, TimePicker, Upload} from "antd";
 import * as moment from "moment";
 import * as React from "react";
 
@@ -10,6 +10,8 @@ import styles from "../../assets/css/wechat-chat-page.module.css";
 
 import defaultAvatar1 from "../../assets/img/wechat-default-avatar1.jpg";
 import defaultAvatar2 from "../../assets/img/wechat-default-avatar2.jpg";
+
+const {TabPane} = Tabs;
 
 interface UserInfo {
     name: string;
@@ -48,25 +50,156 @@ export class WechatChatPage extends React.Component<{}, PageStats> {
 
     public render(): React.ReactElement {
         return (
-            <div className={styles.container}>
-                <ChatController
-                    formOrder={0}
-                    newMessageSender={this.newMessageSender}
-                    onDelete={this.onMessageDelete}
-                    messages={this.state.messages}
-                    user={this.state.user}
-                    chatter={this.state.chatter}
-                    setUser={this.setUser}
-                />
-                <ChatController
-                    formOrder={2}
-                    newMessageSender={this.newMessageSender}
-                    onDelete={this.onMessageDelete}
-                    messages={this.state.messages}
-                    user={this.state.chatter}
-                    chatter={this.state.user}
-                    setUser={this.setChatter}
-                />
+            <div>
+                <div className={styles.container}>
+                    <ChatController
+                        formOrder={0}
+                        newMessageSender={this.newMessageSender}
+                        onDelete={this.onMessageDelete}
+                        messages={this.state.messages}
+                        user={this.state.user}
+                        chatter={this.state.chatter}
+                        setUser={this.setUser}
+                    />
+                    <ChatController
+                        formOrder={2}
+                        newMessageSender={this.newMessageSender}
+                        onDelete={this.onMessageDelete}
+                        messages={this.state.messages}
+                        user={this.state.chatter}
+                        chatter={this.state.user}
+                        setUser={this.setChatter}
+                    />
+                </div>
+                <div className={styles.sample}>
+                    <Tabs size={"large"} defaultActiveKey="1">
+                        <TabPane tab="搞笑段子" key="1">
+                            <div className={styles.panel}>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {content: "有没有那种天上掉钱的工作？", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "有啊！", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {content: "啥工作", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "许愿池里当王八呗！", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    许愿池王八
+                                </div>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {content: "我脸油不油?", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "反光，看不清楚", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    我脸油不油
+                                </div>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {content: "到你公司楼下了，快递给你放保安亭？", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "别，你直接拿给我就好", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {content: "可是你公司进不去啊", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "我已经在保安亭了", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {content: "保安亭里只有一个保安", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "我就是保安", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    我就是保安
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="微商购物" key="2">
+                            <div className={styles.panel}>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {content: "芙蓉王两条", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "嗯", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {kind: "exchange", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: true, money: 300, postscript: "转账"},
+                                            {content: "两条600[sweat]", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {kind: "exchange", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false, money: 600, postscript: "转账"},
+                                            {kind: "exchange", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false, money: 600, postscript: "已收款"},
+                                            {content: "等会发货", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    购物转账
+                                </div>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {kind: "datetime", datetime: new Date(2019, 8, 25, 12, 35)},
+                                            {kind: "friend", sender: this.state.user.name, user: this.state.user.name, friend: this.state.chatter.name},
+                                            {kind: "datetime", datetime: new Date(2019, 8, 25, 12, 36)},
+                                            {content: "朋友介绍的[smile]", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "嗯，你先给我转99红包，然后我拉你进群", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {title: "加入代理", kind: "redPackage", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {kind: "package-received", sender: this.state.chatter.name, user: this.state.chatter.name, friend: this.state.user.name,},
+                                            {content: "欢迎加入", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    微商代理
+                                </div>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {kind: "datetime", datetime: new Date(2019, 8, 25, 12, 35)},
+                                            {content: "芙蓉王两条", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "嗯", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {kind: "exchange", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: true, money: 300, postscript: "转账"},
+                                            {content: "两条600[sweat]", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {kind: "datetime", datetime: new Date(2019, 8, 25, 12, 36)},
+                                            {kind: "exchange", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false, money: 600, postscript: "转账"},
+                                            {kind: "exchange", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false, money: 600, postscript: "已收款"},
+                                            {content: "好的", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {kind: "datetime", datetime: new Date(2019, 8, 25, 15, 12)},
+                                            {content: "发货了吗", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: true, unread: false},
+                                            {kind: "reject", user: this.state.user.name, rejectBy: this.state.chatter.name,},
+                                            {content: "我操你妈!!!", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: true, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    购物被骗
+                                </div>
+                            </div>
+                        </TabPane>
+                        <TabPane tab="撩人情话" key="3">
+                            <div className={styles.panel}>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {content: "你是我见过第二好看的女孩。", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "那第一呢？", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {content: "第一是我女朋友。", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "你不是单身吗？", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {content: "所以你愿意当我女朋友，成为第一好看的女孩吗?", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "[flushed][flushed][flushed]", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    第一好看
+                                </div>
+                                <div className={styles.item} onClick={() => {
+                                    this.setState({
+                                        messages: [
+                                            {content: "跟你说一个坏消息", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                            {content: "什么坏消息", kind: "text", name: this.state.chatter.name, avatar: this.state.chatter.avatar, rejected: false, unread: false},
+                                            {content: "我对你的思想不单纯了", kind: "text", name: this.state.user.name, avatar: this.state.user.avatar, rejected: false, unread: false},
+                                        ]
+                                    })
+                                }}>
+                                    思想不单纯
+                                </div>
+                            </div>
+                        </TabPane>
+                    </Tabs>
+                </div>
             </div>
         );
     }

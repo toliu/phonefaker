@@ -15,14 +15,10 @@ export class Exchange extends React.Component<{
             return <span/>;
         }
         let money: string = (Math.floor(this.props.msg.money * 100) + "");
-        money = money.slice(0, money.length - 2) + "." + money.slice(money.length - 2, 3);
+        money = money.slice(0, money.length - 2) + "." + money.slice(money.length - 2);
         let postscript: string = this.props.msg.postscript;
-        if (!this.props.msg.unread) {
-            if (this.props.msg.mine) {
-                postscript = "已被领取-" + postscript;
-            } else {
-                postscript = "已收款"
-            }
+        if (!postscript) {
+            postscript = "转账";
         }
         let length: number = 0;
         postscript = postscript.split(/[[|\]]/).map((each: string, index) => {
