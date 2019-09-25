@@ -1,39 +1,30 @@
-.particles {
-    position: fixed;
-    top: 65px;
-    left: 0;
-}
-
 .home {
-    margin-top: 100px;
     margin-bottom: 20px;
-    text-align: center;
+    font-family: "方正舒体", serif;
 }
 
 .home h1 {
-    color: #acacac;
-    font-size: 60px;
-    font-family: 华文楷体, sans-serif;
-    text-align: center;
+    font-size: 5em;
 }
 
-.home ul li {
+.home ul {
     list-style-type: none;
-    font-size: 2em;
-    color: #000000;
-    font-family: 华文楷体, sans-serif;
-    text-align: left;
 }
 
-.home .button {
+.home li {
+    font-size: 2em;
+}
+
+.wechat .chat {
+    height: 600px;
+    width: 100%;
+    background: url("../img/home/wechat-chat.jpg") no-repeat;
+    background-size: auto 100%;
+}
+
+.button {
     position: relative;
-    font-size: 1em;
+    font-size: 3em;
     color: #6c6cd7;
     text-decoration: underline;
-}
-
-.carousel {
-    height: 500px;
-    overflow: hidden;
-    margin: 0 auto;
 }

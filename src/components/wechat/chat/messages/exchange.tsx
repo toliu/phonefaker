@@ -35,6 +35,7 @@ export class Exchange extends React.Component<{
                 length += 1;
                 return "[" + each + "]";
             }
+            return "";
         }).join("");
 
         return (
