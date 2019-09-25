@@ -1,4 +1,4 @@
-import {Avatar, Button, Divider, Form, Icon, Input, Popover, Upload} from "antd";
+import {Avatar, Button, Divider, Form, Icon, Input, Popover, Switch, Upload} from "antd";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -137,6 +137,8 @@ interface ChatControllerStats {
     inputUserName: string;
     inputTextMessage: string;
     background?: string;
+    messageUnread: boolean;
+    messageRejected: boolean;
 }
 
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
@@ -145,6 +147,8 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
         this.state = {
             inputUserName: "",
             inputTextMessage: "",
+            messageUnread: true,
+            messageRejected: false,
         };
     }
 
@@ -215,6 +219,24 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                             </Upload>
                         </Form.Item>
                         <Divider/>
+                        <Form.Item label="标记未读" labelCol={{span: 6}} wrapperCol={{span: 15}}>
+                            <Switch
+                                checkedChildren={<Icon type="check"/>}
+                                unCheckedChildren={<Icon type="close"/>}
+                                defaultChecked={this.state.messageUnread}
+                                onChange={() => this.setState({messageUnread: !this.state.messageUnread})}
+                                title={"标记消息为未读状态，如语言、红包、转账"}
+                            />
+                        </Form.Item>
+                        <Form.Item label="标记拒收" labelCol={{span: 6}} wrapperCol={{span: 15}}>
+                            <Switch
+                                checkedChildren={<Icon type="check"/>}
+                                unCheckedChildren={<Icon type="close"/>}
+                                defaultChecked={this.state.messageRejected}
+                                onChange={() => this.setState({messageRejected: !this.state.messageRejected})}
+                                title={"标记消息为对方拒绝接收状态，如非好友、黑名单"}
+                            />
+                        </Form.Item>
                         <Form.Item label="新消息" labelCol={{span: 5}} wrapperCol={{span: 19}}>
                             <Input
                                 value={this.state.inputTextMessage}
@@ -232,12 +254,11 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                                 kind: "text",
                                                 name: this.props.user.name,
                                                 avatar: this.props.user.avatar,
-                                                rejected: false,
-                                                unread: false,
+                                                rejected: this.state.messageRejected,
+                                                unread: this.state.messageUnread,
                                                 content: this.state.inputTextMessage,
                                             };
                                             this.props.newMessageSender(msg);
-                                            this.setState({inputTextMessage: ""})
                                         }
                                     }}> 发送 </Button>
                                 }
