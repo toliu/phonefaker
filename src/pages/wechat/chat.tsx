@@ -1,4 +1,4 @@
-import {Avatar, Button, Divider, Form, Icon, Input, Popover, Switch, Upload} from "antd";
+import {Avatar, Button, Col, Divider, Form, Icon, Input, Popover, Row, Slider, Switch, Upload} from "antd";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -136,6 +136,7 @@ interface ChatControllerProps {
 interface ChatControllerStats {
     inputUserName: string;
     inputTextMessage: string;
+    inputVoiceLength: number;
     background?: string;
     messageUnread: boolean;
     messageRejected: boolean;
@@ -147,6 +148,7 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
         this.state = {
             inputUserName: "",
             inputTextMessage: "",
+            inputVoiceLength: 10,
             messageUnread: true,
             messageRejected: false,
         };
@@ -263,6 +265,32 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                     }}> 发送 </Button>
                                 }
                             />
+                        </Form.Item>
+                        <Form.Item label="语音" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <Row gutter={24} align={"middle"} justify={"start"} type={"flex"}>
+                                <Col span={16}>
+                                    <Slider
+                                        min={1}
+                                        max={60}
+                                        defaultValue={10}
+                                        onChange={(e: any) => this.setState({inputVoiceLength: e})}
+                                    />
+                                </Col>
+                                <Col span={4}>
+                                    <Button size={"small"} type={"primary"} onClick={() => {
+                                        this.props.newMessageSender({
+                                            kind: "voice",
+                                            name: this.props.user.name,
+                                            avatar: this.props.user.avatar,
+                                            rejected: this.state.messageRejected,
+                                            unread: this.state.messageUnread,
+                                            voice: this.state.inputVoiceLength,
+                                        })
+                                    }}>
+                                        发送
+                                    </Button>
+                                </Col>
+                            </Row>
                         </Form.Item>
                     </Form>
                 </div>
