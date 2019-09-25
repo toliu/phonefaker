@@ -24,6 +24,7 @@ export class Datetime extends React.Component<{
         const now: Date = new Date();
         const secondDiff: number = (now.getTime() - time.getTime()) / 1000;
         let timeString: string = (time.getHours() > 9 ? time.getHours() + "" : "0" + time.getHours()) + ":" + (time.getMinutes() > 9 ? time.getMinutes() + "" : "0" + time.getMinutes());
+        const month = time.getMonth() + 1;
         if (secondDiff < 60) {
             timeString = "刚刚";
         } else if (secondDiff < day) {
@@ -33,9 +34,9 @@ export class Datetime extends React.Component<{
         } else if (secondDiff < 7 * day) {
             timeString = weekdays[time.getDay()] + " " + timeString;
         } else if (secondDiff < 14 * day) {
-            timeString = time.getMonth() + "月" + time.getDate() + "日 " + timeString;
+            timeString = month + "月" + time.getDate() + "日 " + timeString;
         } else {
-            timeString = time.getFullYear() + "年" + time.getMonth() + "月" + time.getDate() + "日 " + timeString;
+            timeString = time.getFullYear() + "年" + month + "月" + time.getDate() + "日 " + timeString;
         }
         return (
             <MessageWrap OnDelete={this.props.OnDelete}>

@@ -1,4 +1,5 @@
-import {Avatar, Button, Col, Divider, Form, Icon, Input, InputNumber, Modal, Popover, Row, Slider, Switch, Upload} from "antd";
+import {Avatar, Button, Col, DatePicker, Divider, Form, Icon, Input, InputNumber, Modal, Popover, Row, Slider, Switch, TimePicker, Upload} from "antd";
+import * as moment from "moment";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -147,6 +148,9 @@ interface ChatControllerStats {
     exchangeModalVisible: boolean;
     exchangeMoney: number;
     exchangePostscript: string;
+
+    datetimeModalVisible: boolean;
+    datetime: Date;
 }
 
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
@@ -163,6 +167,8 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
             exchangeModalVisible: false,
             exchangeMoney: 1,
             exchangePostscript: "转账给" + this.props.chatter.name,
+            datetimeModalVisible: false,
+            datetime: new Date(),
         };
     }
 
@@ -342,6 +348,10 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                 <Avatar shape="square" size={"large"} icon={"swap"} style={{backgroundColor: "rgba(250,157,59,0.8)"}}/>
                                 <p>转账</p>
                             </div>
+                            <div className={styles.icon} onClick={() => this.setState({datetimeModalVisible: true})}>
+                                <Avatar shape="square" size={"large"} icon={"history"}/>
+                                <p>时间戳</p>
+                            </div>
                         </div>
                     </Form>
                 </div>
@@ -401,6 +411,37 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                         </Form.Item>
                     </Form>
                 </Modal>
+                <Modal title={"添加时间戳系统消息"} okText={"添加"} cancelText={"取消"} visible={this.state.datetimeModalVisible}
+                       onCancel={() => this.setState({datetimeModalVisible: false})}
+                       onOk={() => {
+                           this.props.newMessageSender({
+                               kind: "datetime",
+                               datetime: this.state.datetime,
+                           });
+                           this.setState({datetimeModalVisible: false})
+                       }}
+                >
+                    <Form>
+                        <Form.Item label="时间" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <DatePicker
+                                placeholder={"日期"}
+                                onChange={(date: moment.Moment | null, ts: string) => {
+                                    if (!date) return;
+                                    const datetime: Date = new Date(this.state.datetime.valueOf());
+                                    datetime.setFullYear(date.year(), date.month(), date.date());
+                                    this.setState({datetime: datetime})
+                                }}/>
+                            <TimePicker
+                                placeholder={"时间"}
+                                onChange={(time: moment.Moment, ts: string) => {
+                                    const datetime: Date = new Date(this.state.datetime.valueOf());
+                                    datetime.setHours(time.hours(), time.minutes(), time.seconds())
+                                    this.setState({datetime: datetime})
+                                }}/>
+                        </Form.Item>
+                    </Form>
+                </Modal>
+
                 <div style={{order: 1}}>
                     <WechatChat chatterName={this.props.chatter.name} chatterAvatar={this.props.chatter.avatar} userName={this.props.user.name} userAvatar={this.props.user.avatar} messages={this.props.messages} background={this.state.background} onDelete={this.props.onDelete}/>
                 </div>
