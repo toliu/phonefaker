@@ -1,4 +1,4 @@
-import {Avatar, Button, Col, Divider, Form, Icon, Input, Popover, Row, Slider, Switch, Upload} from "antd";
+import {Avatar, Button, Col, Divider, Form, Icon, Input, Modal, Popover, Row, Slider, Switch, Upload} from "antd";
 import * as React from "react";
 
 import {WechatChat} from "../../components/wechat/chat/chat";
@@ -140,6 +140,9 @@ interface ChatControllerStats {
     background?: string;
     messageUnread: boolean;
     messageRejected: boolean;
+
+    redPackageModalVisible: boolean;
+    redPackageTitle: string;
 }
 
 class ChatController extends React.Component<ChatControllerProps, ChatControllerStats> {
@@ -151,6 +154,8 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
             inputVoiceLength: 10,
             messageUnread: true,
             messageRejected: false,
+            redPackageModalVisible: false,
+            redPackageTitle: "恭喜发财，大吉大利",
         };
     }
 
@@ -321,8 +326,40 @@ class ChatController extends React.Component<ChatControllerProps, ChatController
                                 <Avatar shape="square" size={"large"} icon={"plus"}/>
                             </Upload>
                         </Form.Item>
+                        <div className={styles.addition}>
+                            <div className={styles.icon} onClick={() => this.setState({redPackageModalVisible: true})}>
+                                <Avatar shape="square" size={"large"} icon={"money-collect"} style={{backgroundColor: "rgba(255,0,0,0.7)"}}/>
+                                <p>红包</p>
+                            </div>
+                        </div>
                     </Form>
                 </div>
+                <Modal title={"发送红包"} okText={"发送"} cancelText={"取消"} visible={this.state.redPackageModalVisible}
+                       onCancel={() => {
+                           this.setState({redPackageModalVisible: false})
+                       }}
+                       onOk={() => {
+                           let title: string = this.state.redPackageTitle;
+                           if (!title) {
+                               title = "恭喜发财，大吉大利"
+                           }
+                           this.props.newMessageSender({
+                               kind: "redPackage",
+                               name: this.props.user.name,
+                               avatar: this.props.user.avatar,
+                               rejected: this.state.messageRejected,
+                               unread: this.state.messageRejected ? true : this.state.messageUnread,
+                               title: title,
+                           });
+                           this.setState({redPackageModalVisible: false, redPackageTitle: title})
+                       }}
+                >
+                    <Form>
+                        <Form.Item label="昵称" labelCol={{span: 4}} wrapperCol={{span: 20}}>
+                            <Input placeholder={this.state.redPackageTitle} value={this.state.redPackageTitle} onChange={(e: any) => this.setState({redPackageTitle: e.target.value})}/>
+                        </Form.Item>
+                    </Form>
+                </Modal>
                 <div style={{order: 1}}>
                     <WechatChat chatterName={this.props.chatter.name} chatterAvatar={this.props.chatter.avatar} userName={this.props.user.name} userAvatar={this.props.user.avatar} messages={this.props.messages} background={this.state.background} onDelete={this.props.onDelete}/>
                 </div>
